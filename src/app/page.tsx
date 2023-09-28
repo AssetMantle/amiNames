@@ -3,7 +3,7 @@ import { LandingPage } from "@/ui_components/landingPage/LandingPage";
 
 export default function Home() {
   return (
-    <main className="flex  flex-col items-center justify-center ">
+    <main className="md:flex  md:flex-col md:items-center md:justify-center block pt-24 md:pt-0">
       <LandingPage />
     </main>
   );
