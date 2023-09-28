@@ -27,9 +27,7 @@ export default function Header() {
   const handleDisconnect = async () => {
     const isDisConnected = await disconnect();
   };
-  const handlePopoverClick = (
-    event: React.MouseEvent<HTMLParagraphElement>
-  ) => {
+  const handlePopoverClick = (event: React.MouseEvent<HTMLParagraphElement>) => {
     setIsPopoverOpen(!isPopoverOpen);
     setTargetElement(event.currentTarget);
   };
@@ -41,10 +39,8 @@ export default function Header() {
 
   if (typeof window !== "undefined") {
     window.addEventListener("storage", () => {
-      console.log("came inside window fun");
       const list = getFromLocalStorage("amiNamesList");
-      const nameList =
-        list && list.filter((item: any) => item.address === address);
+      const nameList = list && list.filter((item: any) => item.address === address);
       setNamesList(nameList);
     });
   }
@@ -85,29 +81,19 @@ export default function Header() {
     <header className="fixed flex items-center justify-between gap-4 bg-white w-full left-0 px-12 py-5 z-[50] font-inter">
       <Link href={`/?referral=${queryValue}`}>
         <div className="col-span-1 flex items-center gap-2">
-          <Image
-            className=""
-            width={36}
-            height={36}
-            alt="selected"
-            src={icons.amiLogo}
-          />
+          <Image className="" width={36} height={36} alt="selected" src={icons.amiLogo} />
           <p className="heading1_black !text-[28px]">{"AMI Names"}</p>
         </div>
       </Link>
       <div className="flex items-center gap-5">
         <Link className="" href={blogsUrl} target="_blank">
           <div className="flex items-center justify-center gap-2">
-            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">
-              Blogs
-            </p>
+            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">Blogs</p>
           </div>
         </Link>
         <Link className="" href={docsUrl} target="_blank">
           <div className="flex items-center justify-center gap-2">
-            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">
-              Docs
-            </p>
+            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">Docs</p>
           </div>
         </Link>
         {isValidUser && !address && !pathname.includes("claim") ? (
@@ -130,11 +116,7 @@ export default function Header() {
                   openNameListModal();
                 }}
               >
-                <p
-                  className={`paragraph_semibold cursor-pointer ml-1 text-black`}
-                >
-                  My names
-                </p>
+                <p className={`paragraph_semibold cursor-pointer ml-1 text-black`}>My names</p>
               </div>
             ) : null}
             <p
@@ -207,13 +189,7 @@ export default function Header() {
           />
         </div> */}
       </div>
-      {namesList && (
-        <NameListModal
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          namesList={namesList}
-        />
-      )}
+      {namesList && <NameListModal isOpen={isOpen} setIsOpen={setIsOpen} namesList={namesList} />}
     </header>
   );
 }
