@@ -1,0 +1,54 @@
+@import "typography.css";
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+html {
+  font-family: Inter, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: Inter, sans-serif;
+}
+
+.buttonBg {
+  background: linear-gradient(45deg, rgba(230, 73, 64, 1), rgba(57, 106, 246, 1));
+}
+
+.textGradient {
+  background: linear-gradient(45deg, rgba(230, 73, 64, 1), rgba(57, 106, 246, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.gradientBg {
+  background: linear-gradient(135.79deg, #d641ee 3.76%, #41eee4 93.75%);
+}
+
+.hero-heading-gradient-text {
+  background: linear-gradient(45deg, rgba(230, 73, 64, 1), rgba(57, 106, 246, 1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
