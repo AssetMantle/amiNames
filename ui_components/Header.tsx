@@ -39,7 +39,6 @@ export default function Header() {
 
   if (typeof window !== "undefined") {
     window.addEventListener("storage", () => {
-      console.log("came inside window fun");
       const list = getFromLocalStorage("amiNamesList");
       const nameList = list && list.filter((item: any) => item.address === address);
       setNamesList(nameList);
