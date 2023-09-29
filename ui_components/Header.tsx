@@ -78,11 +78,11 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed flex items-center justify-between gap-4 bg-white w-full left-0 px-12 py-5 z-[50] font-inter">
+    <header className="fixed flex items-center justify-between gap-4 bg-white w-full left-0 md:px-12 py-5 z-[50] font-inter px-2">
       <Link href={`/?referral=${queryValue}`}>
         <div className="col-span-1 flex items-center gap-2">
           <Image className="" width={36} height={36} alt="selected" src={icons.amiLogo} />
-          <p className="heading1_black !text-[28px]">{"AMI Names"}</p>
+          <p className="heading1_black md:!text-[28px] !text-[20px]">{"AMI Names"}</p>
         </div>
       </Link>
       <div className="flex items-center gap-5">

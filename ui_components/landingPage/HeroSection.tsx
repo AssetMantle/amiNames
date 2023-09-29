@@ -42,28 +42,21 @@ export const HeroSection = () => {
     router.push(`/claim?referral=${queryValue}`);
   };
   return (
-    <div className="flex items-center container mx-auto bg-white w-full h-[calc(100vh-90px)]">
+    <div className="block md:flex items-center container mx-auto bg-white w-full md:h-[calc(100vh-90px)] px-4">
       <div className="flex-1">
         <h1 className="heading1_black 2xl:!text-[48px] 2xl:!leading-[56px]">
           {heroSecHeadingText} <br />
-          <span className="hero-heading-gradient-text">
-            {heroSecHeadingGradientText}
-          </span>
+          <span className="hero-heading-gradient-text">{heroSecHeadingGradientText}</span>
         </h1>
         <p className="paragraph_semibold mt-6 ">
-          {heroSecDescHeadingText}{" "}
-          <span className="paragraph_regular">{heroSecDescText}</span>
+          {heroSecDescHeadingText} <span className="paragraph_regular">{heroSecDescText}</span>
         </p>
         <div className="mt-1 flex items-center gap-2 mb-10">
-          <p className="text-primary paragraph_regular font-semibold">
-            fulfilled by
-          </p>
+          <p className="text-primary paragraph_regular font-semibold">fulfilled by</p>
           <Link href={assetmantleUrlLink} target={"_blank"}>
             <Image src={icons.assetmantleLogo} alt="assetMantleLogo" />
           </Link>
-          <p className="text-primary paragraph_regular font-semibold">
-            Blockchain
-          </p>
+          <p className="text-primary paragraph_regular font-semibold">Blockchain</p>
         </div>
         <Button
           type="button"
@@ -77,62 +70,38 @@ export const HeroSection = () => {
         >
           <div className="flex">
             {heroSecBtnText}
-            <IconWrapper
-              iconClassName="arrow_right_alt"
-              className=""
-              iconSize="text-[20px] text-white"
-            />
+            <IconWrapper iconClassName="arrow_right_alt" className="" iconSize="text-[20px] text-white" />
           </div>
         </Button>
 
         <p className="supportText_regular mt-4">{heroSecSupportText}</p>
-        <div className="flex items-center mt-6">
+        <div className="flex items-center mt-6 pb-4">
           <div className="grid grid-cols-4 gap-6">
             <Link href={twitterUrl} target="_blank">
               <div className="flex flex-col items-center justify-center gap-2">
-                <Image
-                  src={icons.twitter}
-                  width={28}
-                  height={28}
-                  alt="twitter"
-                />
+                <Image src={icons.twitter} width={28} height={28} alt="twitter" />
               </div>
             </Link>
             <Link href={telegramUrl} target="_blank">
               <div className="flex flex-col items-center justify-center gap-2">
-                <Image
-                  src={icons.telegram}
-                  width={28}
-                  height={28}
-                  alt="telegram"
-                />
+                <Image src={icons.telegram} width={28} height={28} alt="telegram" />
               </div>
             </Link>
             <Link href={linkedinUrl} target="_blank">
               <div className="flex flex-col items-center justify-center  gap-2">
-                <Image
-                  src={icons.linkedin}
-                  width={28}
-                  height={28}
-                  alt="linkedin"
-                />
+                <Image src={icons.linkedin} width={28} height={28} alt="linkedin" />
               </div>
             </Link>
 
             <Link href={warpcastUrl} target="_blank">
               <div className="flex flex-col items-center justify-center  gap-2">
-                <Image
-                  src={icons.warpcast}
-                  width={28}
-                  height={28}
-                  alt="warpcast"
-                />
+                <Image src={icons.warpcast} width={28} height={28} alt="warpcast" />
               </div>
             </Link>
           </div>
         </div>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 hidden md:block">
         <Image src={icons.heroImg} alt="hero_img" />
       </div>
     </div>

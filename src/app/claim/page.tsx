@@ -4,20 +4,9 @@ import { debounce } from "lodash";
 import MintModal from "@/ui_components/MintModal";
 import { icons } from "@/utils/images";
 import Image from "next/image";
-import {
-  chain,
-  homePageHeadingGradientText,
-  homePageHeadingText,
-  homePageHeadingFree,
-} from "@/constant";
+import { chain, homePageHeadingGradientText, homePageHeadingText, homePageHeadingFree } from "@/constant";
 import { useChain } from "@cosmos-kit/react";
-import {
-  getFromLocalStorage,
-  isValidReferrer,
-  saveToLocalStorage,
-  showToastMessage,
-  trimAddress,
-} from "@/utils";
+import { getFromLocalStorage, isValidReferrer, saveToLocalStorage, showToastMessage, trimAddress } from "@/utils";
 import { useSearchParams } from "next/navigation";
 import { IconWrapper } from "@/ui_components/IconWrapper";
 
@@ -119,34 +108,27 @@ export default function Home() {
   }, [status]);
 
   return (
-    <main className="flex h-[calc(100vh-90px)] flex-col items-center justify-center font-inter">
-      <div className="text-center p-8">
-        <h1 className="text-5xl font-semibold text-primary pt-8 pb-3">
+    <main className="md:flex md:h-[calc(100vh-90px)] md:flex-col md:items-center md:justify-center font-inter block pt-16">
+      <div className="text-center p-4 md:p-8">
+        <h1 className="text-3xl md:text-5xl font-semibold text-primary pt-8 pb-3">
           {homePageHeadingText}
-          <span className="hero-heading-gradient-text">
-            {" "}
-            {homePageHeadingGradientText}{" "}
-          </span>
+          <span className="hero-heading-gradient-text"> {homePageHeadingGradientText} </span>
           {homePageHeadingFree}
         </h1>
-        <p className="text-[24px] font-regular text-primary pb-6 mb-3">
+        <p className="md:text-[24px] text-[18px] font-regular text-primary pb-6 mb-3">
           Introducing {`Cosmos's`} first Self Soverign Identity.
         </p>
         <input
           type="text"
           id="large-input"
-          className="block w-[400px] m-auto p-4 text-gray-900 border border-[#396AF6] bg-gray-50  rounded-3xl"
+          className="block md:w-[400px] w-[100%] m-auto p-4 text-gray-900 border border-[#396AF6] bg-gray-50  rounded-3xl"
           placeholder="Enter the AMI Name"
           value={inputValue}
           onChange={(e) => handleInputChange(e)}
         />
         {!inputValue && (
-          <div className="flex items-center justify-center gap-1 mt-4">
-            <IconWrapper
-              className="cursor-pointer"
-              iconClassName="info"
-              iconSize="text-[16px] text-black/60"
-            />
+          <div className="flex items-center justify-center gap-1 md:mt-4 mt-1 text-left md:text-center">
+            <IconWrapper className="cursor-pointer" iconClassName="info" iconSize="text-[16px] text-black/60" />
             <p className="supportText_regular text-black/60">
               {"No Uppercase or Special Characters, except Underscore '_'"}
             </p>
@@ -155,15 +137,13 @@ export default function Home() {
         {inputValue && (
           <div
             onClick={handleMintModal}
-            className="absolute text-left bg-white w-[450px] m-auto mt-1 border outline-none focus:outline-none border-borderGrey left-1/2 transform -translate-x-1/2 cursor-pointer hover:bg-grey"
+            className="absolute text-left bg-white w-[450px] m-auto mt-1 border outline-none focus:outline-none border-borderGrey left-1/2 transform -translate-x-1/2 cursor-pointer hover:bg-grey max-w-[90%]"
           >
             <div className="flex items-center justify-between p-2 px-4 gap-2">
               <div>
                 <p className="text-md font-medium text-primary">{inputValue}</p>
                 {idExist && !loader ? (
-                  <p className="text-[12px] font-medium text-primary/70">
-                    {premiumAddr.provisionAddress}
-                  </p>
+                  <p className="text-[12px] font-medium text-primary/70">{premiumAddr.provisionAddress}</p>
                 ) : null}
               </div>
               {loader ? (

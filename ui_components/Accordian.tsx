@@ -38,7 +38,7 @@ const Accordion = ({
   };
   return (
     <motion.div
-      className={`w-full rounded-large relative py-8 px-5 ${className ?? ""}`}
+      className={`w-full rounded-large relative py-8 md:px-5  ${className ?? ""}`}
       onClick={() => {
         handleOpen();
       }}
@@ -46,9 +46,7 @@ const Accordion = ({
       <div
         role={"presentation"}
         className={`w-full flex items-center justify-between relative cursor-pointer
-                ${headerClassName ?? ""} ${
-          open ? headerExpandedClassName ?? "" : ""
-        }`}
+                ${headerClassName ?? ""} ${open ? headerExpandedClassName ?? "" : ""}`}
         onClick={handleOpen}
       >
         {accordionHeader}
