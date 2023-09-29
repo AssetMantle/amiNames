@@ -16,6 +16,7 @@ import { useSearchParams } from "next/navigation";
 export const ReferralProgram = () => {
   const query = useSearchParams();
   const queryValue = query.get("referral");
+  const domain = window.location.origin;
   return (
     <div className=" bg-[#F6F7F7] py-[100px]">
       <div className="container mx-auto text-center ">
@@ -29,7 +30,7 @@ export const ReferralProgram = () => {
             </div>
             <div className="md:px-20 px-0">
               <p className="paragraph_regular !text-[20px] leading-[30px] text-[#396AF6] text-center">
-                {`${referralLink}?referral=`}
+                {`${domain}?referral=`}
                 <span className="md:text-white md:bg-[#396AF6] md:p-2 md:rounded-lg text-[#396AF6] font-medium md:font-regular">{`${
                   queryValue ?? "sampleref"
                 }`}</span>

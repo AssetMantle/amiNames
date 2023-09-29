@@ -88,7 +88,7 @@ export default function Header() {
       <div className="flex items-center gap-5">
         <Link className="" href={blogsUrl} target="_blank">
           <div className="flex items-center justify-center gap-2">
-            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">Blogs</p>
+            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">Blog</p>
           </div>
         </Link>
         <Link className="" href={docsUrl} target="_blank">
@@ -162,7 +162,7 @@ export default function Header() {
                 <Link className="" href={blogsUrl} target="_blank">
                   <div className="flex items-center justify-center gap-2 border-b border-b-grey/80">
                     <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">
-                      Blogs
+                      Blog
                     </p>
                     <IconWrapper
                       className="cursor-pointer"

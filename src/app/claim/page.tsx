@@ -116,7 +116,7 @@ export default function Home() {
           {homePageHeadingFree}
         </h1>
         <p className="md:text-[24px] text-[18px] font-regular text-primary pb-6 mb-3">
-          Introducing {`Cosmos's`} first Self Soverign Identity.
+          Introducing {`Cosmos's`} first Self sovereign Identity.
         </p>
         <input
           type="text"
