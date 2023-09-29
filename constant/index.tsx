@@ -8,19 +8,16 @@ export const heroSecHeadingGradientText = "Web3 Identity is here!";
 export const heroSecDescHeadingText = "Introducing AMI Names - ";
 export const heroSecDescText = <>Cosmos&rsquo; first Self-Sovereign Identity</>;
 export const heroSecBtnText = "Claim your own AMI Name";
-export const heroSecSupportText =
-  "Note: You need to have a referral code to claim AMI Name.";
+export const heroSecSupportText = "Note: You need to have a referral code to claim AMI Name.";
 export const featureSecHeading = (
   <>
     Pioneering Decentralized Verifiable Credentials <br /> in Web3
   </>
 );
 export const feature1Heading = "Passwordless Login";
-export const feature1Desc =
-  "Enhance security & user experience by eliminating passwords.";
+export const feature1Desc = "Enhance security & user experience by eliminating passwords.";
 export const feature2Heading = "Interoperability";
-export const feature2Desc =
-  " Same digital identity across platforms and services, including web2 platforms like Auth0";
+export const feature2Desc = " Same digital identity across platforms and services, including web2 platforms like Auth0";
 export const feature3Heading = "Beyond Cosmos";
 export const feature3Desc =
   "In the future, AMI Names will have the potential to extend their utility beyond the cosmos ecosystem.";

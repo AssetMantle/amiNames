@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import Modal from "@/ui_components/Modal";
 import Button from "@/ui_components/Button";
@@ -24,7 +23,7 @@ import { IconWrapper } from "./IconWrapper";
 import { useSearchParams } from "next/navigation";
 
 const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isValidRef }: any) => {
-  const siteKey = process.env.RECAPTCHA_SITE_KEY;
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const query = useSearchParams();
   const recaptchaRef = React.createRef();
   const chainContext = useChain(chain);
