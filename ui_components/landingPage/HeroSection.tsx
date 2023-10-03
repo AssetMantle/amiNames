@@ -1,12 +1,14 @@
 "use client";
 import {
   assetmantleUrlLink,
+  discordUrl,
   heroSecBtnText,
   heroSecDescHeadingText,
   heroSecDescText,
   heroSecHeadingGradientText,
   heroSecHeadingText,
   heroSecSupportText,
+  instaUrl,
   linkedinUrl,
   telegramUrl,
   twitterUrl,
@@ -87,17 +89,22 @@ export const HeroSection = () => {
                 <Image src={icons.telegram} width={28} height={28} alt="telegram" />
               </div>
             </Link>
-            <Link href={linkedinUrl} target="_blank">
+            <Link href={discordUrl} target="_blank">
               <div className="flex flex-col items-center justify-center  gap-2">
-                <Image src={icons.linkedin} width={28} height={28} alt="linkedin" />
+                <Image src={icons.discordShare} width={28} height={28} alt="linkedin" />
+              </div>
+            </Link>
+            <Link href={instaUrl} target="_blank">
+              <div className="flex flex-col items-center justify-center  gap-2">
+                <Image src={icons.instaShare} width={28} height={28} alt="linkedin" />
               </div>
             </Link>
 
-            <Link href={warpcastUrl} target="_blank">
+            {/* <Link href={warpcastUrl} target="_blank">
               <div className="flex flex-col items-center justify-center  gap-2">
                 <Image src={icons.warpcast} width={28} height={28} alt="warpcast" />
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

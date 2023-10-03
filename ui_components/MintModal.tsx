@@ -54,7 +54,7 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
     let msg;
     try {
       if (!isValidRef) {
-        throw new Error("Invalid referral code");
+        throw new Error("Invalid referral link");
       }
       const referer = query.get("referral");
 
@@ -187,12 +187,12 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
               <a
                 className="mt-4 underline block cursor-pointer"
                 target="_blank"
-                href={`https://testnet.explorer.assetmantle.one/transactions/${transactionData.transactionHash}`}
+                href={`https://explorer.assetmantle.one/transactions/${transactionData.transactionHash}`}
               >
                 View in explorer
               </a>
             </div>
-            <p className="paragraph_regular mt-6">Share the referral code and invite your friends to AMI Names</p>
+            <p className="paragraph_regular mt-6">Share the referral link and invite your friends to AMI Names</p>
 
             <div className="mt-4 flex items-center gap-2 cursor-pointer">
               <a
@@ -242,7 +242,6 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
                     <p className="text-[12px] leading-4 font-medium text-black">{"LinkedIn"}</p>
                   </div>
                 </Link>
-
                 <Link href={warpcastUrl} target="_blank">
                   <div className="flex flex-col items-center justify-center  gap-2">
                     <Image src={icons.warpcast} width={36} height={36} alt="warpcast" />

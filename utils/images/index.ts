@@ -18,6 +18,8 @@ import amiLogoWhite from "../../public/assets/images/ami_logo_white.svg";
 import logoWhite from "../../public/assets/images/logo_white.svg";
 import speaker from "../../public/assets/images/speaker.svg";
 import assetmantleLogo from "../../public/assets/images/assetmantle_logo.svg";
+import discordShare from "../../public/assets/images/discord.svg";
+import instaShare from "../../public/assets/images/insta_black.svg";
 
 export type TImages =
   | "logo"
@@ -39,6 +41,8 @@ export type TImages =
   | "amiLogoWhite"
   | "logoWhite"
   | "speaker"
+  | "discordShare"
+  | "instaShare"
   | "assetmantleLogo";
 
 export type TNextImage = {
@@ -68,4 +72,6 @@ export const icons: Record<TImages, TNextImage> = {
   logoWhite,
   speaker,
   assetmantleLogo,
+  discordShare,
+  instaShare,
 };
