@@ -1,5 +1,6 @@
 import { FC, MouseEvent } from "react";
 
+// Button Props Interface
 export interface IButtonProps {
   label?: string;
   children?: React.ReactNode;
