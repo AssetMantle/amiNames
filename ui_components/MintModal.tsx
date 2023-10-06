@@ -97,9 +97,20 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
       }
       // call the sign and broadcast function and pass the message and other arguments
       response = await mantleRpcClient.signAndBroadcast(address, [msg], fee, memo);
-      if (response.transactionHash) {
+      if (response.rawLog?.includes("entity already exists")) {
+        showToastMessage("error", "AMI name already registered");
+        setLoader(false);
+        setOpen(false);
+        return;
+      }
+      if (!response.code) {
         setSuccess(true);
         setLoader(false);
+      } else {
+        showToastMessage("error", response?.rawLog ?? "");
+        setLoader(false);
+        setOpen(false);
+        return;
       }
       const amiNamesList = getFromLocalStorage("amiNamesList") ?? [];
       amiNamesList.push({
