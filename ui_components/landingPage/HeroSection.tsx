@@ -18,7 +18,7 @@ import { icons } from "@/utils/images";
 import Image from "next/image";
 import Button from "../Button";
 import { IconWrapper } from "../IconWrapper";
-import { isValidReferrer } from "@/utils";
+import { getFromLocalStorage, isValidReferrer } from "@/utils";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -35,6 +35,10 @@ export const HeroSection = () => {
         const queryValue = query.get("referral");
         const isValidRef = await isValidReferrer(queryValue ?? "");
         setIsValidUser(isValidRef.isValidUserName);
+        if (!isValidRef.isValidUserName) {
+          const list = getFromLocalStorage("amiNamesList");
+          if (list?.length) setIsValidUser(true);
+        }
       }
     }
     getIsValidRef();

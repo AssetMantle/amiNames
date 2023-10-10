@@ -53,10 +53,17 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
     let memo;
     let msg;
     try {
+      let referer = query.get("referral");
+
       if (!isValidRef) {
-        throw new Error("Invalid referral link");
+        const list = getFromLocalStorage("amiNamesList");
+        if (!list?.length) {
+          throw new Error("Invalid referral link");
+        } else {
+          const nameList = list && list.filter((item: any) => item.address === address);
+          referer = nameList?.[0]?.name;
+        }
       }
-      const referer = query.get("referral");
 
       // get signer from getOfflineSigner passed from the selected chain and wallet from cosmos kit component
       const signer = await getOfflineSignerDirect();
