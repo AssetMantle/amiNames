@@ -58,6 +58,10 @@ export default function Header() {
         const queryValue = query.get("referral");
         const isValidRef = await isValidReferrer(queryValue ?? "");
         setIsValidUser(isValidRef.isValidUserName);
+        if (!isValidRef.isValidUserName) {
+          const list = getFromLocalStorage("amiNamesList");
+          if (list?.length) setIsValidUser(true);
+        }
       }
     }
     getIsValidRef();
