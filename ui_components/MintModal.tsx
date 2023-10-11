@@ -60,8 +60,7 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
         if (!list?.length) {
           throw new Error("Invalid referral link");
         } else {
-          const nameList = list && list.filter((item: any) => item.address === address);
-          referer = nameList?.[0]?.name;
+          referer = list?.[0]?.name;
         }
       }
 

@@ -70,7 +70,11 @@ export default function Header() {
   const queryValue = query.get("referral");
 
   const handleClick = () => {
-    router.push(`/claim?referral=${queryValue}`);
+    if (queryValue) {
+      router.push(`/claim?referral=${queryValue}`);
+    } else {
+      router.push(`/claim`);
+    }
   };
 
   const onReload = () => {
