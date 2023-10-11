@@ -45,7 +45,11 @@ export const HeroSection = () => {
   }, [query]);
   const handleClick = () => {
     const queryValue = query.get("referral");
-    router.push(`/claim?referral=${queryValue}`);
+    if (queryValue) {
+      router.push(`/claim?referral=${queryValue}`);
+    } else {
+      router.push(`/claim`);
+    }
   };
   return (
     <div className="block md:flex items-center container mx-auto bg-white w-full md:h-[calc(100vh-90px)] px-4">
