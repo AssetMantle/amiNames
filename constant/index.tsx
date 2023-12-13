@@ -3,10 +3,14 @@ export const chain = "assetmantle";
 export const defaultChainDenom = "umntl";
 export const defaultFeeAmount = "2000";
 export const defaultFeeGas = "250000";
-export const heroSecHeadingText = "The Future of";
-export const heroSecHeadingGradientText = "Web3 Identity is here!";
+export const heroSecHeadingText = "Unleash the future of";
+export const heroSecHeadingGradientText = "Digital Asset Management";
 export const heroSecDescHeadingText = "Introducing AMI Names - ";
-export const heroSecDescText = <>Cosmos&rsquo; first Self-Sovereign Identity</>;
+export const heroSecDescText = (
+  <>
+    Your Exclusive Gateway to Simplified Asset Control, Protecting Your Privacy
+  </>
+);
 export const heroSecBtnText = "Claim your own AMI Name";
 export const heroSecSupportText =
   "Note: You need to have a referral link to claim AMI Name.";
