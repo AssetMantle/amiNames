@@ -6,6 +6,8 @@ import {
   referralText,
   telegramUrl,
   twitterUrl,
+  discordUrl,
+  instaUrl,
   warpcastUrl,
 } from "@/constant";
 import { icons } from "@/utils/images";
@@ -21,7 +23,9 @@ export const ReferralProgram = () => {
     <div className=" bg-[#F6F7F7] py-[100px]">
       <div className="container mx-auto text-center ">
         <p className="heading1_extrabold ">{referralProgramSecHeading}</p>
-        <p className="paragraph_regular !text-[24px] mt-6">{referralProgramSecDesc}</p>
+        <p className="paragraph_regular !text-[24px] mt-6">
+          {referralProgramSecDesc}
+        </p>
         <div className="flex flex-col items-center">
           <div className="border border-[#396AF6] rounded-full flex items-center bg-[#396AF6]/10 w-fit mt-12">
             <div className="flex items-center justify-center bg-[#396AF6] rounded-l-full px-6 py-4 ">
@@ -36,6 +40,57 @@ export const ReferralProgram = () => {
                 }`}</span>
               </p>
             </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center mt-6 pb-4">
+          <div className="grid grid-cols-4 gap-6 mx-auto">
+            <Link href={twitterUrl} target="_blank">
+              <div className="flex flex-col items-center justify-center gap-2">
+                <Image
+                  src={icons.twitter}
+                  width={28}
+                  height={28}
+                  alt="twitter"
+                />
+              </div>
+            </Link>
+            <Link href={telegramUrl} target="_blank">
+              <div className="flex flex-col items-center justify-center gap-2">
+                <Image
+                  src={icons.telegram}
+                  width={28}
+                  height={28}
+                  alt="telegram"
+                />
+              </div>
+            </Link>
+            <Link href={discordUrl} target="_blank">
+              <div className="flex flex-col items-center justify-center  gap-2">
+                <Image
+                  src={icons.discordShare}
+                  width={28}
+                  height={28}
+                  alt="linkedin"
+                />
+              </div>
+            </Link>
+            <Link href={instaUrl} target="_blank">
+              <div className="flex flex-col items-center justify-center  gap-2">
+                <Image
+                  src={icons.instaShare}
+                  width={28}
+                  height={28}
+                  alt="linkedin"
+                />
+              </div>
+            </Link>
+
+            {/* <Link href={warpcastUrl} target="_blank">
+              <div className="flex flex-col items-center justify-center  gap-2">
+                <Image src={icons.warpcast} width={28} height={28} alt="warpcast" />
+              </div>
+            </Link> */}
           </div>
         </div>
       </div>
