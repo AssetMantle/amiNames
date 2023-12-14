@@ -19,7 +19,7 @@ import logoWhite from "../../public/assets/images/logo_white.svg";
 import speaker from "../../public/assets/images/speaker.svg";
 import assetmantleLogo from "../../public/assets/images/assetmantle_logo.svg";
 import discordShare from "../../public/assets/images/discord.svg";
-import instaShare from "../../public/assets/images/insta_black.svg";
+import instaShare from "../../public/assets/images/instagram.svg";
 
 export type TImages =
   | "logo"
