@@ -14,24 +14,41 @@ import {
   warpcastUrl,
   assetmantleUrlLink,
 } from "@/constant";
-import { assetmantle, cosmos, getSigningAssetmantleClient } from "@assetmantle/mantlejs";
-import { getFromLocalStorage, saveToLocalStorage, showToastMessage } from "@/utils";
+import {
+  assetmantle,
+  cosmos,
+  getSigningAssetmantleClient,
+} from "@assetmantle/mantlejs";
+import {
+  getFromLocalStorage,
+  saveToLocalStorage,
+  showToastMessage,
+} from "@/utils";
 //@ts-ignore
 import ReCAPTCHA from "react-google-recaptcha";
 import Link from "next/link";
 import { IconWrapper } from "./IconWrapper";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isValidRef }: any) => {
+const MintModal = ({
+  isOpen,
+  setOpen,
+  userName,
+  isPremium,
+  provisionAddress,
+  isValidRef,
+}: any) => {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const query = useSearchParams();
+  const router = useRouter();
   const recaptchaRef = React.createRef();
   const chainContext = useChain(chain);
   const [loader, setLoader] = useState(false);
   const [success, setSuccess] = useState(false);
   const [isInsufficientBalance, setIsInsufficientBalance] = useState(false);
   const [transactionData, setTransactonData] = useState({} as any);
-  const { address, getOfflineSignerDirect, connect, getCosmWasmClient } = chainContext;
+  const { address, getOfflineSignerDirect, connect, getCosmWasmClient } =
+    chainContext;
   const handleMint = async () => {
     //@ts-ignore
     recaptchaRef.current.execute();
@@ -60,7 +77,8 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
         if (!list?.length) {
           throw new Error("Invalid referral link");
         } else {
-          const nameList = list && list.filter((item: any) => item.address === address);
+          const nameList =
+            list && list.filter((item: any) => item.address === address);
           referer = nameList?.[0]?.name;
         }
       }
@@ -72,7 +90,10 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
         rpcEndpoint: rpc,
         signer,
       });
-      const balance = await mantleRpcClient.getBalance(address, defaultChainDenom);
+      const balance = await mantleRpcClient.getBalance(
+        address,
+        defaultChainDenom
+      );
       if (Number(balance?.amount) < 0.3) {
         throw new Error("Insufficient balance");
       }
@@ -95,15 +116,23 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
           ],
         });
       } else {
-        msg = assetmantle.modules.identities.transactions.name.MessageComposer.withTypeUrl.handle({
-          from: address,
-          name: assetmantle.schema.ids.base.StringID.fromPartial({
-            iDString: userName,
-          }),
-        });
+        msg =
+          assetmantle.modules.identities.transactions.name.MessageComposer.withTypeUrl.handle(
+            {
+              from: address,
+              name: assetmantle.schema.ids.base.StringID.fromPartial({
+                iDString: userName,
+              }),
+            }
+          );
       }
       // call the sign and broadcast function and pass the message and other arguments
-      response = await mantleRpcClient.signAndBroadcast(address, [msg], fee, memo);
+      response = await mantleRpcClient.signAndBroadcast(
+        address,
+        [msg],
+        fee,
+        memo
+      );
       if (response.rawLog?.includes("entity already exists")) {
         showToastMessage("error", "AMI name already registered");
         setLoader(false);
@@ -181,6 +210,7 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
       className="rounded-lg"
       header={""}
       closeModal={() => {
+        router.push(`/profile/${userName}`);
         handleClose();
       }}
     >
@@ -201,7 +231,9 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
           <div className="flex flex-col items-center pt-[30px] pb-8 font-inter">
             <div className="border-b border-b-[#D4DCE2] flex flex-col items-center pb-6">
               <Image src={icons.successTick} alt="success" />
-              <p className="font-semibold text-[40px] leading-[48px] text-primary mt-6">Claimed successfully!</p>
+              <p className="font-semibold text-[40px] leading-[48px] text-primary mt-6">
+                Claimed successfully!
+              </p>
               <a
                 className="mt-4 underline block cursor-pointer"
                 target="_blank"
@@ -210,7 +242,9 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
                 View in explorer
               </a>
             </div>
-            <p className="paragraph_regular mt-6">Share the referral link and invite your friends to AMI Names</p>
+            <p className="paragraph_regular mt-6">
+              Share the referral link and invite your friends to AMI Names
+            </p>
 
             <div className="mt-4 flex items-center gap-2 cursor-pointer">
               <a
@@ -238,8 +272,15 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
                   target="_blank"
                 >
                   <div className="flex flex-col items-center justify-center gap-2">
-                    <Image src={icons.twitter} width={36} height={36} alt="twitter" />
-                    <p className="text-[12px] leading-4 font-medium text-black">{"Twitter"}</p>
+                    <Image
+                      src={icons.twitter}
+                      width={36}
+                      height={36}
+                      alt="twitter"
+                    />
+                    <p className="text-[12px] leading-4 font-medium text-black">
+                      {"Twitter"}
+                    </p>
                   </div>
                 </Link>
                 <Link
@@ -247,8 +288,15 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
                   target="_blank"
                 >
                   <div className="flex flex-col items-center justify-center gap-2">
-                    <Image src={icons.telegram} width={36} height={36} alt="telegram" />
-                    <p className="text-[12px] leading-4 font-medium text-black">{"Telegram"}</p>
+                    <Image
+                      src={icons.telegram}
+                      width={36}
+                      height={36}
+                      alt="telegram"
+                    />
+                    <p className="text-[12px] leading-4 font-medium text-black">
+                      {"Telegram"}
+                    </p>
                   </div>
                 </Link>
                 <Link
@@ -256,14 +304,28 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
                   target="_blank"
                 >
                   <div className="flex flex-col items-center justify-center  gap-2">
-                    <Image src={icons.linkedin} width={36} height={36} alt="linkedin" />
-                    <p className="text-[12px] leading-4 font-medium text-black">{"LinkedIn"}</p>
+                    <Image
+                      src={icons.linkedin}
+                      width={36}
+                      height={36}
+                      alt="linkedin"
+                    />
+                    <p className="text-[12px] leading-4 font-medium text-black">
+                      {"LinkedIn"}
+                    </p>
                   </div>
                 </Link>
                 <Link href={warpcastUrl} target="_blank">
                   <div className="flex flex-col items-center justify-center  gap-2">
-                    <Image src={icons.warpcast} width={36} height={36} alt="warpcast" />
-                    <p className="text-[12px] leading-4 font-medium text-black">{"Warpcast"}</p>
+                    <Image
+                      src={icons.warpcast}
+                      width={36}
+                      height={36}
+                      alt="warpcast"
+                    />
+                    <p className="text-[12px] leading-4 font-medium text-black">
+                      {"Warpcast"}
+                    </p>
                   </div>
                 </Link>
               </div>
@@ -285,9 +347,13 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
             }
           />
           <div className=" mb-4 flex flex-col items-center font-inter">
-            <p className="text-primary text-center text-[20px]">{mintModalHeadingText}</p>
+            <p className="text-primary text-center text-[20px]">
+              {mintModalHeadingText}
+            </p>
             <div className="bg-[#EBF0FE] rounded-lg border border-[#88A6FA] mt-8 mb-6 w-[80%] py-5">
-              <p className="text-primary text-center leading-10 text-[32px] font-black">{userName}</p>
+              <p className="text-primary text-center leading-10 text-[32px] font-black">
+                {userName}
+              </p>
             </div>
             <div className="p-5 mb-8 text-[16px] w-[80%] border border-[#88A6FA] rounded-lg">
               {isPremium && (
@@ -302,13 +368,17 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
               </div>
               <div className="flex items-center justify-between">
                 <p className="text-primary font-medium">Estimated total</p>
-                <p className="text-primary font-medium">~{isPremium ? 0.302 : 0.3} MNTL</p>
+                <p className="text-primary font-medium">
+                  ~{isPremium ? 0.302 : 0.3} MNTL
+                </p>
               </div>
             </div>
             <Button
               type="button"
               className={` ${
-                loader || isInsufficientBalance ? "cursor-not-allowed disabled opacity-30" : ""
+                loader || isInsufficientBalance
+                  ? "cursor-not-allowed disabled opacity-30"
+                  : ""
               } inline-block rounded-full bg-[#396AF6] px-[120px] pb-2 pt-2.5 text-md font-medium  leading-normal text-white  transition duration-150 ease-in-out hover:bg-warning-600  focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)]`}
               onClick={
                 isInsufficientBalance
@@ -323,7 +393,8 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
             {isInsufficientBalance && (
               <p className="mt-2 text-error text-center">
                 Insufficient balance,
-                <br /> wallet should contain minimum balance of 0.3MTNL token to claim.
+                <br /> wallet should contain minimum balance of 0.3MTNL token to
+                claim.
               </p>
             )}
 
@@ -334,7 +405,12 @@ const MintModal = ({ isOpen, setOpen, userName, isPremium, provisionAddress, isV
               <p className="text-primary font-semibold">Blockchain</p>
             </div>
           </div>
-          <ReCAPTCHA ref={recaptchaRef} size="invisible" sitekey={siteKey} onChange={onReCAPTCHAChange} />
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            size="invisible"
+            sitekey={siteKey}
+            onChange={onReCAPTCHAChange}
+          />
         </>
       )}
     </Modal>
