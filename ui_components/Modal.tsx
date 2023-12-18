@@ -20,7 +20,6 @@ const Modal: FC<IModalProps> = ({
   headerClassName,
   closeModal,
 }) => {
-
   return (
     <Transition appear show={openModal} as={Fragment}>
       <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
@@ -48,7 +47,7 @@ const Modal: FC<IModalProps> = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`w-full xl:w-[780px] transform overflow-hidden bg-white border p-6 text-left align-middle transition-all rounded ${
+                className={`w-[min(740px,100%)] transform overflow-hidden bg-white border p-6 text-left align-middle transition-all rounded ${
                   className ?? ""
                 }`}
               >
