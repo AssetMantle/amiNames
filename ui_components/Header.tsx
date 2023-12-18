@@ -22,12 +22,15 @@ export default function Header() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [targetElement, setTargetElement] = useState<Element | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [namesList, setNamesList] = useState<any>();
+  const [namesList, setNamesList] = useState<any>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleDisconnect = async () => {
     const isDisConnected = await disconnect();
+    router.push("/");
   };
-  const handlePopoverClick = (event: React.MouseEvent<HTMLParagraphElement>) => {
+  const handlePopoverClick = (
+    event: React.MouseEvent<HTMLParagraphElement>
+  ) => {
     setIsPopoverOpen(!isPopoverOpen);
     setTargetElement(event.currentTarget);
   };
@@ -40,10 +43,30 @@ export default function Header() {
   if (typeof window !== "undefined") {
     window.addEventListener("storage", () => {
       const list = getFromLocalStorage("amiNamesList");
-      const nameList = list && list.filter((item: any) => item.address === address);
+      const nameList =
+        list && list.filter((item: any) => item.address === address);
       setNamesList(nameList);
     });
   }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const names = localStorage.getItem("amiNamesList");
+      if (names) {
+        const list = JSON.parse(names);
+        if (Array.isArray(list) && list.length > 0) {
+          let nameList =
+            list && list.filter((item: any) => item.address === address);
+          setNamesList(nameList);
+
+          if (nameList.length > 0) router.push(`/profile/${nameList[0].name}`);
+          else router.push("/claim");
+        } else {
+          router.push(`/claim`);
+        }
+      }
+    }
+  }, [address]);
 
   useEffect(() => {
     window.addEventListener("beforeunload", onReload);
@@ -70,7 +93,7 @@ export default function Header() {
   const queryValue = query.get("referral");
 
   const handleClick = () => {
-    router.push(`/claim?referral=${queryValue}`);
+    connect();
   };
 
   const onReload = () => {
@@ -85,44 +108,73 @@ export default function Header() {
     <header className="fixed flex items-center justify-between gap-4 bg-white w-full left-0 md:px-12 py-5 z-[50] font-inter px-2">
       <Link href={`/?referral=${queryValue}`}>
         <div className="col-span-1 flex items-center gap-2">
-          <Image className="" width={36} height={36} alt="selected" src={icons.amiLogo} />
-          <p className="heading1_black md:!text-[28px] !text-[20px]">{"AMI Names"}</p>
+          <Image
+            className=""
+            width={36}
+            height={36}
+            alt="selected"
+            src={icons.amiLogo}
+          />
+          <p className="heading1_black md:!text-[28px] !text-[20px]">
+            {"AMI Names"}
+          </p>
         </div>
       </Link>
       <div className="flex items-center gap-5">
         <Link className="" href={blogsUrl} target="_blank">
           <div className="flex items-center justify-center gap-2">
-            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">Blog</p>
+            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">
+              Blog
+            </p>
           </div>
         </Link>
         <Link className="" href={docsUrl} target="_blank">
           <div className="flex items-center justify-center gap-2">
-            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">Docs</p>
+            <p className="text-[16px] text-black leading-6 font-semibold font-inter py-2">
+              Docs
+            </p>
           </div>
         </Link>
-        {isValidUser && !address && !pathname.includes("claim") ? (
+        {pathname !== "/" && namesList.length > 0 && (
+          <div
+            className="relative"
+            onClick={() => {
+              router.push(`/claim?referral=${namesList[0].name}`);
+            }}
+          >
+            <p className={`paragraph_semibold cursor-pointer ml-1 text-black`}>
+              Claim Name
+            </p>
+          </div>
+        )}
+        {!address ? (
           <div className="col-span-1 text-right">
             <Button
               type="button"
               className="inline-block rounded-full bg-[#396AF6] px-6 pb-2 pt-2.5 text-md font-medium  leading-normal text-white  transition duration-150 ease-in-out hover:bg-warning-600  focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)]"
               onClick={handleClick}
             >
-              Claim your AMI
+              Connect Wallet
             </Button>
           </div>
         ) : null}
-        {address && pathname.includes("claim") && (
+
+        {address && (
           <div className="flex items-center gap-6">
-            {namesList && namesList.length ? (
+            {/* {namesList && namesList.length ? (
               <div
                 className="relative"
                 onClick={() => {
                   openNameListModal();
                 }}
               >
-                <p className={`paragraph_semibold cursor-pointer ml-1 text-black`}>My names</p>
+                <p
+                  className={`paragraph_semibold cursor-pointer ml-1 text-black`}
+                >
+                  My names
+                </p>
               </div>
-            ) : null}
+            ) : null} */}
             <p
               role="presentation"
               className="flex flex-end items-center justify-center float-right gap-2 w-[180px] text-sm text-primary border border-[#396AF6] rounded-full p-2 py-3 cursor-pointer"
@@ -193,7 +245,13 @@ export default function Header() {
           />
         </div> */}
       </div>
-      {namesList && <NameListModal isOpen={isOpen} setIsOpen={setIsOpen} namesList={namesList} />}
+      {namesList && (
+        <NameListModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          namesList={namesList}
+        />
+      )}
     </header>
   );
 }
