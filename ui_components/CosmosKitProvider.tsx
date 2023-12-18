@@ -18,7 +18,11 @@ import chain from "@/constant/chain";
 import asset from "@/constant/asset";
 import { rpc, chain as curChain } from "@/constant";
 
-export default function CosmosKitProvider({ children }: { children: React.ReactNode }) {
+export default function CosmosKitProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const signerOptions: SignerOptions = {
     //@ts-ignore
     signingStargate: (_chain: Chain) => {
@@ -35,7 +39,11 @@ export default function CosmosKitProvider({ children }: { children: React.ReactN
       <Modal
         openModal={isOpen}
         setOpenModal={setOpen}
-        header={<h2 className="text-xl font-semibold mb-6 text-primary font-inter">Select your wallet</h2>}
+        header={
+          <h2 className="text-xl font-semibold mb-6 text-primary font-inter">
+            Select your wallet
+          </h2>
+        }
         closeModal={() => {
           handleClose();
         }}
@@ -47,22 +55,31 @@ export default function CosmosKitProvider({ children }: { children: React.ReactN
           onClick={() => setOpen(false)}
         />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 items-center justify-center font-inter">
-          {walletRepo?.wallets?.map(({ walletName, connect, walletInfo }: any) => (
-            <div key={walletName} className="col-span-1">
-              <Button
-                className="h-[70px] w-full border text-primary border-primary flex items-center gap-2 p-4 relative rounded-lg ease-in-out duration-300 hover:bg-grey hover:text-primaryBlack"
-                onClick={() => {
-                  connect();
-                  closeView();
-                }}
-              >
-                <div className="w-[40px] h-[40px] relative block">
-                  <Image fill={true} className="object-contain relative" alt="selected" src={walletInfo.logo} />
-                </div>
-                <p className="text-sm font-semibold">{walletInfo.prettyName}</p>
-              </Button>
-            </div>
-          ))}
+          {walletRepo?.wallets?.map(
+            ({ walletName, connect, walletInfo }: any) => (
+              <div key={walletName} className="col-span-1">
+                <Button
+                  className="h-[70px] w-full border text-primary border-primary flex items-center gap-2 p-4 relative rounded-lg ease-in-out duration-300 hover:bg-grey hover:text-primaryBlack"
+                  onClick={() => {
+                    connect();
+                    closeView();
+                  }}
+                >
+                  <div className="w-[40px] h-[40px] relative block">
+                    <Image
+                      fill={true}
+                      className="object-contain relative"
+                      alt="selected"
+                      src={walletInfo.logo}
+                    />
+                  </div>
+                  <p className="text-sm font-semibold">
+                    {walletInfo.prettyName}
+                  </p>
+                </Button>
+              </div>
+            )
+          )}
         </div>
       </Modal>
     );
