@@ -1,14 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "@/ui_components/Modal";
 import Image from "next/image";
 import { icons } from "@/utils/images";
 import { stringToColor } from "@/utils";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const NameListModal = ({ isOpen, setIsOpen, namesList }: any) => {
+  const router = useRouter();
+  const path = usePathname();
   const handleClose = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [path]);
 
   return (
     <Modal
@@ -33,30 +41,49 @@ const NameListModal = ({ isOpen, setIsOpen, namesList }: any) => {
           My names
         </p>
 
-        <div className="border border-black mt-6">
+        <div className="mt-6 flex flex-col gap-3 max-h-60 overflow-y-auto">
           {namesList.map((item: any, ind: number) => {
             return (
-              <div
-                className="flex items-center gap-4 px-6 py-4 border-b border-b-[#010101]/50 last:border-b-0"
-                key={ind}
-              >
-                <div
-                  className={`w-6 h-6 rounded-full`}
-                  style={{ backgroundColor: stringToColor(item.name) }}
-                >
-                  <p className="paragraph_regular text-center text-white">
-                    {item.name.substring(0, 1).toUpperCase()}
+              <Link href={`/profile/${item.name}`} key={ind}>
+                <div className="flex items-center gap-3 px-6 py-4 border border-[#88A6FA] rounded-xl">
+                  <Image
+                    width={16}
+                    height={16}
+                    alt="checked"
+                    src={`/assets/images/check-circle-fill.png`}
+                    className={`${
+                      path && path.split("/")[2] === item.name
+                        ? "opacity-100"
+                        : "opacity-0"
+                    }`}
+                  />
+                  <p
+                    className={`leading-6 text-[20px] text-headingText font-inter font-medium`}
+                  >
+                    {item.name}
                   </p>
                 </div>
-                <p
-                  className={`leading-6 text-[20px] text-headingText font-inter`}
-                >
-                  {item.name}
-                </p>
-              </div>
+              </Link>
             );
           })}
         </div>
+
+        <div className="border-b border-b-[#000000]/50 my-8"></div>
+
+        <button
+          className="flex gap-3 mx-auto text-center text-[#6188F8]"
+          onClick={() =>
+            router.push(`/claim?referral=${path && path.split("/")[2]}`)
+          }
+        >
+          Claim New Name{" "}
+          <Image
+            width={20}
+            height={20}
+            alt="plus circle"
+            src={`/assets/images/plus-circle.svg`}
+          />
+        </button>
       </div>
     </Modal>
   );
