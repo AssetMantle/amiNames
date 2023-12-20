@@ -51,7 +51,7 @@ export default function Header() {
   }
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && address) {
       const names = localStorage.getItem("amiNamesList");
       if (names) {
         const list = JSON.parse(names);
