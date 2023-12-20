@@ -1,33 +1,34 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { icons } from "@/utils/images";
+import { blogsUrl, chain, docsUrl } from "@/constant";
 import Button from "@/ui_components/Button";
 import Popover from "@/ui_components/Popover";
-import Image from "next/image";
-import { useChain } from "@cosmos-kit/react";
 import { getFromLocalStorage, isValidReferrer, trimAddress } from "@/utils";
-import { blogsUrl, chain, docsUrl } from "@/constant";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { icons } from "@/utils/images";
+import { useChain } from "@cosmos-kit/react";
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import NameListModal from "./NameListModal";
-import { IconWrapper } from "./IconWrapper";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const query = useSearchParams();
   const [isValidUser, setIsValidUser] = useState(false);
-  const chainContext = useChain(chain);
-  const { address, connect, disconnect } = chainContext;
+  const { address, connect, disconnect } = useChain(chain);
+
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [targetElement, setTargetElement] = useState<Element | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [namesList, setNamesList] = useState<any>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const handleDisconnect = async () => {
     const isDisConnected = await disconnect();
     router.push("/");
   };
+
   const handlePopoverClick = (
     event: React.MouseEvent<HTMLParagraphElement>
   ) => {
@@ -64,6 +65,8 @@ export default function Header() {
         } else {
           router.push(`/claim`);
         }
+      } else {
+        router.push(`/claim`);
       }
     }
   }, [address]);

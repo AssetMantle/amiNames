@@ -48,10 +48,12 @@ export const HeroSection = () => {
     }
     getIsValidRef();
   }, [query]);
+
   const handleClick = () => {
     const queryValue = query.get("referral");
     router.push(`/claim?referral=${queryValue}`);
   };
+
   return (
     <div className="block md:flex items-center container mx-auto bg-white w-full md:h-[calc(100vh-90px)] px-4">
       <div className="flex-1">
@@ -78,14 +80,13 @@ export const HeroSection = () => {
         </div>
         <Button
           type="button"
+          disabled={!isValidUser}
           className={`${
             isValidUser ? "opacity-100" : "opacity-30"
           } inline-block rounded-full bg-[#396AF6] px-6 pb-2 pt-2.5 2xl:!py-3 2xl:!px-10 font-inter text-md font-medium  leading-normal text-white  transition duration-150 ease-in-out hover:bg-warning-600  focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)]`}
           onClick={() => {
-            // handleClick();
             connect();
           }}
-          // disabled={!isValidUser}
         >
           <div className="flex">
             {heroSecBtnText}
