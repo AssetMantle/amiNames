@@ -191,13 +191,28 @@ export default function Header() {
                 className=""
                 leftPad={18}
                 content={
-                  <Button
-                    type="button"
-                    className="inline-block rounded-full buttonBg px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-white font-inter"
-                    onClick={handleDisconnect}
-                  >
-                    Disconnect
-                  </Button>
+                  <>
+                    {namesList &&
+                      Array.isArray(namesList) &&
+                      namesList.length > 0 && (
+                        <Button
+                          type="button"
+                          className="inline-block rounded-full buttonBg px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-white font-inter w-32 mb-2"
+                          onClick={() =>
+                            router.push(`/profile/${namesList[0].name}`)
+                          }
+                        >
+                          Profile
+                        </Button>
+                      )}
+                    <Button
+                      type="button"
+                      className="inline-block rounded-full buttonBg px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-white font-inter w-32"
+                      onClick={handleDisconnect}
+                    >
+                      Disconnect
+                    </Button>
+                  </>
                 }
                 target={targetElement}
               />
