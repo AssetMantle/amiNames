@@ -1,21 +1,51 @@
 "use client";
-import React, { useState } from "react";
-import Modal from "@/ui_components/Modal";
-import Image from "next/image";
-import { icons } from "@/utils/images";
 
-const SocialModal = ({ isOpen, setIsOpen, type }: any) => {
+import Modal from "@/ui_components/Modal";
+import { icons } from "@/utils/images";
+import { kv } from "@vercel/kv";
+import Image from "next/image";
+import { ChangeEvent, useState } from "react";
+import { storeUserSocials } from "../config/dbApi";
+
+const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
   const [AddLink, setAddLink] = useState(false);
+  const [updatedSocials, setUpdatedSocials] = useState(socialData);
 
   const handleAddition = () => {
     setAddLink(false);
   };
-  const handleSave = () => {
+
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("inside handleSubmit, updatedSocials", updatedSocials);
+    await storeUserSocials(updatedSocials, profile);
     handleClose();
   };
 
   const handleClose = () => {
     setIsOpen(false);
+  };
+
+  const handleOnChangeSocials = (
+    socialValue: string,
+    e: ChangeEvent<HTMLInputElement>
+  ): void => {
+    console.log("updatedSocials: ", updatedSocials);
+    switch (socialValue) {
+      case "twitter":
+        setUpdatedSocials({ ...updatedSocials, twitter: e.target.value });
+        break;
+
+      case "telegram":
+        setUpdatedSocials({ ...updatedSocials, telegram: e.target.value });
+        break;
+
+      case "instagram":
+        setUpdatedSocials({ ...updatedSocials, instagram: e.target.value });
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (
@@ -56,7 +86,8 @@ const SocialModal = ({ isOpen, setIsOpen, type }: any) => {
               <input
                 type="text"
                 className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                placeholder="URL"
+                onChange={(e) => handleOnChangeSocials("twitter", e)}
+                value={updatedSocials?.twitter}
               />
               <div className="flex items-center gap-2">
                 <Image
@@ -94,7 +125,8 @@ const SocialModal = ({ isOpen, setIsOpen, type }: any) => {
               <input
                 type="text"
                 className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                placeholder="URL"
+                value={updatedSocials?.telegram}
+                onChange={(e) => handleOnChangeSocials("telegram", e)}
               />
               <div className="flex items-center gap-2">
                 <Image
@@ -132,7 +164,8 @@ const SocialModal = ({ isOpen, setIsOpen, type }: any) => {
               <input
                 type="text"
                 className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                placeholder="URL"
+                value={updatedSocials?.instagram}
+                onChange={(e) => handleOnChangeSocials("instagram", e)}
               />
               <div className="flex items-center gap-2">
                 <Image
@@ -190,7 +223,7 @@ const SocialModal = ({ isOpen, setIsOpen, type }: any) => {
           )}
           <button
             className="w-[min(322px,100%)] bg-[#6188F8] text-[#ffffff] rounded-[36px] mx-auto px-6 py-3 text-xl"
-            onClick={handleSave}
+            onClick={handleSubmit}
           >
             Save
           </button>
