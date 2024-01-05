@@ -2,7 +2,6 @@
 
 import Modal from "@/ui_components/Modal";
 import { icons } from "@/utils/images";
-import { kv } from "@vercel/kv";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { storeUserSocials } from "../config/dbApi";
