@@ -23,7 +23,6 @@ export default async function Home({ params }: { params: { id: string } }) {
         }}
       >
         <ProfileDropdown profile={PROFILE_NAME} />
-
         <div className="w-[170px] relative bg-white p-2 rounded-md">
           <Suspense fallback={"Loading..."}>
             <QRCodeSVG
