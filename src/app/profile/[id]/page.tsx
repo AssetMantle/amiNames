@@ -7,6 +7,8 @@ import { Suspense } from "react";
 import AddSocials from "./AddSocials";
 import ProfileDropdown from "./ProfileDropdown";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home({ params }: { params: { id: string } }) {
   const PROFILE_NAME = params.id;
   const socialData: any = await readUserSocials(PROFILE_NAME);
