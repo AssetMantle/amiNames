@@ -1,22 +1,23 @@
 "use client";
 
+import { addSocialData } from "@/src/app/profile/[id]/action";
 import Modal from "@/ui_components/Modal";
 import { icons } from "@/utils/images";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
-import { storeUserSocials } from "../config/dbApi";
+import { ChangeEvent, useState, useTransition } from "react";
 
 const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
   const [AddLink, setAddLink] = useState(false);
   const [updatedSocials, setUpdatedSocials] = useState(socialData);
+  let [isPending, startTransition] = useTransition();
 
   const handleAddition = () => {
     setAddLink(false);
   };
 
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("inside handleSubmit, updatedSocials", updatedSocials);
-    await storeUserSocials(updatedSocials, profile);
+    // startTransition(() => addSocialData(updatedSocials, profile));
+    await addSocialData(updatedSocials, profile);
     handleClose();
   };
 
@@ -28,7 +29,6 @@ const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
     socialValue: string,
     e: ChangeEvent<HTMLInputElement>
   ): void => {
-    console.log("updatedSocials: ", updatedSocials);
     switch (socialValue) {
       case "twitter":
         setUpdatedSocials({ ...updatedSocials, twitter: e.target.value });
