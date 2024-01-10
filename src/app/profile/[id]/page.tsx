@@ -12,6 +12,9 @@ export const dynamic = "force-dynamic";
 export default async function Home({ params }: { params: { id: string } }) {
   const PROFILE_NAME = params.id;
   const socialData: any = await readUserSocials(PROFILE_NAME);
+
+  console.log(socialData);
+
   return (
     <>
       <main
@@ -36,48 +39,54 @@ export default async function Home({ params }: { params: { id: string } }) {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Link
-            target="_blank"
-            className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
-            href={socialData?.twitter}
-          >
-            <Image
-              className=""
-              width={30}
-              height={30}
-              alt="twitter"
-              src={icons.twitter}
-            />{" "}
-            Twitter
-          </Link>
-          <Link
-            target="_blank"
-            className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
-            href={socialData?.telegram}
-          >
-            <Image
-              className=""
-              width={30}
-              height={30}
-              alt="telegram"
-              src={icons.telegram}
-            />{" "}
-            Telegram
-          </Link>
-          <Link
-            target="_blank"
-            className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
-            href={socialData?.instagram}
-          >
-            <Image
-              className=""
-              width={30}
-              height={30}
-              alt="instagram"
-              src={icons.instaShare}
-            />{" "}
-            Instagram
-          </Link>
+          {socialData?.twitter && (
+            <Link
+              target="_blank"
+              className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
+              href={socialData?.twitter}
+            >
+              <Image
+                className=""
+                width={30}
+                height={30}
+                alt="twitter"
+                src={icons.twitter}
+              />{" "}
+              Twitter
+            </Link>
+          )}
+          {socialData?.telegram && (
+            <Link
+              target="_blank"
+              className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
+              href={socialData?.telegram}
+            >
+              <Image
+                className=""
+                width={30}
+                height={30}
+                alt="telegram"
+                src={icons.telegram}
+              />{" "}
+              Telegram
+            </Link>
+          )}
+          {socialData?.instagram && (
+            <Link
+              target="_blank"
+              className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
+              href={socialData?.instagram}
+            >
+              <Image
+                className=""
+                width={30}
+                height={30}
+                alt="instagram"
+                src={icons.instaShare}
+              />{" "}
+              Instagram
+            </Link>
+          )}
 
           <AddSocials profile={PROFILE_NAME} socialData={socialData} />
         </div>
