@@ -138,11 +138,11 @@ export default function Header() {
             </p>
           </div>
         </Link>
-        {pathname !== "/" && namesList.length > 0 && (
+        {address && (
           <div
             className="relative"
             onClick={() => {
-              router.push(`/claim?referral=${namesList[0].name}`);
+              router.push(`/claim?referral=${namesList && namesList[0].name}`);
             }}
           >
             <p className={`paragraph_semibold cursor-pointer ml-1 text-black`}>
