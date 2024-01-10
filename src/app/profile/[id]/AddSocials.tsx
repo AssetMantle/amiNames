@@ -38,6 +38,7 @@ export default function AddSocials({ profile, socialData }: any) {
         onClick={() => {
           setSocialModOpenType("add");
           setSocialModOpenState(true);
+          console.log(socialData);
         }}
         className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)] disabled:opacity-50"
         disabled={
