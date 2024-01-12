@@ -14,7 +14,9 @@ export const FeaturesSection = () => {
   return (
     <div className="bg-black w-full py-[100px]">
       <div className="container mx-auto">
-        <p className="heading1_extrabold !text-white text-center">{featureSecHeading}</p>
+        <p className="heading1_extrabold !text-white text-center">
+          {featureSecHeading}
+        </p>
         <div className="flex items-center justify-center mt-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-4 md:p-0">
             <div className="flex flex-col items-center bg-[#282B30] px-5 py-10 text-center rounded-lg max-w-[370px] max-h-[280px]">

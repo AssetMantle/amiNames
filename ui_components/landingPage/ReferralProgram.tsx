@@ -1,14 +1,11 @@
 import {
-  linkedinUrl,
-  referralLink,
+  discordUrl,
+  instaUrl,
   referralProgramSecDesc,
   referralProgramSecHeading,
   referralText,
   telegramUrl,
   twitterUrl,
-  discordUrl,
-  instaUrl,
-  warpcastUrl,
 } from "@/constant";
 import { icons } from "@/utils/images";
 import Image from "next/image";

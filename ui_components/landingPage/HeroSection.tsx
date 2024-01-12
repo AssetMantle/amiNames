@@ -1,6 +1,7 @@
 "use client";
 import {
   assetmantleUrlLink,
+  chain,
   discordUrl,
   heroSecBtnText,
   heroSecDescHeadingText,
@@ -9,45 +10,23 @@ import {
   heroSecHeadingText,
   heroSecSupportText,
   instaUrl,
-  linkedinUrl,
   telegramUrl,
   twitterUrl,
-  warpcastUrl,
 } from "@/constant";
 import { icons } from "@/utils/images";
+import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import Button from "../Button";
 import { IconWrapper } from "../IconWrapper";
-import { getFromLocalStorage, isValidReferrer } from "@/utils";
-import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { useChain } from "@cosmos-kit/react";
-import { chain } from "@/constant";
 
-export const HeroSection = () => {
-  const [isValidUser, setIsValidUser] = useState(false);
-
+export const HeroSection = ({ isValidUser }: any) => {
   const chainContext = useChain(chain);
   const { connect } = chainContext;
 
   const router = useRouter();
   const query = useSearchParams();
-
-  useEffect(() => {
-    async function getIsValidRef() {
-      if (query) {
-        const queryValue = query.get("referral");
-        const isValidRef = await isValidReferrer(queryValue ?? "");
-        setIsValidUser(isValidRef.isValidUserName);
-        if (!isValidRef.isValidUserName) {
-          const list = getFromLocalStorage("amiNamesList");
-          if (list?.length) setIsValidUser(true);
-        }
-      }
-    }
-    getIsValidRef();
-  }, [query]);
 
   const handleClick = () => {
     const queryValue = query.get("referral");

@@ -13,9 +13,7 @@ import NameListModal from "./NameListModal";
 
 export default function Header() {
   const router = useRouter();
-  const pathname = usePathname();
   const query = useSearchParams();
-  const [isValidUser, setIsValidUser] = useState(false);
   const { address, connect, disconnect } = useChain(chain);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -52,22 +50,10 @@ export default function Header() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && address) {
-      const names = localStorage.getItem("amiNamesList");
-      if (names) {
-        const list = JSON.parse(names);
-        if (Array.isArray(list) && list.length > 0) {
-          let nameList =
-            list && list.filter((item: any) => item.address === address);
-          setNamesList(nameList);
-
-          if (nameList.length > 0) router.push(`/profile/${nameList[0].name}`);
-          else router.push("/claim");
-        } else {
-          router.push(`/claim`);
-        }
-      } else {
-        router.push(`/claim`);
-      }
+      const list = getFromLocalStorage("amiNamesList");
+      const nameList =
+        list && list.filter((item: any) => item.address === address);
+      setNamesList(nameList);
     }
   }, [address]);
 
@@ -77,21 +63,6 @@ export default function Header() {
       window.removeEventListener("beforeunload", onReload);
     };
   }, []);
-
-  useEffect(() => {
-    async function getIsValidRef() {
-      if (query) {
-        const queryValue = query.get("referral");
-        const isValidRef = await isValidReferrer(queryValue ?? "");
-        setIsValidUser(isValidRef.isValidUserName);
-        if (!isValidRef.isValidUserName) {
-          const list = getFromLocalStorage("amiNamesList");
-          if (list?.length) setIsValidUser(true);
-        }
-      }
-    }
-    getIsValidRef();
-  }, [query]);
 
   const queryValue = query.get("referral");
 
@@ -109,7 +80,7 @@ export default function Header() {
 
   return (
     <header className="fixed flex items-center justify-between gap-4 bg-white w-full left-0 md:px-12 py-5 z-[50] font-inter px-2">
-      <Link href={`/?referral=${queryValue}`}>
+      <Link href={`/?referral=${queryValue}&home=true`}>
         <div className="col-span-1 flex items-center gap-2">
           <Image
             className=""
@@ -142,7 +113,9 @@ export default function Header() {
           <div
             className="relative"
             onClick={() => {
-              router.push(`/claim?referral=${namesList && namesList[0].name}`);
+              router.push(
+                `/claim?referral=${queryValue || namesList?.[0]?.name}`
+              );
             }}
           >
             <p className={`paragraph_semibold cursor-pointer ml-1 text-black`}>
@@ -199,7 +172,11 @@ export default function Header() {
                           type="button"
                           className="inline-block rounded-full buttonBg px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-white font-inter w-32 mb-2"
                           onClick={() =>
-                            router.push(`/profile/${namesList[0].name}`)
+                            router.push(
+                              `/profile/${namesList[0].name}?referral=${
+                                queryValue || namesList?.[0]?.name
+                              }`
+                            )
                           }
                         >
                           Profile
