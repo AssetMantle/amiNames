@@ -42,10 +42,16 @@ const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
         setUpdatedSocials({ ...updatedSocials, instagram: e.target.value });
         break;
 
+      case "website":
+        setUpdatedSocials({ ...updatedSocials, website: e.target.value });
+        break;
+
       default:
         break;
     }
   };
+
+  console.log();
 
   return (
     <Modal
@@ -89,25 +95,25 @@ const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
                 value={updatedSocials?.twitter}
               />
               <div className="flex items-center gap-2">
-                <Image
+                {/* <Image
                   width={16}
                   height={16}
                   alt="edit"
                   src={"/assets/images/pencil.svg"}
-                />{" "}
-                <Image
+                />{" "} */}
+                {/* <Image
                   width={16}
                   height={16}
                   alt="edit"
                   src={"/assets/images/trash.svg"}
-                />{" "}
-                <button
+                />{" "} */}
+                {/* <button
                   className={`toggle-button bg-success border border-success w-6 rounded-[20px] flex`}
                 >
                   <span
                     className={`toggler w-3 h-3 bg-white rounded-[50%] ms-auto`}
                   ></span>
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3">
@@ -128,25 +134,25 @@ const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
                 onChange={(e) => handleOnChangeSocials("telegram", e)}
               />
               <div className="flex items-center gap-2">
-                <Image
+                {/* <Image
                   width={16}
                   height={16}
                   alt="edit"
                   src={"/assets/images/pencil.svg"}
-                />{" "}
-                <Image
+                />{" "} */}
+                {/* <Image
                   width={16}
                   height={16}
                   alt="edit"
                   src={"/assets/images/trash.svg"}
-                />{" "}
-                <button
+                />{" "} */}
+                {/* <button
                   className={`toggle-button bg-success border border-success w-6 rounded-[20px] flex`}
                 >
                   <span
                     className={`toggler w-3 h-3 bg-white rounded-[50%] ms-auto`}
                   ></span>
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3">
@@ -167,32 +173,71 @@ const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
                 onChange={(e) => handleOnChangeSocials("instagram", e)}
               />
               <div className="flex items-center gap-2">
-                <Image
+                {/* <Image
                   width={16}
                   height={16}
                   alt="edit"
                   src={"/assets/images/pencil.svg"}
-                />{" "}
-                <Image
+                />{" "} */}
+                {/* <Image
                   width={16}
                   height={16}
                   alt="edit"
                   src={"/assets/images/trash.svg"}
-                />{" "}
-                <button
+                />{" "} */}
+                {/* <button
                   className={`toggle-button bg-success border border-success w-6 rounded-[20px] flex`}
                 >
                   <span
                     className={`toggler w-3 h-3 bg-white rounded-[50%] ms-auto`}
                   ></span>
-                </button>
+                </button> */}
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
+                <Image
+                  width={24}
+                  height={24}
+                  className="my-auto"
+                  alt="Instagram"
+                  src={`/assets/images/globe.svg`}
+                />{" "}
+                Website:
+              </div>
+              <input
+                type="text"
+                className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
+                value={updatedSocials?.website}
+                onChange={(e) => handleOnChangeSocials("website", e)}
+              />
+              <div className="flex items-center gap-2">
+                {/* <Image
+                  width={16}
+                  height={16}
+                  alt="edit"
+                  src={"/assets/images/pencil.svg"}
+                />{" "} */}
+                {/* <Image
+                  width={16}
+                  height={16}
+                  alt="edit"
+                  src={"/assets/images/trash.svg"}
+                />{" "} */}
+                {/* <button
+                  className={`toggle-button bg-success border border-success w-6 rounded-[20px] flex`}
+                >
+                  <span
+                    className={`toggler w-3 h-3 bg-white rounded-[50%] ms-auto`}
+                  ></span>
+                </button> */}
               </div>
             </div>
           </div>
 
           <div className="border-b border-b-[#000000]/50"></div>
 
-          {(type === "add" || AddLink) && (
+          {/* {(type === "add" || AddLink) && (
             <div className="flex flex-wrap items-center justify-center gap-4">
               <label htmlFor="website w-full md:w-auto">Enter URL:</label>
               <input
@@ -205,7 +250,7 @@ const SocialModal = ({ isOpen, setIsOpen, type, profile, socialData }: any) => {
                 Add Link
               </button>
             </div>
-          )}
+          )} */}
           {type === "edit" && !AddLink && (
             <button
               className="flex gap-3 mx-auto text-center text-[#6188F8]"

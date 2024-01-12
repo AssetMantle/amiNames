@@ -87,6 +87,22 @@ export default async function Home({ params }: { params: { id: string } }) {
               Instagram
             </Link>
           )}
+          {socialData?.website && (
+            <Link
+              target="_blank"
+              className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
+              href={socialData?.website}
+            >
+              <Image
+                className=""
+                width={30}
+                height={30}
+                alt="Website"
+                src={"/assets/images/globe.svg"}
+              />{" "}
+              Website
+            </Link>
+          )}
 
           <AddSocials profile={PROFILE_NAME} socialData={socialData} />
         </div>
