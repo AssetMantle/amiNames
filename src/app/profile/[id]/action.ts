@@ -1,8 +1,6 @@
 "use server";
 
-import { readUserSocials, storeUserSocials } from "@/config/dbApi";
-import { kv } from "@vercel/kv";
-import { update } from "lodash";
+import { storeUserSocials } from "@/config/dbApi";
 import { revalidatePath } from "next/cache";
 
 export async function addSocialData(updatedSocials: any, profile: any) {
