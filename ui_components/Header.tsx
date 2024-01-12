@@ -7,7 +7,7 @@ import { icons } from "@/utils/images";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import NameListModal from "./NameListModal";
 
@@ -21,10 +21,12 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [namesList, setNamesList] = useState<any>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isValidUser, setIsValidUser] = useState(false);
+  const queryValue = query.get("referral");
 
   const handleDisconnect = async () => {
     const isDisConnected = await disconnect();
-    router.push("/");
+    router.push(`/?referral=${queryValue}`);
   };
 
   const handlePopoverClick = (
@@ -58,13 +60,30 @@ export default function Header() {
   }, [address]);
 
   useEffect(() => {
+    async function getIsValidRef() {
+      if (query) {
+        const queryValue = query.get("referral");
+        if (!queryValue) {
+          const names = localStorage.getItem("amiNamesList");
+          if (names) {
+            const list = JSON.parse(names);
+            router.push(`/?referral=${list?.[0]?.name}`);
+          }
+        }
+        const isValidRef = await isValidReferrer(queryValue ?? "");
+        console.log("isValidRef: ", isValidRef, " queryParam: ", queryValue);
+        setIsValidUser(isValidRef?.isValidUserName);
+      }
+    }
+    getIsValidRef();
+  }, [query]);
+
+  useEffect(() => {
     window.addEventListener("beforeunload", onReload);
     return () => {
       window.removeEventListener("beforeunload", onReload);
     };
   }, []);
-
-  const queryValue = query.get("referral");
 
   const handleClick = () => {
     connect();
@@ -109,7 +128,7 @@ export default function Header() {
             </p>
           </div>
         </Link>
-        {address && (
+        {address && isValidUser && (
           <div
             className="relative"
             onClick={() => {

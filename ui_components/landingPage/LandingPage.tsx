@@ -24,7 +24,7 @@ export const LandingPage = () => {
           const names = localStorage.getItem("amiNamesList");
           if (names) {
             const list = JSON.parse(names);
-            router.replace(`/?referral=${list?.[0]?.name}`);
+            router.push(`/?referral=${list?.[0]?.name}`);
           }
         }
         const isValidRef = await isValidReferrer(queryValue ?? "");
@@ -45,17 +45,17 @@ export const LandingPage = () => {
           let nameList =
             list && list.filter((item: any) => item.address === address);
           if (nameList.length > 0)
-            router.replace(
+            router.push(
               `/profile/${nameList[0].name}?referral=${
                 queryValue || nameList[0].name
               }`
             );
-          else router.replace("/claim");
+          else router.push(`/claim?referral=${queryValue}`);
         } else {
-          router.replace(`/claim`);
+          router.push(`/claim?referral=${queryValue}`);
         }
       } else {
-        router.replace(`/claim`);
+        router.push(`/claim?referral=${queryValue}`);
       }
     }
   }, [address]);
