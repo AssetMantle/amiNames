@@ -56,3 +56,22 @@ export const reservedAddress = "mantle1cgjgrp3fl2ef98me8v7nywtz4nnvjcx6yqu3t7";
 export const referralText = "Referral link";
 export const referralLink = "https://mantle-web3id.vercel.app/";
 export const assetmantleUrlLink = "https://www.assetmantle.one/";
+
+export const websiteUrlRegEx =
+  /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+
+// export const wwwUrlRegEx = /^www\.[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(\S*)$/;
+export const wwwUrlRegEx = /^www\./i;
+
+export const twitterUrlRegEx =
+  /^(?:https?:\/\/)?(?:www\.)?(?:mobile\.)?twitter\.com\/(?:\w+\/)?(?:i\/profiles\/show\/\d+\/?)?(?:\w+\/?)?(?:status\/\d+\/?(?:with_replies\/?)?)?$/;
+
+export const twitterHandleRegEx = /^(?:@)?[a-zA-Z0-9_]{1,15}$/;
+
+export const telegramUrlRegEx = /^https:\/\/t\.me\/[a-zA-Z0-9_]{5,32}$/;
+export const telegramHandleRegEx = /^(?:@)?[a-zA-Z0-9_]{5,32}$/;
+
+export const instagramUrlRegEx =
+  /^https:\/\/(?:www\.)?instagram\.com\/[a-zA-Z0-9_](?:[a-zA-Z0-9_.]{0,28}[a-zA-Z0-9_])?\/?$/;
+export const instagramHandleRegEx =
+  /^(?:@)?[a-zA-Z0-9_](?:[a-zA-Z0-9_.]{0,28}[a-zA-Z0-9_])?$/;
