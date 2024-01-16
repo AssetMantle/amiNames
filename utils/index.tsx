@@ -211,6 +211,14 @@ const validateInstagram = (instagramString: string): any => {
     return { isValid: true, url: addProtocol(cleanInstagramString) };
   const instagramHandleBoolean =
     instagramHandleRegEx.test(cleanInstagramString);
+  console.log(
+    "cleanInstagramString: ",
+    cleanInstagramString,
+    " instagramWebsiteBoolean: ",
+    instagramWebsiteBoolean,
+    " instagramHandleBoolean: ",
+    instagramHandleBoolean
+  );
   const returnObject = instagramHandleBoolean
     ? {
         isValid: true,
@@ -233,14 +241,7 @@ const validateWebsite = (websiteString: string): any => {
   // check if already a valid website url
   const websiteUrlBoolean = websiteUrlRegEx.test(cleanWebsiteString);
   if (websiteUrlBoolean) {
-    const wwwUrlBoolean = wwwUrlRegEx.test(cleanWebsiteString);
-    const returnObject = wwwUrlBoolean
-      ? {
-          isValid: true,
-          url: `${cleanWebsiteString.replace(wwwUrlRegEx, "http://")}`,
-        }
-      : { isValid: false };
-    return returnObject;
+    return { isValid: true, url: addProtocol(cleanWebsiteString) };
   } else {
     return { isValid: false };
   }
