@@ -6,6 +6,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { Suspense } from "react";
 import AddSocials from "./AddSocials";
 import ProfileDropdown from "./ProfileDropdown";
+import { addProtocol } from "@/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -40,10 +41,10 @@ export default async function Home({ params }: { params: { id: string } }) {
 
         <div className="flex flex-col gap-3">
           {socialData?.twitter && (
-            <Link
+            <a
               target="_blank"
               className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
-              href={socialData?.twitter}
+              href={addProtocol(socialData?.twitter)}
             >
               <Image
                 className=""
@@ -53,13 +54,13 @@ export default async function Home({ params }: { params: { id: string } }) {
                 src={icons.twitter}
               />{" "}
               Twitter
-            </Link>
+            </a>
           )}
           {socialData?.telegram && (
-            <Link
+            <a
               target="_blank"
               className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
-              href={socialData?.telegram}
+              href={addProtocol(socialData?.telegram)}
             >
               <Image
                 className=""
@@ -69,13 +70,13 @@ export default async function Home({ params }: { params: { id: string } }) {
                 src={icons.telegram}
               />{" "}
               Telegram
-            </Link>
+            </a>
           )}
           {socialData?.instagram && (
-            <Link
+            <a
               target="_blank"
               className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
-              href={socialData?.instagram}
+              href={addProtocol(socialData?.instagram)}
             >
               <Image
                 className=""
@@ -85,13 +86,13 @@ export default async function Home({ params }: { params: { id: string } }) {
                 src={icons.instaShare}
               />{" "}
               Instagram
-            </Link>
+            </a>
           )}
           {socialData?.website && (
-            <Link
+            <a
               target="_blank"
               className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]"
-              href={socialData?.website}
+              href={addProtocol(socialData?.website)}
             >
               <Image
                 className=""
@@ -101,7 +102,7 @@ export default async function Home({ params }: { params: { id: string } }) {
                 src={"/assets/images/globe.svg"}
               />{" "}
               Website
-            </Link>
+            </a>
           )}
 
           <AddSocials profile={PROFILE_NAME} socialData={socialData} />

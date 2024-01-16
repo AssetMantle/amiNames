@@ -3,7 +3,18 @@ import { bech32 } from "bech32";
 import { toast } from "react-toastify";
 import { getNubIdentityID } from "./crypto_utils";
 import base64url from "base64url";
-import { premiumAddress, rpc } from "@/constant";
+import {
+  instagramHandleRegEx,
+  instagramUrlRegEx,
+  premiumAddress,
+  rpc,
+  telegramHandleRegEx,
+  telegramUrlRegEx,
+  twitterHandleRegEx,
+  twitterUrlRegEx,
+  websiteUrlRegEx,
+  wwwUrlRegEx,
+} from "@/constant";
 
 export const trimAddress = (val: string, charsToKeep: number) => {
   if (val.length <= charsToKeep * 2) {
@@ -139,4 +150,144 @@ export const stringToColor = (str: string) => {
     color += ("00" + value?.toString(16)).substr(-2);
   }
   return `hsl(${hash % 360}, ${50}%, ${50}%)`;
+};
+
+export const addProtocol = (url: string): any => {
+  return url.startsWith("www") ? `https://${url}` : url;
+};
+
+const validateTwitter = (twitterString: string): any => {
+  if (!twitterString) return { isValid: true, url: "" };
+  const cleanTwitterArray = twitterString
+    ?.toString?.()
+    ?.trim?.()
+    ?.split(" ", 2);
+  const cleanTwitterString = cleanTwitterArray?.[0];
+  // check if already a valid website url
+  const twitterWebsiteBoolean = twitterUrlRegEx.test(cleanTwitterString);
+  if (twitterWebsiteBoolean)
+    return { isValid: true, url: addProtocol(cleanTwitterString) };
+  const twitterHandleBoolean = twitterHandleRegEx.test(cleanTwitterString);
+  const returnObject = twitterHandleBoolean
+    ? {
+        isValid: true,
+        url: `https://twitter.com/${cleanTwitterString.replace(/^@/, "")}`,
+      }
+    : { isValid: false };
+  return returnObject;
+};
+
+const validateTelegram = (telegramString: string): any => {
+  if (!telegramString) return { isValid: true, url: "" };
+  const cleanTelegramArray = telegramString
+    ?.toString?.()
+    ?.trim?.()
+    ?.split(" ", 2);
+  const cleanTelegramString = cleanTelegramArray?.[0];
+  // check if already a valid website url
+  const telegramWebsiteBoolean = telegramUrlRegEx.test(cleanTelegramString);
+  if (telegramWebsiteBoolean)
+    return { isValid: true, url: addProtocol(cleanTelegramString) };
+  const telegramHandleBoolean = telegramHandleRegEx.test(cleanTelegramString);
+  const returnObject = telegramHandleBoolean
+    ? {
+        isValid: true,
+        url: `https://t.me/${cleanTelegramString.replace(/^@/, "")}`,
+      }
+    : { isValid: false };
+  return returnObject;
+};
+
+const validateInstagram = (instagramString: string): any => {
+  if (!instagramString) return { isValid: true, url: "" };
+  const cleanInstagramArray = instagramString
+    ?.toString?.()
+    ?.trim?.()
+    ?.split(" ", 2);
+  const cleanInstagramString = cleanInstagramArray?.[0];
+  // check if already a valid website url
+  const instagramWebsiteBoolean = instagramUrlRegEx.test(cleanInstagramString);
+  if (instagramWebsiteBoolean)
+    return { isValid: true, url: addProtocol(cleanInstagramString) };
+  const instagramHandleBoolean =
+    instagramHandleRegEx.test(cleanInstagramString);
+  const returnObject = instagramHandleBoolean
+    ? {
+        isValid: true,
+        url: `https://www.instagram.com/${cleanInstagramString.replace(
+          /^@/,
+          ""
+        )}`,
+      }
+    : { isValid: false };
+  return returnObject;
+};
+
+const validateWebsite = (websiteString: string): any => {
+  if (!websiteString) return { isValid: true, url: "" };
+  const cleanWebsiteArray = websiteString
+    ?.toString?.()
+    ?.trim?.()
+    ?.split(" ", 2);
+  const cleanWebsiteString = cleanWebsiteArray?.[0];
+  // check if already a valid website url
+  const websiteUrlBoolean = websiteUrlRegEx.test(cleanWebsiteString);
+  if (websiteUrlBoolean) {
+    const wwwUrlBoolean = wwwUrlRegEx.test(cleanWebsiteString);
+    const returnObject = wwwUrlBoolean
+      ? {
+          isValid: true,
+          url: `${cleanWebsiteString.replace(wwwUrlRegEx, "http://")}`,
+        }
+      : { isValid: false };
+    return returnObject;
+  } else {
+    return { isValid: false };
+  }
+};
+
+export const validateSocials = (socialsObject: any) => {
+  let result = {};
+  let validatedSocials = {};
+  let validationErrors = [];
+  // validate twitter
+  const twitterObj = validateTwitter(socialsObject?.twitter?.toString?.());
+  if (twitterObj?.isValid) {
+    validatedSocials = { ...validatedSocials, twitter: twitterObj?.url };
+  } else {
+    validationErrors?.push?.("twitter");
+  }
+
+  // validate telegram
+  const telegramObj = validateTelegram(socialsObject?.telegram?.toString?.());
+  if (telegramObj?.isValid) {
+    validatedSocials = { ...validatedSocials, telegram: telegramObj?.url };
+  } else {
+    validationErrors?.push?.("telegram");
+  }
+
+  // validate instagram
+  const instagramObj = validateInstagram(
+    socialsObject?.instagram?.toString?.()
+  );
+  if (instagramObj?.isValid) {
+    validatedSocials = { ...validatedSocials, instagram: instagramObj?.url };
+  } else {
+    validationErrors?.push?.("instagram");
+  }
+
+  // validate website
+  const websiteObj = validateWebsite(socialsObject?.website?.toString?.());
+  if (websiteObj?.isValid) {
+    validatedSocials = { ...validatedSocials, website: websiteObj?.url };
+  } else {
+    validationErrors?.push?.("website");
+  }
+
+  // return value
+  return {
+    ...result,
+    validatedSocials,
+    error: validationErrors,
+  };
 };

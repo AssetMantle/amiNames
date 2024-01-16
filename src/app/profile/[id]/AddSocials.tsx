@@ -7,12 +7,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function AddSocials({ profile, socialData }: any) {
-  const PROFILE_NAME = profile;
   const chainContext = useChain(chain);
   const { address } = chainContext;
   const [namesList, setNamesList] = useState<any>();
   const [SocialModOpenState, setSocialModOpenState] = useState(false);
-  const [SocialModOpenType, setSocialModOpenType] = useState("add");
 
   useEffect(() => {
     try {
@@ -32,22 +30,24 @@ export default function AddSocials({ profile, socialData }: any) {
     }
   }, [address]);
 
-  return (
+  const isAddEnabled = () => {
+    return !!(
+      address &&
+      namesList &&
+      [...namesList].filter((el) => el.name === profile).length > 0
+    );
+  };
+
+  const addButtonJSX = (
     <>
+      {" "}
       <button
         onClick={() => {
-          setSocialModOpenType("add");
           setSocialModOpenState(true);
           console.log(socialData);
         }}
         className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)] disabled:opacity-50"
-        disabled={
-          !(
-            address &&
-            namesList &&
-            [...namesList].filter((el) => el.name === PROFILE_NAME).length > 0
-          )
-        }
+        disabled={!isAddEnabled()}
       >
         <Image
           className=""
@@ -61,10 +61,11 @@ export default function AddSocials({ profile, socialData }: any) {
       <SocialModal
         isOpen={SocialModOpenState}
         setIsOpen={setSocialModOpenState}
-        type={SocialModOpenType}
-        profile={PROFILE_NAME}
+        profile={profile}
         socialData={socialData}
       />
     </>
   );
+
+  return <>{isAddEnabled() && addButtonJSX}</>;
 }

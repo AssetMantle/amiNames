@@ -41,20 +41,19 @@ export const LandingPage = () => {
       if (homeFlag) return;
       if (names) {
         const list = JSON.parse(names);
-        if (Array.isArray(list) && list.length > 0) {
+        if (Array.isArray(list) && list?.length > 0) {
           let nameList =
-            list && list.filter((item: any) => item.address === address);
-          if (nameList.length > 0)
+            list && list.filter((item: any) => item?.address === address);
+          if (nameList?.length > 0 && nameList?.[0]?.name)
             router.push(
-              `/profile/${nameList[0].name}?referral=${
-                queryValue || nameList[0].name
+              `/profile/${nameList?.[0]?.name}?referral=${
+                queryValue || nameList?.[0]?.name
               }`
             );
-          else router.push(`/claim?referral=${queryValue}`);
-        } else {
-          router.push(`/claim?referral=${queryValue}`);
+          return;
         }
-      } else {
+      }
+      if (queryValue && queryValue != "null" && queryValue != "undefined") {
         router.push(`/claim?referral=${queryValue}`);
       }
     }
