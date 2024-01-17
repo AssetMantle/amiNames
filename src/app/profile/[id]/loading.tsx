@@ -29,7 +29,7 @@ export default async function ProfileSkeleton() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <a>
+          <a className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]">
             <Image
               className=""
               width={30}
@@ -39,7 +39,7 @@ export default async function ProfileSkeleton() {
             />{" "}
             Loading...
           </a>
-          <a>
+          <a className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]">
             <Image
               className=""
               width={30}
@@ -49,7 +49,7 @@ export default async function ProfileSkeleton() {
             />{" "}
             Loading...
           </a>
-          <a>
+          <a className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]">
             <Image
               className=""
               width={30}
@@ -59,7 +59,7 @@ export default async function ProfileSkeleton() {
             />{" "}
             Loading...
           </a>
-          <a>
+          <a className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]">
             <Image
               className=""
               width={30}
@@ -69,13 +69,13 @@ export default async function ProfileSkeleton() {
             />{" "}
             Loading...
           </a>
-          <a>
+          <a className="flex gap-2 items-center border rounded-md px-5 py-2 font-semibold w-[min(190px,100%)]">
             <Image
               className=""
               width={30}
               height={30}
               alt="Add"
-              src={"/assets/images/globe.svg"}
+              src={"/assets/images/pencil.svg"}
             />{" "}
             Loading...
           </a>
