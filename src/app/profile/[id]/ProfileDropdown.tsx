@@ -34,6 +34,14 @@ export default function ProfileDropdown({ profile }: any) {
     }
   }
 
+  const isAddEnabled = () => {
+    return !!(
+      address &&
+      namesList &&
+      [...namesList].filter((el) => el.name === profile).length > 0
+    );
+  };
+
   useEffect(() => {
     try {
       if (typeof window !== "undefined") {
@@ -55,7 +63,7 @@ export default function ProfileDropdown({ profile }: any) {
   return (
     <>
       <h1 className="text-[28px] font-semibold text-primary flex gap-3 items-center">
-        Hi{" "}
+        {isAddEnabled() ? `Hi` : `Hi, this is `}
         {!(
           address &&
           namesList &&
