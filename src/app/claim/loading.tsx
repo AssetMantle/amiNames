@@ -21,7 +21,7 @@ export default function ClaimLoading() {
           Introducing {`Cosmos's`} first Self sovereign Identity.
         </p>
         <br />
-        <p>Loading ... </p>
+        <p>Loading... </p>
       </div>
     </main>
   );
