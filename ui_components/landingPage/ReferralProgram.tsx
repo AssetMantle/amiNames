@@ -11,11 +11,21 @@ import { icons } from "@/utils/images";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { IconWrapper } from "../IconWrapper";
+import { showToastMessage } from "@/utils";
 
 export const ReferralProgram = () => {
   const query = useSearchParams();
   const queryValue = query.get("referral");
   const domain = window.location.origin;
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(
+      `${domain}?referral=${queryValue ?? "sampleref"}`
+    );
+    showToastMessage("success", "Link Copied");
+  };
+
   return (
     <div className=" bg-[#F6F7F7] py-[100px]">
       <div className="container mx-auto text-center ">
@@ -36,6 +46,17 @@ export const ReferralProgram = () => {
                   queryValue ?? "sampleref"
                 }`}</span>
               </p>
+            </div>
+            <div
+              className="flex items-center justify-center rounded-full px-6 py-4 cursor-pointer"
+              role="button"
+              tabIndex={0}
+            >
+              <IconWrapper
+                iconClassName="content_copy"
+                iconSize="text-2xl text-[#396AF6]"
+                onClick={handleCopy}
+              />
             </div>
           </div>
         </div>
