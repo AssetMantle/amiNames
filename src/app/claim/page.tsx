@@ -4,9 +4,20 @@ import { debounce } from "lodash";
 import MintModal from "@/ui_components/MintModal";
 import { icons } from "@/utils/images";
 import Image from "next/image";
-import { chain, homePageHeadingGradientText, homePageHeadingText, homePageHeadingFree } from "@/constant";
+import {
+  chain,
+  homePageHeadingGradientText,
+  homePageHeadingText,
+  homePageHeadingFree,
+} from "@/constant";
 import { useChain } from "@cosmos-kit/react";
-import { getFromLocalStorage, isValidReferrer, saveToLocalStorage, showToastMessage, trimAddress } from "@/utils";
+import {
+  getFromLocalStorage,
+  isValidReferrer,
+  saveToLocalStorage,
+  showToastMessage,
+  trimAddress,
+} from "@/utils";
 import { useSearchParams } from "next/navigation";
 import { IconWrapper } from "@/ui_components/IconWrapper";
 
@@ -112,7 +123,10 @@ export default function Home() {
       <div className="text-center p-4 md:p-8">
         <h1 className="text-3xl md:text-5xl font-semibold text-primary pt-8 pb-3">
           {homePageHeadingText}
-          <span className="hero-heading-gradient-text"> {homePageHeadingGradientText} </span>
+          <span className="hero-heading-gradient-text">
+            {" "}
+            {homePageHeadingGradientText}{" "}
+          </span>
           {homePageHeadingFree}
         </h1>
         <p className="md:text-[24px] text-[18px] font-regular text-primary pb-6 mb-3">
@@ -128,7 +142,11 @@ export default function Home() {
         />
         {!inputValue && (
           <div className="flex items-center justify-center gap-1 md:mt-4 mt-1 text-left md:text-center">
-            <IconWrapper className="cursor-pointer" iconClassName="info" iconSize="text-[16px] text-black/60" />
+            <IconWrapper
+              className="cursor-pointer"
+              iconClassName="info"
+              iconSize="text-[16px] text-black/60"
+            />
             <p className="supportText_regular text-black/60">
               {"No Uppercase or Special Characters, except Underscore '_'"}
             </p>
@@ -143,7 +161,9 @@ export default function Home() {
               <div>
                 <p className="text-md font-medium text-primary">{inputValue}</p>
                 {idExist && !loader ? (
-                  <p className="text-[12px] font-medium text-primary/70">{premiumAddr.provisionAddress}</p>
+                  <p className="text-[12px] font-medium text-primary/70">
+                    {premiumAddr.provisionAddress}
+                  </p>
                 ) : null}
               </div>
               {loader ? (
