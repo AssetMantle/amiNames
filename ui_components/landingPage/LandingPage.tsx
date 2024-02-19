@@ -7,6 +7,7 @@ import { FAQs } from "./FAQs";
 import { FeaturesSection } from "./FeaturesSection";
 import { HeroSection } from "./HeroSection";
 import { ReferralProgram } from "./ReferralProgram";
+import Loading from "../Loading";
 
 export const LandingPage = () => {
   const { address } = useChain(chain);
@@ -15,6 +16,7 @@ export const LandingPage = () => {
   const queryValue = query.get("referral");
   const homeFlag = query.get("home");
   const [isValidUser, setIsValidUser] = useState(false);
+  const [LoadingState, setLoadingState] = useState(false);
 
   useEffect(() => {
     async function getIsValidRef() {
@@ -44,12 +46,14 @@ export const LandingPage = () => {
         if (Array.isArray(list) && list?.length > 0) {
           let nameList =
             list && list.filter((item: any) => item?.address === address);
-          if (nameList?.length > 0 && nameList?.[0]?.name)
+          if (nameList?.length > 0 && nameList?.[0]?.name) {
+            setLoadingState(true);
             router.push(
               `/profile/${nameList?.[0]?.name}?referral=${
                 queryValue || nameList?.[0]?.name
               }`
             );
+          }
           return;
         }
       }
@@ -60,11 +64,14 @@ export const LandingPage = () => {
   }, [address]);
 
   return (
-    <div className="w-full h-full">
-      <HeroSection isValidUser={isValidUser} />
-      <FeaturesSection />
-      <ReferralProgram />
-      <FAQs />
-    </div>
+    <>
+      <div className="w-full h-full">
+        <HeroSection isValidUser={isValidUser} />
+        <FeaturesSection />
+        <ReferralProgram />
+        <FAQs />
+      </div>
+      {LoadingState && <Loading />}
+    </>
   );
 };
