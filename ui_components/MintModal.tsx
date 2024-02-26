@@ -420,7 +420,7 @@ const MintModal = ({
           </>
         )}
       </Modal>
-      <Loading />
+      <Loading Show={LoadingScreen} setShow={setLoadingScreen} />
     </>
   );
 };
