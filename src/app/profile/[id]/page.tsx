@@ -34,11 +34,11 @@ export default async function Home({ params }: { params: { id: string } }) {
             <QRCodeSVG
               width="100%"
               height="100%"
-              value={`https://names.assetmantle.one/profile/${PROFILE_NAME}`}
+              value={`https://names.assetmantle.one/profile/${PROFILE_NAME}?referral=${PROFILE_NAME}`}
             />
           </Suspense>
         </div>
-
+        <h2 className="text-[24px] font-semibold">My Links:</h2>
         <div className="flex flex-col gap-3">
           {socialData?.twitter && (
             <a
