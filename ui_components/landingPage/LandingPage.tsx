@@ -71,7 +71,7 @@ export const LandingPage = () => {
         <ReferralProgram />
         <FAQs />
       </div>
-      {LoadingState && <Loading />}
+      <Loading Show={LoadingState} setShow={setLoadingState} />
     </>
   );
 };
