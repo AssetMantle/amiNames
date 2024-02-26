@@ -7,14 +7,13 @@ import { icons } from "@/utils/images";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import NameListModal from "./NameListModal";
 import Loading from "./Loading";
 
 export default function Header() {
   const router = useRouter();
-  const pathname = usePathname();
   const query = useSearchParams();
   const { address, connect, disconnect } = useChain(chain);
 
@@ -101,11 +100,6 @@ export default function Header() {
     setIsOpen(true);
   };
 
-  useEffect(() => {
-    setLoadingState(false);
-    console.log(pathname);
-  }, [pathname]);
-
   return (
     <>
       <header className="fixed flex items-center justify-between gap-4 bg-white w-full left-0 md:px-12 py-5 z-[50] font-inter px-2">
@@ -145,6 +139,7 @@ export default function Header() {
             <div
               className="relative"
               onClick={() => {
+                setLoadingState(true);
                 router.push(
                   `/claim?referral=${queryValue || namesList?.[0]?.name}`
                 );
@@ -283,7 +278,7 @@ export default function Header() {
           />
         )}
       </header>
-      {LoadingState && <Loading />}
+      <Loading Show={LoadingState} setShow={setLoadingState} />
     </>
   );
 }
