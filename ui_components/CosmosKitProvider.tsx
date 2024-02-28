@@ -29,6 +29,14 @@ export default function CosmosKitProvider({
       return getSigningCosmosClientOptions();
     },
   };
+  const walletsArray: any = [
+    ...keplr,
+    ...leap,
+    ...metamask,
+    ...frontier,
+    ...cosmostation,
+    ...vectis,
+  ];
   const WalletsModal = ({ isOpen, setOpen, walletRepo }: any) => {
     const chainContext = useChain(curChain);
     const { closeView } = chainContext;
@@ -101,14 +109,7 @@ export default function CosmosKitProvider({
       chains={[...chains, ...[chain]]}
       //@ts-ignore
       assetLists={[...assets, ...[asset]]}
-      wallets={[
-        ...keplr,
-        ...leap,
-        ...metamask,
-        ...frontier,
-        ...cosmostation,
-        ...vectis,
-      ]}
+      wallets={walletsArray}
       signerOptions={signerOptions}
       walletModal={WalletsModal}
       endpointOptions={{
