@@ -1,23 +1,22 @@
 "use client";
-import React from "react";
-import { ChainProvider } from "@cosmos-kit/react";
+import { chain as curChain, rpc } from "@/constant";
+import asset from "@/constant/asset";
+import chain from "@/constant/chain";
+import Button from "@/ui_components/Button";
+import Modal from "@/ui_components/Modal";
+import { icons } from "@/utils/images";
+import { SignerOptions } from "@cosmos-kit/core";
+import { wallets as cosmostation } from "@cosmos-kit/cosmostation";
+import { wallets as frontier } from "@cosmos-kit/frontier";
 import { wallets as keplr } from "@cosmos-kit/keplr";
 import { wallets as leap } from "@cosmos-kit/leap";
-import { wallets as frontier } from "@cosmos-kit/frontier";
-import { wallets as cosmostation } from "@cosmos-kit/cosmostation";
+import { wallets as metamask } from "@cosmos-kit/leap-metamask-cosmos-snap";
+import { ChainProvider, useChain } from "@cosmos-kit/react";
 import { wallets as vectis } from "@cosmos-kit/vectis";
-import { wallets as leap-mm-cosmos-snap } from "@cosmos-kit/leap-metamask-cosmos-snap";
 import { assets, chains } from "chain-registry";
-import { getSigningCosmosClientOptions } from "osmojs";
-import { SignerOptions } from "@cosmos-kit/core";
-import Modal from "@/ui_components/Modal";
-import Button from "@/ui_components/Button";
 import Image from "next/image";
-import { icons } from "@/utils/images";
-import { useChain, useChainWallet } from "@cosmos-kit/react";
-import chain from "@/constant/chain";
-import asset from "@/constant/asset";
-import { rpc, chain as curChain } from "@/constant";
+import { getSigningCosmosClientOptions } from "osmojs";
+import React from "react";
 
 export default function CosmosKitProvider({
   children,
@@ -30,12 +29,13 @@ export default function CosmosKitProvider({
       return getSigningCosmosClientOptions();
     },
   };
-  const WalletsModal = ({ isOpen, setOpen, walletRepo, theme }: any) => {
+  const WalletsModal = ({ isOpen, setOpen, walletRepo }: any) => {
     const chainContext = useChain(curChain);
     const { closeView } = chainContext;
     const handleClose = () => {
       setOpen(false);
     };
+    console.log("walletRepo: ", walletRepo);
     return (
       <Modal
         openModal={isOpen}
@@ -57,29 +57,38 @@ export default function CosmosKitProvider({
         />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 items-center justify-center font-inter">
           {walletRepo?.wallets?.map(
-            ({ walletName, connect, walletInfo }: any) => (
-              <div key={walletName} className="col-span-1">
-                <Button
-                  className="h-[70px] w-full border text-primary border-primary flex items-center gap-2 p-4 relative rounded-lg ease-in-out duration-300 hover:bg-grey hover:text-primaryBlack"
-                  onClick={() => {
-                    connect();
-                    closeView();
-                  }}
-                >
-                  <div className="w-[40px] h-[40px] relative block">
-                    <Image
-                      fill={true}
-                      className="object-contain relative"
-                      alt="selected"
-                      src={walletInfo.logo}
-                    />
-                  </div>
-                  <p className="text-sm font-semibold">
-                    {walletInfo.prettyName}
-                  </p>
-                </Button>
-              </div>
-            )
+            ({ walletName, connect, walletInfo }: any) => {
+              console.log("walletInfo: ", walletInfo);
+              return (
+                <div key={walletName} className="col-span-1">
+                  <Button
+                    className="h-[70px] w-full border text-primary border-primary flex items-center gap-2 p-4 relative rounded-lg ease-in-out duration-300 hover:bg-grey hover:text-primaryBlack"
+                    onClick={() => {
+                      connect();
+                      closeView();
+                    }}
+                  >
+                    <div className="w-[40px] h-[40px] relative block">
+                      <Image
+                        fill={true}
+                        className="object-contain relative"
+                        alt="selected"
+                        src={
+                          walletName == "leap-metamask-cosmos-snap"
+                            ? walletInfo?.logo?.major
+                            : walletInfo.logo
+                        }
+                      />
+                    </div>
+                    <p className="text-sm font-semibold">
+                      {walletName == "leap-metamask-cosmos-snap"
+                        ? "Metamask"
+                        : walletInfo.prettyName}
+                    </p>
+                  </Button>
+                </div>
+              );
+            }
           )}
         </div>
       </Modal>
@@ -95,7 +104,7 @@ export default function CosmosKitProvider({
       wallets={[
         ...keplr,
         ...leap,
-        ...leap - mm - cosmos - snap,
+        ...metamask,
         ...frontier,
         ...cosmostation,
         ...vectis,
