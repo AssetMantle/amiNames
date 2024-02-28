@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { ChainProvider } from "@cosmos-kit/react";
-import { wallets as keplr } from "@cosmos-kit/keplr-extension";
-import { wallets as leap } from "@cosmos-kit/leap-extension";
+import { wallets as keplr } from "@cosmos-kit/keplr";
+import { wallets as leap } from "@cosmos-kit/leap";
 import { wallets as frontier } from "@cosmos-kit/frontier";
-import { wallets as cosmostation } from "@cosmos-kit/cosmostation-extension";
+import { wallets as cosmostation } from "@cosmos-kit/cosmostation";
 import { wallets as vectis } from "@cosmos-kit/vectis";
+import { wallets as leap-mm-cosmos-snap } from "@cosmos-kit/leap-metamask-cosmos-snap";
 import { assets, chains } from "chain-registry";
 import { getSigningCosmosClientOptions } from "osmojs";
 import { SignerOptions } from "@cosmos-kit/core";
@@ -91,7 +92,14 @@ export default function CosmosKitProvider({
       chains={[...chains, ...[chain]]}
       //@ts-ignore
       assetLists={[...assets, ...[asset]]}
-      wallets={[...keplr, ...leap, ...frontier, ...cosmostation, ...vectis]}
+      wallets={[
+        ...keplr,
+        ...leap,
+        ...leap - mm - cosmos - snap,
+        ...frontier,
+        ...cosmostation,
+        ...vectis,
+      ]}
       signerOptions={signerOptions}
       walletModal={WalletsModal}
       endpointOptions={{
