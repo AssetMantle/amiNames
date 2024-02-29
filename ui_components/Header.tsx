@@ -7,13 +7,14 @@ import { icons } from "@/utils/images";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import NameListModal from "./NameListModal";
 import Loading from "./Loading";
 
 export default function Header() {
   const router = useRouter();
+  const pathName = usePathname();
   const query = useSearchParams();
   const { address, connect, disconnect } = useChain(chain);
 
@@ -104,8 +105,10 @@ export default function Header() {
     <>
       <header className="fixed flex items-center justify-between gap-4 bg-white w-full left-0 md:px-12 py-5 z-[50] font-inter px-2">
         <Link
-          href={`/?referral=${queryValue}&home=true`}
-          onClick={() => setLoadingState(true)}
+          href={`/?referral=${queryValue}${
+            pathName !== "/" ? "&home=true" : ""
+          }`}
+          onClick={() => pathName !== "/" && setLoadingState(true)}
         >
           <div className="col-span-1 flex items-center gap-2">
             <Image
@@ -139,7 +142,7 @@ export default function Header() {
             <div
               className="relative"
               onClick={() => {
-                setLoadingState(true);
+                pathName !== "/claim" && setLoadingState(true);
                 router.push(
                   `/claim?referral=${queryValue || namesList?.[0]?.name}`
                 );
@@ -201,7 +204,8 @@ export default function Header() {
                             type="button"
                             className="inline-block rounded-full buttonBg px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-white font-inter w-32 mb-2"
                             onClick={() => {
-                              setLoadingState(true);
+                              pathName !== `/profile/${namesList[0].name}` &&
+                                setLoadingState(true);
                               router.push(
                                 `/profile/${namesList[0].name}?referral=${
                                   queryValue || namesList?.[0]?.name
