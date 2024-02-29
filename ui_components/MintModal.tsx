@@ -86,7 +86,7 @@ const MintModal = ({
       }
 
       // get signer from getOfflineSigner passed from the selected chain and wallet from cosmos kit component
-      const signer = await getOfflineSignerDirect();
+      const signer: any = await getOfflineSignerDirect();
       // create the signing client using the given signer and selected rpc endpoint
       const mantleRpcClient = await getSigningAssetmantleClient({
         rpcEndpoint: rpc,
