@@ -53,11 +53,29 @@ export const LandingPage = () => {
                 queryValue || nameList?.[0]?.name
               }`
             );
+          } else if (
+            queryValue &&
+            queryValue != "null" &&
+            queryValue != "undefined"
+          ) {
+            setLoadingState(true);
+            router.push(`/claim?referral=${queryValue}`);
           }
           return;
+        } else if (
+          queryValue &&
+          queryValue != "null" &&
+          queryValue != "undefined"
+        ) {
+          setLoadingState(true);
+          router.push(`/claim?referral=${queryValue}`);
         }
-      }
-      if (queryValue && queryValue != "null" && queryValue != "undefined") {
+      } else if (
+        queryValue &&
+        queryValue != "null" &&
+        queryValue != "undefined"
+      ) {
+        setLoadingState(true);
         router.push(`/claim?referral=${queryValue}`);
       }
     }
