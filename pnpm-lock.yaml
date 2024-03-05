@@ -45,8 +45,8 @@ dependencies:
     specifier: ^2.4.3
     version: 2.4.3(@cosmjs/amino@0.32.2)(@cosmjs/cosmwasm-stargate@0.31.1)(@cosmjs/proto-signing@0.32.2)(@cosmjs/stargate@0.31.1)(cosmjs-types@0.9.0)
   '@cosmos-kit/leap-metamask-cosmos-snap':
-    specifier: ^0.6.1
-    version: 0.6.1(@cosmjs/amino@0.32.2)(@cosmjs/proto-signing@0.32.2)(@vercel/kv@1.0.1)(cosmjs-types@0.9.0)
+    specifier: ^0.6.2
+    version: 0.6.2(@cosmjs/amino@0.32.2)(@cosmjs/proto-signing@0.32.2)(@vercel/kv@1.0.1)(cosmjs-types@0.9.0)
   '@cosmos-kit/react':
     specifier: ^2.6.4
     version: 2.6.4(@cosmjs/amino@0.32.2)(@cosmjs/cosmwasm-stargate@0.31.1)(@cosmjs/proto-signing@0.32.2)(@cosmjs/stargate@0.31.1)(@types/react@18.2.21)(cosmjs-types@0.9.0)(react-dom@18.2.0)(react@18.2.0)
@@ -937,8 +937,8 @@ packages:
       - lokijs
     dev: false
 
-  /@cosmos-kit/leap-metamask-cosmos-snap@0.6.1(@cosmjs/amino@0.32.2)(@cosmjs/proto-signing@0.32.2)(@vercel/kv@1.0.1)(cosmjs-types@0.9.0):
-    resolution: {integrity: sha512-LPksTJtqPBZU6BufmYF2fMG5htFmDCZ0mJrq6yae7jEL9KWbWhrcE56jesdVlEDWBfwHY+/WqfcRRjUqKebHnw==}
+  /@cosmos-kit/leap-metamask-cosmos-snap@0.6.2(@cosmjs/amino@0.32.2)(@cosmjs/proto-signing@0.32.2)(@vercel/kv@1.0.1)(cosmjs-types@0.9.0):
+    resolution: {integrity: sha512-47Kq0ZrXNinbTfNH0i0GtxdfIDkq7iaixLQ5p9qc56CtiqBtT4bSrZoYqUl3nlM7iFKTtrb7FdCPkAVkWpYUew==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.2'
       '@cosmjs/proto-signing': '>=0.32.2'
@@ -1905,6 +1905,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: false
     bundledDependencies:
       - napi-wasm
@@ -4996,6 +4997,10 @@ packages:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: false
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: false
 
   /natural-compare@1.4.0:
