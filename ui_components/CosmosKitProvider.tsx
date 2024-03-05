@@ -1,5 +1,5 @@
 "use client";
-import { chain as curChain, rpc } from "@/constant";
+import { chain as curChain, restApi, rpc } from "@/constant";
 import asset from "@/constant/asset";
 import chain from "@/constant/chain";
 import Button from "@/ui_components/Button";
@@ -66,7 +66,6 @@ export default function CosmosKitProvider({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 items-center justify-center font-inter">
           {walletRepo?.wallets?.map(
             ({ walletName, connect, walletInfo }: any) => {
-              console.log("walletInfo: ", walletInfo);
               return (
                 <div key={walletName} className="col-span-1">
                   <Button
@@ -114,8 +113,9 @@ export default function CosmosKitProvider({
       walletModal={WalletsModal}
       endpointOptions={{
         endpoints: {
-          assetmantlelocalnet: {
+          assetmantle: {
             rpc: [rpc],
+            rest: [restApi],
           },
         },
       }}

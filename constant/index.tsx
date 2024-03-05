@@ -1,4 +1,5 @@
 export const rpc = "https://rpc.assetmantle.one/";
+export const restApi = "https://rest.assetmantle.one/";
 export const chain = "assetmantle";
 export const defaultChainDenom = "umntl";
 export const defaultFeeAmount = "2000";
