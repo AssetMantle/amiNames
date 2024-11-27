@@ -49,7 +49,7 @@ export default function CosmosKitProvider({
         openModal={isOpen}
         setOpenModal={setOpen}
         header={
-          <h2 className="text-xl font-semibold mb-6 text-primary font-inter">
+          <h2 className="text-2xl font-semibold mb-6 text-primary font-inter">
             Select your wallet
           </h2>
         }
