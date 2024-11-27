@@ -32,7 +32,7 @@ const Modal: FC<IModalProps> = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 backdrop-blur-[6px]" />
+          <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-[6px]" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -47,7 +47,7 @@ const Modal: FC<IModalProps> = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`w-[min(740px,100%)] transform overflow-hidden bg-white border p-6 text-left align-middle transition-all rounded ${
+                className={`w-[min(550px,100%)] transform overflow-hidden bg-white p-6 text-left align-middle transition-all rounded-2xl ${
                   className ?? ""
                 }`}
               >
