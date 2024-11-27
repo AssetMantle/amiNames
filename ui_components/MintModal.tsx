@@ -1,34 +1,30 @@
-import React, { useEffect, useState } from "react";
-import Modal from "@/ui_components/Modal";
-import Button from "@/ui_components/Button";
-import Image from "next/image";
-import { icons } from "@/utils/images";
-import { useChain } from "@cosmos-kit/react";
 import {
+  assetmantleUrlLink,
   chain,
   defaultChainDenom,
-  mintModalHeadingText,
   defaultFeeAmount,
   defaultFeeGas,
-  rpc,
+  mintModalHeadingText,
   warpcastUrl,
-  assetmantleUrlLink,
 } from "@/constant";
-import {
-  assetmantle,
-  cosmos,
-  getSigningAssetmantleClient,
-} from "@assetmantle/mantlejs";
+import Button from "@/ui_components/Button";
+import Modal from "@/ui_components/Modal";
 import {
   getFromLocalStorage,
   saveToLocalStorage,
   showToastMessage,
 } from "@/utils";
+import { icons } from "@/utils/images";
+import { assetmantle, cosmos } from "@assetmantle/mantlejs";
+import { useChain } from "@cosmos-kit/react";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 //@ts-ignore
-import ReCAPTCHA from "react-google-recaptcha";
+import { useTx } from "@/utils/useTx";
 import Link from "next/link";
-import { IconWrapper } from "./IconWrapper";
 import { useRouter, useSearchParams } from "next/navigation";
+import ReCAPTCHA from "react-google-recaptcha";
+import { IconWrapper } from "./IconWrapper";
 import Loading from "./Loading";
 
 const MintModal = ({
@@ -51,9 +47,12 @@ const MintModal = ({
   const [transactionData, setTransactonData] = useState({} as any);
   const { address, getOfflineSignerDirect, connect, getCosmWasmClient } =
     chainContext;
+  const { tx } = useTx();
+
   const handleMint = async () => {
     //@ts-ignore
-    recaptchaRef.current.execute();
+    // recaptchaRef.current.execute();
+    console.log("inside handleMint");
     if (!address) {
       connect();
       return;
@@ -73,6 +72,7 @@ const MintModal = ({
     let msg;
     try {
       let referer = query.get("referral");
+      console.log("referer: ", referer);
 
       if (!isValidRef) {
         const list = getFromLocalStorage("amiNamesList");
@@ -85,24 +85,6 @@ const MintModal = ({
         }
       }
 
-      // get signer from getOfflineSigner passed from the selected chain and wallet from cosmos kit component
-      const signer: any = await getOfflineSignerDirect();
-      // create the signing client using the given signer and selected rpc endpoint
-      const mantleRpcClient = await getSigningAssetmantleClient({
-        rpcEndpoint: rpc,
-        signer,
-      });
-      const balance = await mantleRpcClient.getBalance(
-        address,
-        defaultChainDenom
-      );
-      if (Number(balance?.amount) < 0.3) {
-        throw new Error("Insufficient balance");
-      }
-      // verify the signing client and from address
-      if (!mantleRpcClient || !address) {
-        throw new Error("stargateClient or from address undefined");
-      }
       // get the message composer function from mantlejs
       memo = `${referer},${userName}`;
       if (isPremium) {
@@ -129,23 +111,22 @@ const MintModal = ({
           );
       }
       // call the sign and broadcast function and pass the message and other arguments
-      response = await mantleRpcClient.signAndBroadcast(
-        address,
-        [msg],
-        fee,
-        memo
-      );
-      if (response.rawLog?.includes("entity already exists")) {
+      console.log("msg: ", msg, " memo: ", memo, " fee: ", fee);
+      response = await tx([msg], memo, { fee });
+      console.log("response: ", response);
+      if (response?.error?.message?.includes?.("entity already exists")) {
         showToastMessage("error", "AMI name already registered");
+        console.error("error in tx: ", response?.error?.message);
         setLoader(false);
         setOpen(false);
         return;
       }
-      if (!response.code) {
+      if (response.isSuccess) {
         setSuccess(true);
         setLoader(false);
       } else {
-        showToastMessage("error", response?.rawLog ?? "");
+        showToastMessage("error", response?.error?.message ?? "");
+        console.error("error in tx2: ", response?.error?.message);
         setLoader(false);
         setOpen(false);
         return;
