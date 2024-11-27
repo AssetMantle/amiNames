@@ -1,4 +1,4 @@
-import "../../styles/globals.css";
+import "../../styles/index.scss";
 import { Inter } from "next/font/google";
 import { Header } from "@/ui_components";
 import CosmosKitProvider from "@/ui_components/CosmosKitProvider";
@@ -77,7 +77,7 @@ export default function RootLayout({
         <CosmosKitProvider>
           <Header />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </CosmosKitProvider>
       </body>
     </html>
