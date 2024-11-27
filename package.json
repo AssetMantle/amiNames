@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@assetmantle/mantlejs": "^1.1.1",
+    "@assetmantle/mantlejs": "1.0.3",
     "@chain-registry/types": "^0.50.22",
     "@cosmjs/cosmwasm-stargate": "^0.32.4",
     "@cosmjs/encoding": "^0.32.4",
