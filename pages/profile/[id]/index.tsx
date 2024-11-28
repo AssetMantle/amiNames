@@ -2,11 +2,13 @@
 import { readUserSocials } from "@/config/dbApi";
 import Header from "@/layout/Header";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { QRCodeSVG } from "qrcode.react";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 
-export default function Profile({ params }: { params: { id: string } }) {
-  const PROFILE_NAME = params.id;
+export default function Profile() {
+  const router = useRouter();
+  const PROFILE_NAME = router?.query?.id;
 
   const [IsMyProfile, setIsMyProfile] = useState(false);
   const [SocialData, setSocialData] = useState<any>({});
