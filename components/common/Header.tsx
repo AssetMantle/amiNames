@@ -1,15 +1,19 @@
-import { Link, Box, Button, Icon, Text, useTheme, useColorModeValue } from '@interchain-ui/react';
-import { dependencies } from '@/config';
+import {
+  Box,
+  Button,
+  Icon,
+  Text,
+  useColorModeValue,
+  useTheme,
+} from "@interchain-ui/react";
 
-const stacks = ['Cosmos Kit', 'Next.js'];
-
-const osmojs = dependencies[0];
+const stacks = ["Cosmos Kit", "Next.js"];
 
 export function Header() {
   const { theme, setTheme } = useTheme();
 
   const toggleColorMode = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -23,7 +27,7 @@ export function Header() {
           }}
           onClick={toggleColorMode}
         >
-          <Icon name={useColorModeValue('moonLine', 'sunLine')} />
+          <Icon name={useColorModeValue("moonLine", "sunLine")} />
         </Button>
       </Box>
 
@@ -31,9 +35,9 @@ export function Header() {
         <Text
           as="h1"
           fontWeight="$extrabold"
-          fontSize={{ mobile: '$6xl', tablet: '$10xl' }}
+          fontSize={{ mobile: "$6xl", tablet: "$10xl" }}
           attributes={{
-            marginBottom: '$8',
+            marginBottom: "$8",
           }}
         >
           Create Cosmos App
@@ -41,29 +45,16 @@ export function Header() {
         <Text as="h2" fontWeight="$bold">
           <Text
             as="span"
-            fontSize={{ mobile: '$3xl', tablet: '$8xl', desktop: '$8xl' }}
+            fontSize={{ mobile: "$3xl", tablet: "$8xl", desktop: "$8xl" }}
           >
             Welcome to&nbsp;
           </Text>
           <Text
             as="span"
-            fontSize={{ mobile: '$3xl', tablet: '$8xl', desktop: '$8xl' }}
-            color={useColorModeValue('$primary500', '$primary200')}
+            fontSize={{ mobile: "$3xl", tablet: "$8xl", desktop: "$8xl" }}
+            color={useColorModeValue("$primary500", "$primary200")}
           >
-            {stacks.join(' + ')}
-            {' + '}
-
-            <Link
-              href={osmojs.name}
-              target="_blank"
-              rel="noreferrer"
-              attributes={{
-                color: useColorModeValue('$primary500', '$primary200'),
-                fontSize: { mobile: '$4xl', tablet: '$8xl', desktop: '$8xl' },
-              }}
-            >
-              {osmojs.name}
-            </Link>
+            {stacks.join(" + ")}
           </Text>
         </Text>
       </Box>
