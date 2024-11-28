@@ -4,24 +4,19 @@ import { debounce } from "lodash";
 import MintModal from "@/ui_components/MintModal";
 import { icons } from "@/utils/images";
 import Image from "next/image";
-import {
-  chain,
-  homePageHeadingGradientText,
-  homePageHeadingText,
-  homePageHeadingFree,
-} from "@/constant";
+import { chain } from "@/constant";
 import { useChain } from "@cosmos-kit/react";
 import {
   getFromLocalStorage,
   isValidReferrer,
   saveToLocalStorage,
   showToastMessage,
-  trimAddress,
 } from "@/utils";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { IconWrapper } from "@/ui_components/IconWrapper";
 
 export default function Home() {
+  const router = useRouter();
   const query = useSearchParams();
   const chainContext = useChain(chain);
   const { address, connect, status } = chainContext;
@@ -100,6 +95,8 @@ export default function Home() {
         setIsOpen(true);
         setInputValue("");
       }
+    } else {
+      router.push(`/profile/${inputValue}`);
     }
   };
 
@@ -123,7 +120,7 @@ export default function Home() {
   }, [status]);
 
   return (
-    <main className="flex h-[100dvh] flex-col items-center justify-center font-inter p-6 pt-[90px] am-ami-container-sm">
+    <main className="flex h-[100dvh] flex-col items-center justify-center font-inter p-6 am-ami-container-sm">
       <div className="flex items-center justify-center w-[min(320px,100%)] m-auto relative">
         <div className="flex aspect-square w-[50px] rounded-[50%] scale-[1.1] origin-left">
           <Image
