@@ -1,25 +1,14 @@
 "use client";
-import { aminoTypes, registry } from "@/config/defaults";
 import { ChainProvider } from "@cosmos-kit/react";
 import "@interchain-ui/react/styles";
 import { assets, chains } from "chain-registry";
-import { SignerOptions, wallets } from "cosmos-kit";
+import { wallets } from "cosmos-kit";
 
 export default function CosmosKitProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const signerOptions: SignerOptions = {
-    // @ts-ignore
-    signingStargate: () => {
-      return {
-        aminoTypes,
-        registry,
-      };
-    },
-  };
-
   return (
     <ChainProvider
       // @ts-ignore
@@ -39,7 +28,6 @@ export default function CosmosKitProvider({
           },
         },
       }}
-      signerOptions={signerOptions}
     >
       {children}
     </ChainProvider>

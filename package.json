@@ -25,13 +25,15 @@
     "bignumber.js": "^9.1.2",
     "chain-registry": "^1.69.46",
     "cosmos-kit": "^2.21.1",
+    "encoding": "^0.1.13",
     "interchain-query": "^1.10.7",
     "js-sha256": "^0.11.0",
     "lodash": "^4.17.21",
     "next": "13.5.7",
+    "pino-pretty": "^13.0.0",
     "qrcode.react": "^4.1.0",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-toastify": "^10.0.6"
   },
   "devDependencies": {

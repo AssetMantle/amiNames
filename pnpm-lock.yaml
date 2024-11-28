@@ -28,7 +28,7 @@ importers:
         version: 0.32.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@cosmos-kit/react':
         specifier: ^2.20.1
-        version: 2.20.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@interchain-ui/react@1.26.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
+        version: 2.20.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@interchain-ui/react@1.26.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
       '@ducanh2912/next-pwa':
         specifier: ^10.2.9
         version: 10.2.9(next@13.5.7(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.96.1)
@@ -55,7 +55,10 @@ importers:
         version: 1.69.46
       cosmos-kit:
         specifier: ^2.21.1
-        version: 2.21.1(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(axios@1.7.8)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(react@18.3.1)(starknet@6.11.0)(utf-8-validate@5.0.10)
+        version: 2.21.1(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(axios@1.7.8)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(encoding@0.1.13)(react@18.3.1)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)
+      encoding:
+        specifier: ^0.1.13
+        version: 0.1.13
       interchain-query:
         specifier: ^1.10.7
         version: 1.10.7(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -68,14 +71,17 @@ importers:
       next:
         specifier: 13.5.7
         version: 13.5.7(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      pino-pretty:
+        specifier: ^13.0.0
+        version: 13.0.0
       qrcode.react:
         specifier: ^4.1.0
         version: 4.1.0(react@18.3.1)
       react:
-        specifier: ^18
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-toastify:
         specifier: ^10.0.6
@@ -2708,6 +2714,9 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+  colorette@2.0.20:
+    resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
+
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -2809,6 +2818,9 @@ packages:
   data-view-byte-offset@1.0.0:
     resolution: {integrity: sha512-t/Ygsytq+R995EJ5PZlD4Cu56sWa8InXySaViRzw9apusqsOO2bQP+SbYzAhR0pFKoB+43lYy8rWban9JSuXnA==}
     engines: {node: '>= 0.4'}
+
+  dateformat@4.6.3:
+    resolution: {integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==}
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -2925,6 +2937,9 @@ packages:
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+
+  encoding@0.1.13:
+    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
 
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
@@ -3122,6 +3137,9 @@ packages:
   extension-port-stream@2.1.1:
     resolution: {integrity: sha512-qknp5o5rj2J9CRKfVB8KJr+uXQlrojNZzdESUPhKYLXf97TPcGf6qWWKmpsNNtUyOdzFhab1ON0jzouNxHHvow==}
     engines: {node: '>=12.0.0'}
+
+  fast-copy@3.0.2:
+    resolution: {integrity: sha512-dl0O9Vhju8IrcLndv2eU4ldt1ftXMqqfgN4H1cpmGV7P6jeB9FwpN9a2c8DPGE1Ys88rNUJVYDHq73CGAGOPfQ==}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -3338,6 +3356,9 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
+  help-me@5.0.0:
+    resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
+
   hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
 
@@ -3348,6 +3369,10 @@ packages:
   human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
+
+  iconv-lite@0.6.3:
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
+    engines: {node: '>=0.10.0'}
 
   idb-keyval@6.2.1:
     resolution: {integrity: sha512-8Sb3veuYCyrZL+VBt9LJfZjLUPWVvqn8tG28VqYNFCo43KHcKuq+b4EiXGeuaLAQWL2YmyDgMp2aSpH9JHsEQg==}
@@ -3586,6 +3611,10 @@ packages:
   jiti@2.4.0:
     resolution: {integrity: sha512-H5UpaUI+aHOqZXlYOaFP/8AzKsg+guWu+Pr3Y8i7+Y3zr1aXAvCvTAQ1RxSc6oVD8R8c7brgNtTVP91E7upH/g==}
     hasBin: true
+
+  joycon@3.1.1:
+    resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
+    engines: {node: '>=10'}
 
   js-sha256@0.11.0:
     resolution: {integrity: sha512-6xNlKayMZvds9h1Y1VWc0fQHQ82BxTXizWPEtEeGvmOUYpBRy4gbWroHLpzowe6xiQhHpelCQiE7HEdznyBL9Q==}
@@ -3938,6 +3967,10 @@ packages:
   on-exit-leak-free@0.2.0:
     resolution: {integrity: sha512-dqaz3u44QbRXQooZLTUKU41ZrzYrcvLISVgbrzbyCMxpmSLJvZ3ZamIJIZ29P6OhZIkNIQKosdeM6t1LYbA9hg==}
 
+  on-exit-leak-free@2.1.2:
+    resolution: {integrity: sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==}
+    engines: {node: '>=14.0.0'}
+
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
@@ -4011,6 +4044,13 @@ packages:
 
   pino-abstract-transport@0.5.0:
     resolution: {integrity: sha512-+KAgmVeqXYbTtU2FScx1XS3kNyfZ5TrXY07V96QnUSFqo2gAqlvmaxH67Lj7SWazqsMabf+58ctdTcBgnOLUOQ==}
+
+  pino-abstract-transport@2.0.0:
+    resolution: {integrity: sha512-F63x5tizV6WCh4R6RHyi2Ml+M70DNRXt/+HANowMflpgGFMAym/VKm6G7ZOQRjqN7XbGxK1Lg9t6ZrtzOaivMw==}
+
+  pino-pretty@13.0.0:
+    resolution: {integrity: sha512-cQBBIVG3YajgoUjo1FdKVRX6t9XPxwB9lcNJVD5GCnNM4Y6T12YYx8c6zEejxQsU0wrg9TwmDulcE9LR7qcJqA==}
+    hasBin: true
 
   pino-std-serializers@4.0.0:
     resolution: {integrity: sha512-cK0pekc1Kjy5w9V2/n+8MkZwusa6EyyxfeQCB799CQRhRt/CqYKiWs5adeu8Shve2ZNffvfC/7J64A2PJo1W/Q==}
@@ -4258,6 +4298,9 @@ packages:
     resolution: {integrity: sha512-b3rppTKm9T+PsVCBEOUR46GWI7fdOs00VKZ1+9c1EWDaDMvjQc6tUwuFyIprgGgTcWoVHSKrU8H31ZHA2e0RHA==}
     engines: {node: '>=10'}
 
+  safer-buffer@2.1.2:
+    resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+
   scheduler@0.23.2:
     resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
@@ -4271,6 +4314,9 @@ packages:
   secp256k1@4.0.4:
     resolution: {integrity: sha512-6JfvwvjUOn8F/jUoBY2Q1v5WY5XS+rj8qSe0v8Y4ezH4InLgTEeOOPQsRll9OV429Pvo6BCHGavIyJfr3TAhsw==}
     engines: {node: '>=18.0.0'}
+
+  secure-json-parse@2.7.0:
+    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -4324,6 +4370,9 @@ packages:
 
   sonic-boom@2.8.0:
     resolution: {integrity: sha512-kuonw1YOYYNOve5iHdSahXPOK49GqwA+LZhI6Wz/l0rP57iKyXXIHaRagOBHAPmGwJC6od2Z9zgvZ5loSgMlVg==}
+
+  sonic-boom@4.2.0:
+    resolution: {integrity: sha512-INb7TM37/mAcsGmc9hyyI6+QR3rR1zVRu36B0NeGXKnOOLiZOfER5SA+N7X7k3yUYRzLWafduTDvJAfDswwEww==}
 
   source-list-map@2.0.1:
     resolution: {integrity: sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==}
@@ -5602,12 +5651,12 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@chain-registry/client@1.53.23':
+  '@chain-registry/client@1.53.23(encoding@0.1.13)':
     dependencies:
       '@chain-registry/types': 0.50.23
       '@chain-registry/utils': 1.51.23
       bfs-path: 1.0.2
-      cross-fetch: 3.1.8
+      cross-fetch: 3.1.8(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
 
@@ -5906,12 +5955,12 @@ snapshots:
 
   '@cosmjs/utils@0.32.4': {}
 
-  '@cosmos-kit/cdcwallet-extension@2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/cdcwallet-extension@2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5932,9 +5981,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/cdcwallet@2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/cdcwallet@2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/cdcwallet-extension': 2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/cdcwallet-extension': 2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5957,12 +6006,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/coin98-extension@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/coin98-extension@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       cosmjs-types: 0.9.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -5984,9 +6033,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/coin98@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/coin98@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/coin98-extension': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/coin98-extension': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6009,12 +6058,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/compass-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/compass-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6035,9 +6084,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/compass@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/compass@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/compass-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/compass-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6060,9 +6109,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/core@2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/core@2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@chain-registry/client': 1.53.23
+      '@chain-registry/client': 1.53.23(encoding@0.1.13)
       '@chain-registry/keplr': 1.74.46
       '@chain-registry/types': 0.46.15
       '@cosmjs/amino': 0.32.4
@@ -6096,12 +6145,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/cosmostation-extension@2.15.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/cosmostation-extension@2.15.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/cosmostation': 1.72.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       cosmjs-types: 0.9.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -6123,11 +6172,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/cosmostation-mobile@2.13.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/cosmostation-mobile@2.13.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/cosmostation': 1.67.13
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6150,10 +6199,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/cosmostation@2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/cosmostation@2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/cosmostation-extension': 2.15.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/cosmostation-mobile': 2.13.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/cosmostation-extension': 2.15.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/cosmostation-mobile': 2.13.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6177,11 +6226,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/exodus-extension@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/exodus-extension@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       react-icons: 4.4.0(react@18.3.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -6204,9 +6253,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/exodus@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/exodus@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/exodus-extension': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10)
+      '@cosmos-kit/exodus-extension': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6230,12 +6279,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/fin-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/fin-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6256,9 +6305,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/fin@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/fin@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/fin-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/fin-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6281,11 +6330,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/frontier-extension@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/frontier-extension@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6306,9 +6355,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/frontier@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/frontier@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/frontier-extension': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/frontier-extension': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6331,12 +6380,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/galaxy-station-extension@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/galaxy-station-extension@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/types': 0.46.11
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@hexxagon/feather.js': 1.0.11
       '@hexxagon/station-connector': 1.0.19(@cosmjs/amino@0.32.4)(@hexxagon/feather.js@1.0.11)(axios@1.7.8)
     transitivePeerDependencies:
@@ -6360,9 +6409,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/galaxy-station@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/galaxy-station@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/galaxy-station-extension': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/galaxy-station-extension': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6386,14 +6435,14 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/keplr-extension@2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/keplr-extension@2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@keplr-wallet/provider-extension': 0.12.156(starknet@6.11.0)
-      '@keplr-wallet/types': 0.12.156(starknet@6.11.0)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@keplr-wallet/provider-extension': 0.12.156(starknet@6.11.0(encoding@0.1.13))
+      '@keplr-wallet/types': 0.12.156(starknet@6.11.0(encoding@0.1.13))
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6415,16 +6464,16 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/keplr-mobile@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/keplr-mobile@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/keplr-extension': 2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)
-      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@keplr-wallet/provider-extension': 0.12.156(starknet@6.11.0)
-      '@keplr-wallet/wc-client': 0.12.156(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(starknet@6.11.0)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/keplr-extension': 2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)
+      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@keplr-wallet/provider-extension': 0.12.156(starknet@6.11.0(encoding@0.1.13))
+      '@keplr-wallet/wc-client': 0.12.156(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(starknet@6.11.0(encoding@0.1.13))
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6448,10 +6497,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/keplr@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/keplr@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/keplr-extension': 2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)
-      '@cosmos-kit/keplr-mobile': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)
+      '@cosmos-kit/keplr-extension': 2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)
+      '@cosmos-kit/keplr-mobile': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6477,12 +6526,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/leap-extension@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/leap-extension@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6503,12 +6552,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/leap-metamask-cosmos-snap@0.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/leap-metamask-cosmos-snap@0.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@leapwallet/cosmos-snap-provider': 0.1.26
       '@metamask/providers': 11.1.2
       cosmjs-types: 0.9.0
@@ -6532,11 +6581,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/leap-mobile@2.13.1(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/leap-mobile@2.13.1(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6559,11 +6608,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/leap@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(cosmjs-types@0.9.0)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/leap@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(cosmjs-types@0.9.0)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/leap-extension': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/leap-metamask-cosmos-snap': 0.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(utf-8-validate@5.0.10)
-      '@cosmos-kit/leap-mobile': 2.13.1(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/leap-extension': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/leap-metamask-cosmos-snap': 0.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/leap-mobile': 2.13.1(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6588,11 +6637,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/ledger@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/ledger@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@ledgerhq/hw-app-cosmos': 6.30.4
       '@ledgerhq/hw-transport-webhid': 6.29.4
       '@ledgerhq/hw-transport-webusb': 6.29.4
@@ -6616,11 +6665,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/okxwallet-extension@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/okxwallet-extension@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6641,12 +6690,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/omni-mobile@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/omni-mobile@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6668,9 +6717,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/omni@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/omni@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/omni-mobile': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/omni-mobile': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6694,13 +6743,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/owallet-extension@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/owallet-extension@2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@keplr-wallet/types': 0.12.156(starknet@6.11.0)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@keplr-wallet/types': 0.12.156(starknet@6.11.0(encoding@0.1.13))
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6722,9 +6771,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/owallet@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/owallet@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/owallet-extension': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)
+      '@cosmos-kit/owallet-extension': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6748,10 +6797,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/react-lite@2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/react-lite@2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/types': 0.46.15
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@dao-dao/cosmiframe': 0.1.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)
       '@types/react': 18.3.12
       '@types/react-dom': 18.3.1
@@ -6779,11 +6828,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/react@2.20.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@interchain-ui/react@1.26.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/react@2.20.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@interchain-ui/react@1.26.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/types': 0.46.15
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/react-lite': 2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/react-lite': 2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@types/react-dom@18.3.1)(@types/react@18.3.12)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(utf-8-validate@5.0.10)
       '@interchain-ui/react': 1.26.1(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-icons/all-files': 4.1.0(react@18.3.1)
       '@types/react': 18.3.12
@@ -6812,12 +6861,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/shell-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/shell-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6838,9 +6887,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/shell@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/shell@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/shell-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/shell-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6863,12 +6912,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/station-extension@2.13.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/station-extension@2.13.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/types': 0.50.23
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@terra-money/feather.js': 1.2.1
       '@terra-money/station-connector': 1.1.4(@cosmjs/amino@0.32.4)(axios@1.7.8)
       '@terra-money/wallet-types': 3.11.2(@terra-money/terra.js@3.1.10)
@@ -6894,9 +6943,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/station@2.12.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/station@2.12.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/station-extension': 2.13.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/station-extension': 2.13.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6922,9 +6971,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/tailwind-extension@1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/tailwind-extension@1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6945,9 +6994,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/tailwind@1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/tailwind@1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/tailwind-extension': 1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/tailwind-extension': 1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6968,11 +7017,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/trust-extension@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/trust-extension@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6993,12 +7042,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/trust-mobile@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/trust-mobile@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/walletconnect': 2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -7020,10 +7069,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/trust@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/trust@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/trust-extension': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/trust-mobile': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/trust-extension': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/trust-mobile': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -7047,12 +7096,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/vectis-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/vectis-extension@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@chain-registry/keplr': 1.74.46
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -7073,9 +7122,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/vectis@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/vectis@2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/vectis-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/vectis-extension': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -7098,11 +7147,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/walletconnect@2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/walletconnect@2.12.0(@cosmjs/amino@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@walletconnect/sign-client': 2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@walletconnect/types': 2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)
       '@walletconnect/utils': 2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)
@@ -7127,11 +7176,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/xdefi-extension@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/xdefi-extension@2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
       '@cosmjs/amino': 0.32.4
       '@cosmjs/proto-signing': 0.32.4
-      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/core': 2.15.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -7152,9 +7201,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@cosmos-kit/xdefi@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@cosmos-kit/xdefi@2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)':
     dependencies:
-      '@cosmos-kit/xdefi-extension': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/xdefi-extension': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -7695,30 +7744,30 @@ snapshots:
       long: 4.0.0
       protobufjs: 6.11.4
 
-  '@keplr-wallet/provider-extension@0.12.156(starknet@6.11.0)':
+  '@keplr-wallet/provider-extension@0.12.156(starknet@6.11.0(encoding@0.1.13))':
     dependencies:
-      '@keplr-wallet/types': 0.12.156(starknet@6.11.0)
+      '@keplr-wallet/types': 0.12.156(starknet@6.11.0(encoding@0.1.13))
       deepmerge: 4.3.1
       long: 4.0.0
-      starknet: 6.11.0
+      starknet: 6.11.0(encoding@0.1.13)
 
-  '@keplr-wallet/provider@0.12.156(starknet@6.11.0)':
+  '@keplr-wallet/provider@0.12.156(starknet@6.11.0(encoding@0.1.13))':
     dependencies:
       '@keplr-wallet/router': 0.12.156
-      '@keplr-wallet/types': 0.12.156(starknet@6.11.0)
+      '@keplr-wallet/types': 0.12.156(starknet@6.11.0(encoding@0.1.13))
       buffer: 6.0.3
       deepmerge: 4.3.1
       long: 4.0.0
-      starknet: 6.11.0
+      starknet: 6.11.0(encoding@0.1.13)
 
   '@keplr-wallet/router@0.12.156': {}
 
   '@keplr-wallet/simple-fetch@0.12.28': {}
 
-  '@keplr-wallet/types@0.12.156(starknet@6.11.0)':
+  '@keplr-wallet/types@0.12.156(starknet@6.11.0(encoding@0.1.13))':
     dependencies:
       long: 4.0.0
-      starknet: 6.11.0
+      starknet: 6.11.0(encoding@0.1.13)
 
   '@keplr-wallet/types@0.12.28':
     dependencies:
@@ -7730,16 +7779,16 @@ snapshots:
       big-integer: 1.6.52
       utility-types: 3.11.0
 
-  '@keplr-wallet/wc-client@0.12.156(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(starknet@6.11.0)':
+  '@keplr-wallet/wc-client@0.12.156(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(starknet@6.11.0(encoding@0.1.13))':
     dependencies:
-      '@keplr-wallet/provider': 0.12.156(starknet@6.11.0)
-      '@keplr-wallet/types': 0.12.156(starknet@6.11.0)
+      '@keplr-wallet/provider': 0.12.156(starknet@6.11.0(encoding@0.1.13))
+      '@keplr-wallet/types': 0.12.156(starknet@6.11.0(encoding@0.1.13))
       '@walletconnect/sign-client': 2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@walletconnect/types': 2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)
       buffer: 6.0.3
       deepmerge: 4.3.1
       long: 5.2.3
-      starknet: 6.11.0
+      starknet: 6.11.0(encoding@0.1.13)
 
   '@leapwallet/cosmos-snap-provider@0.1.26':
     dependencies:
@@ -9979,6 +10028,8 @@ snapshots:
 
   color-name@1.1.4: {}
 
+  colorette@2.0.20: {}
+
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -10014,28 +10065,28 @@ snapshots:
 
   cosmjs-types@0.9.0: {}
 
-  cosmos-kit@2.21.1(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(axios@1.7.8)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(react@18.3.1)(starknet@6.11.0)(utf-8-validate@5.0.10):
+  cosmos-kit@2.21.1(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(axios@1.7.8)(bufferutil@4.0.8)(cosmjs-types@0.9.0)(encoding@0.1.13)(react@18.3.1)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10):
     dependencies:
-      '@cosmos-kit/cdcwallet': 2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/coin98': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/compass': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/cosmostation': 2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/exodus': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10)
-      '@cosmos-kit/fin': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/frontier': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/galaxy-station': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/keplr': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)
-      '@cosmos-kit/leap': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(cosmjs-types@0.9.0)(utf-8-validate@5.0.10)
-      '@cosmos-kit/ledger': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/okxwallet-extension': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/omni': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/owallet': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(starknet@6.11.0)(utf-8-validate@5.0.10)
-      '@cosmos-kit/shell': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/station': 2.12.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/tailwind': 1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/trust': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/vectis': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@cosmos-kit/xdefi': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@cosmos-kit/cdcwallet': 2.15.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/coin98': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/compass': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/cosmostation': 2.14.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/exodus': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(utf-8-validate@5.0.10)
+      '@cosmos-kit/fin': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/frontier': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/galaxy-station': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/keplr': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/sign-client@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)
+      '@cosmos-kit/leap': 2.14.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(cosmjs-types@0.9.0)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/ledger': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/okxwallet-extension': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/omni': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/owallet': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(starknet@6.11.0(encoding@0.1.13))(utf-8-validate@5.0.10)
+      '@cosmos-kit/shell': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/station': 2.12.0(@chain-registry/types@0.50.23)(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@terra-money/terra.js@3.1.10)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(axios@1.7.8)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/tailwind': 1.7.0(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/trust': 2.13.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(@walletconnect/types@2.17.2(@upstash/redis@1.34.3)(@vercel/kv@3.0.0))(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/vectis': 2.13.1(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
+      '@cosmos-kit/xdefi': 2.12.0(@cosmjs/amino@0.32.4)(@cosmjs/proto-signing@0.32.4)(@upstash/redis@1.34.3)(@vercel/kv@3.0.0)(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -10088,9 +10139,9 @@ snapshots:
       safe-buffer: 5.2.1
       sha.js: 2.4.11
 
-  cross-fetch@3.1.8:
+  cross-fetch@3.1.8(encoding@0.1.13):
     dependencies:
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
 
@@ -10148,6 +10199,8 @@ snapshots:
       call-bind: 1.0.7
       es-errors: 1.3.0
       is-data-view: 1.0.1
+
+  dateformat@4.6.3: {}
 
   debug@3.2.7:
     dependencies:
@@ -10262,6 +10315,10 @@ snapshots:
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
+
+  encoding@0.1.13:
+    dependencies:
+      iconv-lite: 0.6.3
 
   end-of-stream@1.4.4:
     dependencies:
@@ -10379,7 +10436,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.2(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.0.0-canary-7118f5dd7-20230705(eslint@8.57.1)
@@ -10404,20 +10461,20 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.1
       eslint: 8.57.1
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
       is-bun-module: 1.3.0
       is-glob: 4.0.3
     optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -10428,7 +10485,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -10439,7 +10496,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -10645,6 +10702,8 @@ snapshots:
   extension-port-stream@2.1.1:
     dependencies:
       webextension-polyfill: 0.10.0
+
+  fast-copy@3.0.2: {}
 
   fast-deep-equal@3.1.3: {}
 
@@ -10875,6 +10934,8 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
+  help-me@5.0.0: {}
+
   hmac-drbg@1.0.1:
     dependencies:
       hash.js: 1.1.7
@@ -10884,6 +10945,10 @@ snapshots:
   http-shutdown@1.2.2: {}
 
   human-signals@5.0.0: {}
+
+  iconv-lite@0.6.3:
+    dependencies:
+      safer-buffer: 2.1.2
 
   idb-keyval@6.2.1: {}
 
@@ -11078,9 +11143,9 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-fetch@3.0.0:
+  isomorphic-fetch@3.0.0(encoding@0.1.13):
     dependencies:
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
       whatwg-fetch: 3.6.20
     transitivePeerDependencies:
       - encoding
@@ -11111,6 +11176,8 @@ snapshots:
       supports-color: 8.1.1
 
   jiti@2.4.0: {}
+
+  joycon@3.1.1: {}
 
   js-sha256@0.11.0: {}
 
@@ -11388,9 +11455,11 @@ snapshots:
 
   node-fetch-native@1.6.4: {}
 
-  node-fetch@2.7.0:
+  node-fetch@2.7.0(encoding@0.1.13):
     dependencies:
       whatwg-url: 5.0.0
+    optionalDependencies:
+      encoding: 0.1.13
 
   node-forge@1.3.1: {}
 
@@ -11456,6 +11525,8 @@ snapshots:
   ohash@1.1.4: {}
 
   on-exit-leak-free@0.2.0: {}
+
+  on-exit-leak-free@2.1.2: {}
 
   once@1.4.0:
     dependencies:
@@ -11529,6 +11600,26 @@ snapshots:
     dependencies:
       duplexify: 4.1.3
       split2: 4.2.0
+
+  pino-abstract-transport@2.0.0:
+    dependencies:
+      split2: 4.2.0
+
+  pino-pretty@13.0.0:
+    dependencies:
+      colorette: 2.0.20
+      dateformat: 4.6.3
+      fast-copy: 3.0.2
+      fast-safe-stringify: 2.1.1
+      help-me: 5.0.0
+      joycon: 3.1.1
+      minimist: 1.2.8
+      on-exit-leak-free: 2.1.2
+      pino-abstract-transport: 2.0.0
+      pump: 3.0.2
+      secure-json-parse: 2.7.0
+      sonic-boom: 4.2.0
+      strip-json-comments: 3.1.1
 
   pino-std-serializers@4.0.0: {}
 
@@ -11878,6 +11969,8 @@ snapshots:
 
   safe-stable-stringify@2.5.0: {}
 
+  safer-buffer@2.1.2: {}
+
   scheduler@0.23.2:
     dependencies:
       loose-envify: 1.4.0
@@ -11895,6 +11988,8 @@ snapshots:
       elliptic: 6.6.1
       node-addon-api: 5.1.0
       node-gyp-build: 4.8.4
+
+  secure-json-parse@2.7.0: {}
 
   semver@6.3.1: {}
 
@@ -11950,6 +12045,10 @@ snapshots:
     dependencies:
       atomic-sleep: 1.0.0
 
+  sonic-boom@4.2.0:
+    dependencies:
+      atomic-sleep: 1.0.0
+
   source-list-map@2.0.1: {}
 
   source-map-js@1.2.1: {}
@@ -11971,7 +12070,7 @@ snapshots:
 
   split2@4.2.0: {}
 
-  starknet@6.11.0:
+  starknet@6.11.0(encoding@0.1.13):
     dependencies:
       '@noble/curves': 1.4.2
       '@noble/hashes': 1.6.1
@@ -11980,7 +12079,7 @@ snapshots:
       abi-wan-kanabi: 2.2.3
       fetch-cookie: 3.0.1
       get-starknet-core: 4.0.0
-      isomorphic-fetch: 3.0.0
+      isomorphic-fetch: 3.0.0(encoding@0.1.13)
       lossless-json: 4.0.2
       pako: 2.1.0
       starknet-types-07: '@starknet-io/types-js@0.7.9'
