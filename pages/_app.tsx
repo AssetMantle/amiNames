@@ -1,5 +1,5 @@
 import "@interchain-ui/react/styles";
-import "../styles/globals.css";
+import "../styles/index.scss";
 
 import type { AppProps } from "next/app";
 
@@ -132,7 +132,7 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
             <Box
               className={themeClass}
               minHeight="100dvh"
-              backgroundColor={useColorModeValue("$white", "$background")}
+              backgroundColor={useColorModeValue("#ffffff", "#ffffff")}
             >
               {/* TODO fix type error */}
               {/* @ts-ignore */}
