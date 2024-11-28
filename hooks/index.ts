@@ -1,4 +1,3 @@
-export * from "./useBalances";
 export * from "./useTx";
 
 // Fix TypeError: Do not know how to serialize a BigInt
