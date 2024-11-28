@@ -1,13 +1,14 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 const APP_NAME = "AMI Names";
 const APP_DEFAULT_TITLE = "AMI Names";
 const APP_TITLE_TEMPLATE = "%s - AMI Names";
 const APP_DESCRIPTION = "Claim your AMI Name!";
+const APP_URL = "https://ami-na.me";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     template: APP_TITLE_TEMPLATE,
   },
   description: APP_DESCRIPTION,
+  metadataBase: new URL(APP_URL),
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -52,11 +54,11 @@ export const viewport = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
     </html>
-  )
+  );
 }
