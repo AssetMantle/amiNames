@@ -61,9 +61,6 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${clashDisplay.className}`}>
-        {/* <div className="absolute w-[30%] h-[30%] top-[25%] left-[15%]">
-          <div className="gradientBg w-full h-full rounded-full shadow-lg opacity-30 blur-[80px] z-10"></div>
-        </div> */}
         <ToastContainer
           position="bottom-right"
           autoClose={false}
@@ -74,11 +71,7 @@ export default function RootLayout({
           draggable
           limit={6}
         />
-        <CosmosKitProvider>
-          <Header />
-          {children}
-          {/* <Footer /> */}
-        </CosmosKitProvider>
+        <CosmosKitProvider>{children}</CosmosKitProvider>
       </body>
     </html>
   );
