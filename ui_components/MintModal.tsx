@@ -4,7 +4,6 @@ import {
   defaultChainDenom,
   defaultFeeAmount,
   defaultFeeGas,
-  mintModalHeadingText,
   warpcastUrl,
 } from "@/constant";
 import Button from "@/ui_components/Button";
@@ -23,7 +22,7 @@ import React, { useEffect, useState } from "react";
 import { useTx } from "@/utils/useTx";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 import { IconWrapper } from "./IconWrapper";
 import Loading from "./Loading";
 
@@ -52,7 +51,6 @@ const MintModal = ({
   const handleMint = async () => {
     //@ts-ignore
     // recaptchaRef.current.execute();
-    console.log("inside handleMint");
     if (!address) {
       connect();
       return;
@@ -191,18 +189,18 @@ const MintModal = ({
       <Modal
         openModal={isOpen}
         setOpenModal={setOpen}
-        className="rounded-lg"
+        className="rounded-xl p-4"
         header={""}
         closeModal={() => {
           setLoadingScreen(true);
-          router.push(`/profile/${userName}`);
+          success && router.push(`/profile/${userName}`);
           handleClose();
         }}
       >
         {success ? (
           <>
             <Image
-              className="object-contain absolute h-8 w-8 top-2 right-2 cursor-pointer"
+              className="object-contain absolute h-8 w-8 top-5 right-5 cursor-pointer"
               alt="selected"
               src={icons.close}
               onClick={
@@ -213,27 +211,27 @@ const MintModal = ({
                   : () => handleClose()
               }
             />
-            <div className="flex flex-col items-center pt-[30px] pb-8 font-inter">
-              <div className="border-b border-b-[#D4DCE2] flex flex-col items-center pb-6">
+            <div className="flex flex-col items-center py-7 px-2 font-inter w-full gap-6">
+              <div className="border-b-2 border-b-[#D4DCE2] flex flex-col gap-6 items-center pb-6 w-full">
                 <Image src={icons.successTick} alt="success" />
-                <p className="font-semibold text-[40px] leading-[48px] text-primary mt-6">
+                <p className="font-bold text-[24px] leading-[24px] text-primary">
                   Claimed successfully!
                 </p>
-                <a
-                  className="mt-4 underline block cursor-pointer"
+                {/* <a
+                  className="underline block cursor-pointer"
                   target="_blank"
                   href={`https://explorer.assetmantle.one/transactions/${transactionData.transactionHash}`}
                 >
                   View in explorer
-                </a>
+                </a> */}
               </div>
-              <p className="paragraph_regular mt-6">
-                Share the referral link and invite your friends to AMI Names
+              <p className="paragraph_regular text-center">
+                Share the referral code and invite your friends to AMI Names
               </p>
 
-              <div className="mt-4 flex items-center gap-2 cursor-pointer">
+              <div className="flex items-center gap-2 cursor-pointer">
                 <a
-                  className=" heading3_semibold leading-6 block cursor-pointer text-[#396AF6]"
+                  className=" text-md leading-4 block cursor-pointer text-[#396AF6] truncate flex-1"
                   target="_blank"
                   href={`${window.location.origin}?referral=${userName}`}
                 >
@@ -251,8 +249,8 @@ const MintModal = ({
                 />
               </div>
 
-              <p className="paragraph_regular mt-6">or share via</p>
-              <div className="flex items-center justify-center mt-6">
+              <p className="paragraph_regular">or share via</p>
+              <div className="flex items-center justify-center">
                 <div className="grid grid-cols-4 gap-7">
                   <Link
                     href={`https://twitter.com/intent/tweet?url=${window.location.origin}?referral=${userName}`}
@@ -322,7 +320,7 @@ const MintModal = ({
         ) : (
           <>
             <Image
-              className="object-contain absolute h-8 w-8 top-2 right-2 cursor-pointer"
+              className="object-contain absolute h-8 w-8 top-5 right-5 cursor-pointer"
               alt="selected"
               src={icons.close}
               onClick={
@@ -333,23 +331,23 @@ const MintModal = ({
                   : () => setOpen(false)
               }
             />
-            <div className=" mb-4 flex flex-col items-center font-inter">
-              <p className="text-primary text-center text-[20px]">
-                {mintModalHeadingText}
+            <div className="flex gap-6 flex-col items-center font-inter">
+              <p className="text-primary text-[20px] font-bold w-full">
+                Name Available
               </p>
-              <div className="bg-[#EBF0FE] rounded-lg border border-[#88A6FA] mt-8 mb-6 w-[80%] py-5">
-                <p className="text-primary text-center leading-10 text-[32px] font-black">
+              <div className="bg-[#bfe3c299] rounded-lg border border-[#42A153] w-[100%] py-5">
+                <p className="text-primary text-center leading-10 text-[32px] font-black break-all w-full">
                   {userName}
                 </p>
               </div>
-              <div className="p-5 mb-8 text-[16px] w-[80%] border border-[#88A6FA] rounded-lg">
+              <div className="px-4 py-6 text-[16px] w-[100%] border border-[#88A6FA] rounded-lg flex flex-col gap-5">
                 {isPremium && (
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between">
                     <p className="text-primary opacity-80">Registration fee</p>
                     <p className="text-primary opacity-80"> ~0.002 MNTL </p>
                   </div>
                 )}
-                <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center justify-between">
                   <p className="text-primary opacity-80">Network fee</p>
                   <p className="text-primary opacity-80">~0.3 MNTL</p>
                 </div>
@@ -366,7 +364,7 @@ const MintModal = ({
                   loader || isInsufficientBalance
                     ? "cursor-not-allowed disabled opacity-30"
                     : ""
-                } inline-block rounded-full bg-[#396AF6] px-[120px] pb-2 pt-2.5 text-md font-medium  leading-normal text-white  transition duration-150 ease-in-out hover:bg-warning-600  focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)]`}
+                } rounded-full w-full bg-[#396AF6] px-6 py-[12px] text-md text-center font-semibold leading-[100%] text-white  transition duration-150 ease-in-out hover:bg-warning-600  focus:bg-warning-600`}
                 onClick={
                   isInsufficientBalance
                     ? () => {
@@ -384,20 +382,7 @@ const MintModal = ({
                   to claim.
                 </p>
               )}
-
-              <div className="mt-5 flex items-center gap-1">
-                <Link href={assetmantleUrlLink} target={"_blank"}>
-                  <Image src={icons.assetmantleLogo} alt="assetMantleLogo" />
-                </Link>
-                <p className="text-primary font-semibold">Blockchain</p>
-              </div>
             </div>
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              size="invisible"
-              sitekey={siteKey}
-              onChange={onReCAPTCHAChange}
-            />
           </>
         )}
       </Modal>
