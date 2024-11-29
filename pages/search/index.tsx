@@ -1,25 +1,24 @@
 "use client";
-import { ChangeEvent, useState, useCallback, useEffect, useMemo } from "react";
-import { debounce } from "lodash";
-import Image from "next/image";
+import MintModal from "@/components/modals/MintModal";
 import { chain } from "@/constant";
-import { useChain } from "@cosmos-kit/react";
 import {
   getFromLocalStorage,
   isValidReferrer,
   saveToLocalStorage,
   showToastMessage,
+  updateMyAmiList,
 } from "@/utils";
+import { useChain } from "@cosmos-kit/react";
+import { debounce } from "lodash";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { IconWrapper } from "@/components/IconWrapper";
-import MintModal from "@/components/modals/MintModal";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const query = useSearchParams();
   const chainContext = useChain(chain);
-  const { address, connect, status } = chainContext;
-  const [ValidInput, setValidInput] = useState(Boolean);
+  const { address, connect } = chainContext;
   const [inputValue, setInputValue] = useState("");
   const [userName, setUserName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -27,53 +26,53 @@ export default function Home() {
   const [loader, setLoader] = useState(false);
   const [mintModal, setMintModal] = useState(false);
   const [isValidRef, setIsValidRef] = useState(false);
+  const [referrer, setReferrer] = useState("");
   const [premiumAddr, setPremiumAddr] = useState({
     isPremium: false,
     provisionAddress: "",
   });
 
-  useEffect(() => {
-    async function getIsValidRef() {
-      if (query) {
-        const queryValue = query.get("referral");
-        const isValidRef = await isValidReferrer(queryValue ?? "");
-        setIsValidRef(isValidRef.isValidUserName);
-      }
+  async function getIsValidRef() {
+    if (query) {
+      const queryValue = query.get("referral");
+      const isValidRef = await isValidReferrer(queryValue ?? "");
+      setIsValidRef(isValidRef?.isValidUserName);
+      setReferrer(queryValue || "");
     }
-    getIsValidRef();
-  }, [query]);
+  }
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (/^[a-z0-9_]*$/.test(e.target.value)) {
-      setValidInput(true);
       if (e?.target?.value?.length > 30) {
         return;
       }
       setLoader(true);
       debounceFn(e.target.value);
       setInputValue(e.target.value);
-    } else {
-      setValidInput(false);
     }
   };
 
   const userNameExist = async (value: string) => {
-    const isValidRef = await isValidReferrer(value.toLowerCase());
+    const retrievedUsername = await isValidReferrer(value.toLowerCase());
     setPremiumAddr({
-      isPremium: isValidRef.isPremium,
-      provisionAddress: isValidRef.address as string,
+      isPremium: retrievedUsername?.isPremium,
+      provisionAddress: retrievedUsername?.address as string,
     });
-    const connectedAdd = getFromLocalStorage("conntectedAddress") ?? "";
-    if (connectedAdd === isValidRef.address && isValidRef.isValidUserName) {
-      const existList = getFromLocalStorage("amiNamesList");
-      const nameList = existList.map((item: any) => item.name);
-      if (!nameList.includes(value)) {
-        existList.push({ address: isValidRef.address, name: value });
-        saveToLocalStorage("amiNamesList", existList);
-        window.dispatchEvent(new Event("storage"));
-      }
+
+    // Retrieve and parse the JSON from localStorage
+    const storedAccounts = getFromLocalStorage("cosmos-kit@2:core//accounts");
+    console.log("storedAccounts: ", storedAccounts);
+    const connectedAdd =
+      storedAccounts?.length > 0 ? storedAccounts?.[0]?.address : "";
+
+    if (
+      retrievedUsername?.isValidUserName &&
+      connectedAdd === retrievedUsername?.address
+    ) {
+      // Retrieve and parse the existing list from localStorage
+      updateMyAmiList(value, retrievedUsername?.address);
     }
-    setIsExist(isValidRef.isValidUserName);
+    setIsExist(retrievedUsername?.isValidUserName);
     setLoader(false);
   };
 
@@ -83,14 +82,16 @@ export default function Home() {
     if (!idExist) {
       if (!address) {
         try {
-          const isConnected = await connect();
+          await connect();
           setMintModal(true);
         } catch (error) {
           //@ts-ignore
-          showToastMessage("error", error?.message);
+          console.error("error in handleMintModal: ", error);
+          showToastMessage("error", "Error while connecting wallet");
         }
       } else {
         setUserName(inputValue.toLowerCase());
+        await getIsValidRef();
         setIsOpen(true);
         setInputValue("");
       }
@@ -104,19 +105,7 @@ export default function Home() {
       handleMintModal();
       setMintModal(false);
     }
-    saveToLocalStorage("conntectedAddress", address);
-    const existList = getFromLocalStorage("amiNamesList");
-    saveToLocalStorage("amiNamesList", existList);
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(new Event("storage"));
-    }
   }, [address]);
-
-  useEffect(() => {
-    if (status === "NotExist") {
-      showToastMessage("error", "Wallet extension is not installed");
-    }
-  }, [status]);
 
   return (
     <main className="flex h-[100dvh] flex-col items-center justify-center font-inter p-6 am-ami-container-sm">
@@ -207,6 +196,7 @@ export default function Home() {
         isPremium={premiumAddr.isPremium}
         provisionAddress={premiumAddr.provisionAddress}
         isValidRef={isValidRef}
+        referrer={referrer}
       />
     </main>
   );

@@ -1,4 +1,4 @@
-import { defaultChainDenom } from "@/constant";
+import { defaultChainDenom, rpc } from "@/constant";
 import { getSigningAssetmantleClient } from "@assetmantle/mantlejs";
 import {
   DeliverTxResponse,
@@ -6,7 +6,6 @@ import {
   StdFee,
 } from "@cosmjs/stargate";
 import { useChain } from "@cosmos-kit/react";
-import { cosmos } from "interchain-query";
 import { defaultChainName } from "./defaults";
 
 export type Msg = {
@@ -51,13 +50,8 @@ export class TxResult {
 
 export function useTx() {
   const chainName = defaultChainName;
-  const {
-    address,
-    getSigningStargateClient,
-    estimateFee,
-    getOfflineSignerDirect,
-    getRpcEndpoint,
-  } = useChain(chainName);
+  const { address, estimateFee, getOfflineSignerDirect, getRpcEndpoint } =
+    useChain(chainName);
 
   async function tx(msgs: Msg[], memo: string, options: TxOptions = {}) {
     if (!address) {
@@ -65,17 +59,16 @@ export function useTx() {
     }
 
     try {
-      const txRaw = cosmos.tx.v1beta1.TxRaw;
       const fee = options.fee || (await estimateFee(msgs));
+      const finalMemo = memo || "";
       const signer: any = await getOfflineSignerDirect();
       // create the signing client using the given signer and selected rpc endpoint
-      const rpc = await getRpcEndpoint();
+      // const rpc = await getRpcEndpoint();
       const client = await getSigningAssetmantleClient({
-        rpcEndpoint: rpc,
+        rpcEndpoint: rpc, // Use the rewritten route instead of the direct external URL
         signer,
       });
       // const client = await getSigningStargateClient();
-      const finalMemo = memo || "";
       // check if enough balance is there
       const balance = await client.getBalance(address, defaultChainDenom);
       if (Number(balance?.amount) < 0.3) {
@@ -85,20 +78,26 @@ export function useTx() {
       if (!client)
         return new TxResult({ error: new TxError("Invalid stargate client") });
 
-      const response = await client.signAndBroadcast(address, msgs, fee, finalMemo);
+      const response = await client.signAndBroadcast(
+        address,
+        msgs,
+        fee,
+        finalMemo
+      );
 
       /* const signed = await client.sign(address, msgs, fee, finalMemo);
-
       if (!signed)
         return new TxResult({ error: new TxError("Invalid transaction") });
-
       const response: any = await client.broadcastTx(
         Uint8Array.from(txRaw.encode(signed).finish())
       ); */
 
+      //@ts-ignore
       return isDeliverTxSuccess(response)
-        ? new TxResult({ response })
+        ? //@ts-ignore
+          new TxResult({ response })
         : new TxResult({
+            //@ts-ignore
             response,
             error: new TxError(response?.code?.toString?.()),
           });
