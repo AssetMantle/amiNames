@@ -4,11 +4,11 @@ import Header from "@/layout/Header";
 import ProfilePrivateView from "@/views/profile/ProfilePrivateView";
 import ProfilePublicView from "@/views/profile/ProfilePublicView";
 import { useRouter } from "next/router";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Profile() {
   const router = useRouter();
-  const PROFILE_NAME = router?.query?.id;
+  const PROFILE_NAME: string = `${router?.query?.id}`;
 
   const [IsMyProfile, setIsMyProfile] = useState(false);
   const [SocialData, setSocialData] = useState<any>({});
