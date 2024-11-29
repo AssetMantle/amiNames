@@ -35,3 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .yarn/install-state.gz
+
+# map files of @ducanh2912/next-pwa
+*.map
