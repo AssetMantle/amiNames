@@ -5,7 +5,7 @@ export default function ProfilePublicView({
   profileName,
   SocialData,
 }: {
-  profileName: string;
+  profileName: string | string[] | undefined;
   SocialData: any;
 }) {
   const CreateValidURL = (url: string): any => {
