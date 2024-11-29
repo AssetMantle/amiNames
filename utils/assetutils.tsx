@@ -324,3 +324,16 @@ export const validateSocials = (socialsObject: any) => {
     error: validationErrors,
   };
 };
+
+export const updateMyAmiList = (username: string, walletAddress: string) => {
+  // Retrieve and parse the existing list from localStorage
+  const existList = getFromLocalStorage("amiNamesList");
+  const nameList = existList?.map?.((item: any) => item.name);
+
+  // Check for duplicates before adding
+  if (!nameList.includes(username)) {
+    existList?.push?.({ address: walletAddress, name: username });
+    saveToLocalStorage("amiNamesList", existList);
+    window.dispatchEvent(new Event("storage"));
+  }
+};

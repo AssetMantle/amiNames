@@ -1,4 +1,8 @@
 import { Asset, AssetList } from "@chain-registry/types";
+import {
+  assetmantleAminoConverters,
+  assetmantleProtoRegistry,
+} from "@assetmantle/mantlejs";
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { AminoTypes } from "@cosmjs/stargate";
 import { assets } from "chain-registry";
@@ -12,6 +16,7 @@ import {
 } from "interchain-query";
 
 export const defaultChainName = "assetmantle";
+export const defaultReferrer = "assetmantle";
 
 export const chainassets = assets.find(
   (chain) => chain.chain_name === defaultChainName
@@ -25,12 +30,14 @@ const protoRegistry: ReadonlyArray<[string, GeneratedType]> = [
   ...cosmosProtoRegistry,
   ...cosmwasmProtoRegistry,
   ...ibcProtoRegistry,
+  ...assetmantleProtoRegistry,
 ];
 
 const aminoConverters = {
   ...cosmosAminoConverters,
   ...cosmwasmAminoConverters,
   ...ibcAminoConverters,
+  ...assetmantleAminoConverters,
 };
 
 export const registry = new Registry(protoRegistry);

@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   register: true,
@@ -8,6 +7,12 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 
 module.exports = withPWA({
   reactStrictMode: true,
-  // Add other Next.js configurations here
+  async rewrites() {
+    return [
+      {
+        source: '/api/rpc-proxy', // Proxy route in your app
+        destination: 'https://rpc.assetmantle.one/', // External RPC URL
+      },
+    ];
+  },
 });
-

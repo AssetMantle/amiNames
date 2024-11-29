@@ -6,7 +6,6 @@ import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { GasPrice } from "@cosmjs/stargate";
 import { ChainProvider } from "@cosmos-kit/react";
 import { assets, chains } from "chain-registry";
 import { SignerOptions, wallets } from "cosmos-kit";
@@ -39,16 +38,6 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
         aminoTypes,
         registry,
       };
-    },
-    // @ts-ignore
-    signingCosmwasm: (chain: Chain) => {
-      switch (chain.chain_name) {
-        case "osmosis":
-        case "osmosistestnet":
-          return {
-            gasPrice: GasPrice.fromString("0.0025uosmo"),
-          };
-      }
     },
   };
 
