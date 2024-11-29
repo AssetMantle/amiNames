@@ -1,6 +1,8 @@
 import "@interchain-ui/react/styles";
 import "../styles/index.scss";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -18,6 +20,7 @@ import {
   useTheme,
 } from "@interchain-ui/react";
 import Head from "next/head";
+import Loading from "@/components/loading";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +33,10 @@ const queryClient = new QueryClient({
 
 function CreateCosmosApp({ Component, pageProps }: AppProps) {
   const { themeClass } = useTheme();
+  const router = useRouter();
+
+  // State to manage loading screen
+  const [isLoading, setIsLoading] = useState(false);
 
   const signerOptions: SignerOptions = {
     // @ts-ignore
@@ -40,6 +47,22 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
       };
     },
   };
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => setIsLoading(true); // Show loading screen
+    const handleRouteChangeComplete = () => setIsLoading(false); // Hide loading screen
+    const handleRouteChangeError = () => setIsLoading(false); // Hide on error
+
+    router.events.on("routeChangeStart", handleRouteChangeStart);
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+    router.events.on("routeChangeError", handleRouteChangeError);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChangeStart);
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+      router.events.off("routeChangeError", handleRouteChangeError);
+    };
+  }, [router]);
 
   return (
     <>
@@ -123,9 +146,8 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
               minHeight="100dvh"
               backgroundColor={useColorModeValue("#ffffff", "#ffffff")}
             >
-              {/* TODO fix type error */}
-              {/* @ts-ignore */}
               <Component {...pageProps} />
+              {isLoading && <Loading />}
             </Box>
           </QueryClientProvider>
         </ChainProvider>
