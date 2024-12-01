@@ -1,37 +1,19 @@
 "use client";
+import { HeaderProps } from "@/config";
 import { chain } from "@/constant";
-import { getFromLocalStorage } from "@/utils";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
 
 export default function Header({
   profileName,
-}: {
-  profileName: string | string[] | undefined;
-}) {
-  const router = useRouter();
-  const { address, connect, disconnect } = useChain(chain);
+  setIsLogin,
+}: HeaderProps) {
+  const { connect } = useChain(chain);
 
-  const [NamesList, setNamesList] = useState<any>([]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && address) {
-      const list = getFromLocalStorage("amiNamesList");
-      const nameList =
-        list && list.filter((item: any) => item.address === address);
-      setNamesList(nameList);
-    }
-  }, [address]);
-
-  const handleProfileIconClick = () => {
-    if (address && !NamesList.includes(profileName)) {
-      router.push(`/profile/${NamesList[0].name}`);
-    } else {
-      connect();
-    }
+  const handleProfileIconClick = async () => {
+    await connect();
+    setIsLogin(true);
   };
 
   console.log();
