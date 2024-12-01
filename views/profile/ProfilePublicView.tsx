@@ -1,16 +1,21 @@
+"use client";
+import { readUserSocials } from "@/config";
 import Image from "next/image";
-import React from "react";
+import { useState } from "react";
 
 export default function ProfilePublicView({
-  profileName,
-  SocialData,
+  profileNames,
 }: {
-  profileName: string | string[] | undefined;
-  SocialData: any;
+  profileNames: string[]; // Expect an array of strings
 }) {
   const CreateValidURL = (url: string): any => {
     return url.startsWith("www") ? `https://${url}` : url;
   };
+  const [SocialData, setSocialData] = useState<any>({});
+
+  const profileName = profileNames?.[0] || "kombo";
+
+  const socialData: any = async () => await readUserSocials(profileName || "");
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-9">

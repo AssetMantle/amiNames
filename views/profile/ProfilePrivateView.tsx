@@ -1,19 +1,24 @@
+"use client";
 import AddLinkModal from "@/components/modals/AddLinkModal";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import PrivateQRCode from "./PrivateQRCode";
 
 export default function ProfilePrivateView({
-  PROFILE_NAME,
+  profileNames,
   BODY,
 }: {
-  PROFILE_NAME: string | string[] | undefined;
+  profileNames: string[]; // Expect an array of strings
   BODY: React.RefObject<HTMLElement>;
 }) {
   const [Switch, setSwitch] = useState(false);
   const [ModalState, setModalState] = useState(false);
   const [ModalFor, setModalFor] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
+
+  const profileName = profileNames?.[0];
 
   const LinksList = [
     {
@@ -44,7 +49,7 @@ export default function ProfilePrivateView({
 
   return (
     <>
-      <PrivateQRCode PROFILE_NAME={PROFILE_NAME} BODY={BODY} />
+      <PrivateQRCode PROFILE_NAME={profileName} BODY={BODY} />
 
       <div className="flex flex-col items-center justify-center h-[calc(100dvh-97.02px)] gap-9">
         <div className="flex items-center justify-center mx-auto relative">
@@ -63,7 +68,7 @@ export default function ProfilePrivateView({
             />
           </div>
           <div className="flex-1 flex gap-1 pl-9 pr-6 py-2 text-gray-900 border border-[#396AF6] bg-gray-50  rounded-e-3xl -ms-7 hero-heading-gradient-text uppercase font-black text-2xl">
-            {PROFILE_NAME}
+            {profileName}
           </div>
           <Image
             src={"/assets/images/icons/chevron-down.svg"}
