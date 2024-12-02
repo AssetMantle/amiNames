@@ -4,7 +4,8 @@ import AddLinkModal from "@/components/modals/AddLinkModal";
 import { fetchProfileSocials } from "@/config";
 import { showToastMessage } from "@/utils";
 import Image from "next/image";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { AiFillDelete } from "react-icons/ai";
 import PrivateQRCode from "./PrivateQRCode";
 
 export default function ProfilePrivateView({
@@ -27,26 +28,47 @@ export default function ProfilePrivateView({
 
   const LinksList = [
     {
-      icon: "/assets/images/icons/link-45deg.svg",
-      text: "Add Link",
+      key: "twitter",
+      icon: "/assets/images/icons/twitter.png",
+      text: "Twitter",
     },
     {
+      key: "telegram",
+      icon: "/assets/images/icons/telegram.png",
+      text: "Telegram",
+    },
+    {
+      key: "instagram",
+      icon: "/assets/images/icons/instagram.svg",
+      text: "Instagram",
+    },
+    {
+      key: "website",
+      icon: "/assets/images/icons/globe.svg",
+      text: "Website",
+    },
+    {
+      key: "linkedin",
       icon: "/assets/images/icons/linkedin.png",
       text: "LinkedIn",
     },
     {
+      key: "facebook",
       icon: "/assets/images/icons/facebook.svg",
       text: "Facebook",
     },
     {
+      key: "youtube",
       icon: "/assets/images/icons/youtube.svg",
       text: "YouTube",
     },
     {
+      key: "github",
       icon: "/assets/images/icons/github.svg",
       text: "GitHub",
     },
     {
+      key: "medium",
       icon: "/assets/images/icons/medium.svg",
       text: "Medium",
     },
@@ -62,6 +84,19 @@ export default function ProfilePrivateView({
         if (!data?.error) {
           setSocialData(data?.socials); // Assuming the API returns `{ profile, socials }`
           setProfile(data?.profile);
+
+          // Check if socialData is empty or all values are empty strings
+          const isSocialDataEmpty = (data: any): boolean => {
+            return (
+              !data ||
+              Object.keys(data).length === 0 ||
+              Object.values(data).every((value) => value === "")
+            );
+          };
+
+          if (isSocialDataEmpty(data?.socials)) {
+            setSwitch(true); // Show "Link Platforms"
+          }
         } else {
           throw new Error(data?.error);
         }
@@ -76,14 +111,23 @@ export default function ProfilePrivateView({
     fetchSocialData();
   }, [profileNames]);
 
-  if (loading || !profile) return <Loading />;
+  const handleDelete = (platform: string) => {
+    setSocialData((prevData: any) => {
+      const updatedData = { ...prevData };
+      delete updatedData[platform];
+      return updatedData;
+    });
+  };
 
-  console.log(
-    "length socials: ",
-    Object.keys(socialData).length,
-    " socials: ",
-    socialData
-  );
+  const isSocialDataEmpty = (data: any): boolean => {
+    return (
+      !data ||
+      Object.keys(data).length === 0 ||
+      Object.values(data).every((value) => value === "")
+    );
+  };
+
+  if (loading || !profile) return <Loading />;
 
   return IsViewQR ? (
     <PrivateQRCode
@@ -109,8 +153,8 @@ export default function ProfilePrivateView({
               }}
             />
           </div>
-          <div className="flex-1 flex gap-1 pl-9 pr-6 py-2 border border-[#396AF6] bg-gray-50  rounded-e-3xl -ms-7 hero-heading-gradient-text uppercase font-black text-2xl">
-            {PROFILE_NAME}
+          <div className="flex-1 flex gap-1 pl-9 pr-6 py-2 text-gray-900 border border-[#396AF6] bg-gray-50  rounded-e-3xl -ms-7 hero-heading-gradient-text uppercase font-black text-2xl">
+            {profile}
           </div>
           {/* <Image
             src={"/assets/images/icons/chevron-down.svg"}
@@ -146,82 +190,36 @@ export default function ProfilePrivateView({
           {!Switch && (
             <div className="flex flex-col gap-5 h-[230px] overflow-y-auto">
               <div className="flex flex-col gap-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
-                    <Image
-                      width={24}
-                      height={24}
-                      className="my-auto"
-                      alt="Twitter"
-                      src={`/assets/images/icons/twitter.png`}
-                    />{" "}
-                    Twitter:
+                {LinksList.filter(
+                  (link) => socialData[link.key] && socialData[link.key] !== ""
+                ).map((link) => (
+                  <div
+                    key={link.key}
+                    className="flex flex-wrap items-center gap-2"
+                  >
+                    <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
+                      <Image
+                        width={24}
+                        height={24}
+                        className="my-auto"
+                        alt={link.text}
+                        src={link.icon}
+                      />
+                      {link.text}
+                    </div>
+                    <input
+                      type="text"
+                      readOnly
+                      value={socialData[link.key]} // Dynamically fetch value from socialData
+                      className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
+                    />
+                    <AiFillDelete
+                      className="text-red-500 cursor-pointer"
+                      size={20}
+                      onClick={() => handleDelete(link.key)} // Pass the key to handleDelete
+                    />
                   </div>
-                  <input
-                    type="text"
-                    readOnly
-                    value={socialData?.twitter}
-                    className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                  />
-                  <div className="flex items-center gap-2"></div>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
-                    <Image
-                      width={24}
-                      height={24}
-                      className="my-auto"
-                      alt="telegram"
-                      src={`/assets/images/icons/telegram.png`}
-                    />{" "}
-                    Telegram:
-                  </div>
-                  <input
-                    type="text"
-                    readOnly
-                    value={socialData?.telegram}
-                    className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                  />
-                  <div className="flex items-center gap-2"></div>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
-                    <Image
-                      width={24}
-                      height={24}
-                      className="my-auto"
-                      alt="Instagram"
-                      src={"/assets/images/icons/instagram.svg"}
-                    />{" "}
-                    Instagram:
-                  </div>
-                  <input
-                    type="text"
-                    readOnly
-                    value={socialData?.instagram}
-                    className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                  />
-                  <div className="flex items-center gap-2"></div>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
-                    <Image
-                      width={24}
-                      height={24}
-                      className="my-auto"
-                      alt="Instagram"
-                      src={"/assets/images/icons/globe.svg"}
-                    />{" "}
-                    Website:
-                  </div>
-                  <input
-                    type="text"
-                    readOnly
-                    value={socialData?.website}
-                    className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                  />
-                  <div className="flex items-center gap-2"></div>
-                </div>
+                ))}
               </div>
             </div>
           )}
@@ -244,8 +242,8 @@ export default function ProfilePrivateView({
           </h3>
           {Switch && (
             <div className="flex flex-col gap-6">
-              <div className="flex-1 flex gap-1 px-4 py-2 text-gray-900 border border-[#396AF6] rounded-3xl">
-                <div className=" aspect-square w-[20px] my-auto">
+              {/* <div className="flex-1 flex gap-1 px-4 py-2 text-gray-900 border border-[#396AF6] rounded-3xl">
+                <div className="aspect-square w-[20px] my-auto">
                   <Image
                     src={"/assets/images/icons/search.svg"}
                     alt="Search Icon"
@@ -268,15 +266,18 @@ export default function ProfilePrivateView({
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                 />
-              </div>
+              </div> */}
               <div
                 className="grid grid-cols-3 gap-4"
                 style={{ gridTemplateColumns: "repeat(3,1fr)" }}
               >
                 {React.Children.toArray(
-                  LinksList?.map((link) => (
+                  LinksList.filter(
+                    (link) =>
+                      !socialData[link.key] || socialData[link.key] === ""
+                  ).map((link) => (
                     <div
-                      className=" flex flex-col gap-2 items-center"
+                      className="flex flex-col gap-2 items-center"
                       role="button"
                       tabIndex={0}
                       onClick={() => {
@@ -285,12 +286,8 @@ export default function ProfilePrivateView({
                       }}
                     >
                       <Image
-                        src={
-                          link?.icon
-                            ? link.icon
-                            : "/assets/images/icons/search.svg"
-                        }
-                        alt={`${link.text} Icon"`}
+                        src={link.icon}
+                        alt={`${link.text} Icon`}
                         width={24}
                         height={24}
                       />

@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import Modal from "./Modal";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SelectNameModal({
   isOpen,
@@ -15,7 +16,6 @@ export default function SelectNameModal({
   namesList: string[];
   currentName: string | string[] | undefined;
 }) {
-  const handleSave = () => {};
   return (
     <Modal
       openModal={isOpen}
@@ -51,10 +51,10 @@ export default function SelectNameModal({
                   {name}
                 </span>
                 {!(currentName === name) && (
-                  <a
+                  <Link
                     href={`/profile/${name}?referral=${currentName}`}
                     className="opacity-0 absolute w-full h-full inset-0"
-                  ></a>
+                  />
                 )}
               </div>
             ))
