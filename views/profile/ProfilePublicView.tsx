@@ -48,6 +48,12 @@ export default function ProfilePublicView({
   }, [profileNames]);
 
   if (loading || !profile) return <Loading />;
+  console.log(
+    "length socials: ",
+    Object.keys(socialData).length,
+    " socials: ",
+    socialData
+  );
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-9">

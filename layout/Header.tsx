@@ -14,7 +14,7 @@ export default function Header({
 
   const handleProfileIconClick = async () => {
     if (!address) {
-      await connect();
+      await connect();  
       setIsLogin(true);
     } else {
       await connect();
