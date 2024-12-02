@@ -56,7 +56,7 @@ export default function ProfilePublicView({
   );
 
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-9">
+    <div className="flex flex-col items-center justify-center h-full gap-9 p-6">
       <div className="flex items-center justify-center mx-auto relative">
         <div className="flex aspect-square w-[50px] rounded-[50%] scale-[1.1] origin-left">
           <Image
