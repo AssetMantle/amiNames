@@ -1,7 +1,6 @@
 "use client";
 import AddLinkModal from "@/components/modals/AddLinkModal";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import PrivateQRCode from "./PrivateQRCode";
 
@@ -16,7 +15,6 @@ export default function ProfilePrivateView({
   const [ModalState, setModalState] = useState(false);
   const [ModalFor, setModalFor] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const router = useRouter();
 
   const profileName = profileNames?.[0];
 

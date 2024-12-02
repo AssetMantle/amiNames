@@ -5,7 +5,11 @@ import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header({ profileName, setIsLogin }: HeaderProps) {
+export default function Header({
+  profileName,
+  setIsLogin,
+  isLogin,
+}: HeaderProps) {
   const { connect, address } = useChain(chain);
 
   const handleProfileIconClick = async () => {
@@ -17,8 +21,6 @@ export default function Header({ profileName, setIsLogin }: HeaderProps) {
       setIsLogin(false);
     }
   };
-
-  console.log();
 
   return (
     <header className="sticky top-0 left-0 right-0 w-full flex items-center justify-center bg-white">

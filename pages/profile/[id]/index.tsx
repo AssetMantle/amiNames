@@ -143,7 +143,11 @@ export default function Profile() {
 
   return (
     <>
-      <Header profileName={PROFILE_NAME} setIsLogin={setIsLogin} />
+      <Header
+        profileName={PROFILE_NAME}
+        setIsLogin={setIsLogin}
+        isLogin={isLogin}
+      />
       <main
         className="am-ami-container-sm p-6 h-[calc(100dvh-97.02px)] overflow-y-hidden scroll-smooth"
         style={{ scrollSnapType: "y mandatory" }}
