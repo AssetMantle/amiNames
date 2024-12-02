@@ -15,10 +15,10 @@ import {
 import { assetmantle, cosmos } from "@assetmantle/mantlejs";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //@ts-ignore
 import { defaultReferrer } from "@/config";
-import { useTx } from "@/utils/useTx";
+import { useBalance, useTx } from "@/utils/useTx";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IconWrapper } from "../IconWrapper";
@@ -40,8 +40,18 @@ const MintModal = ({
   const chainContext = useChain(chain);
   const [loader, setLoader] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [CurrentBalance, setCurrentBalance] = useState<string>("0");
   const { address } = chainContext;
   const { tx } = useTx();
+  const { getBalance } = useBalance();
+
+  useEffect(() => {
+    const amount = async () => {
+      const val = (address && (await getBalance(address))) ?? "0";
+      setCurrentBalance(val);
+    };
+    amount();
+  }, [address]);
 
   const handleMint = async () => {
     //@ts-ignore
@@ -299,11 +309,20 @@ const MintModal = ({
           </p>
         </div>
         {address ? (
-          <ClipboardCopyText
-            text={address}
-            truncate="middle"
-            className="flex gap-2 items-center border border-gray-600 rounded-lg py-3 px-4 text-gray-600"
-          />
+          <div className="w-full flex gap-3 items-center justify-between border border-gray-500 rounded-lg py-3 px-4">
+            <ClipboardCopyText
+              text={address}
+              truncate="middle"
+              // className="flex gap-2 items-center border border-gray-600 rounded-lg py-3 px-4 text-gray-600"
+              className="border-none flex items-center gap-3 w-max text-gray-600"
+            />
+            <p className=" text-gray-700 font-medium">
+              {!isNaN(Number(CurrentBalance))
+                ? Number(CurrentBalance).toFixed(2)
+                : CurrentBalance}{" "}
+              MNTL
+            </p>
+          </div>
         ) : null}
         <div className="px-4 py-6 text-[16px] w-[100%] border border-[#88A6FA] rounded-lg flex flex-col gap-5">
           {isPremium && (
