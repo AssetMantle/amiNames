@@ -2,6 +2,7 @@
 import Loading from "@/components/Loading";
 import AddLinkModal from "@/components/modals/AddLinkModal";
 import { fetchProfileSocials } from "@/config";
+import { LinksList } from "@/constant";
 import { showToastMessage } from "@/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -18,61 +19,10 @@ export default function ProfilePrivateView({
   const [Switch, setSwitch] = useState(false);
   const [ModalState, setModalState] = useState(false);
   const [ModalFor, setModalFor] = useState("");
-  const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(true);
   const [socialData, setSocialData] = useState<any>({});
   const [profile, setProfile] = useState<string>("");
   const [IsViewQR, setIsViewQR] = useState(true);
-
-  const profileName = profileNames?.[0];
-
-  const LinksList = [
-    {
-      key: "twitter",
-      icon: "/assets/images/icons/twitter.png",
-      text: "Twitter",
-    },
-    {
-      key: "telegram",
-      icon: "/assets/images/icons/telegram.png",
-      text: "Telegram",
-    },
-    {
-      key: "instagram",
-      icon: "/assets/images/icons/instagram.svg",
-      text: "Instagram",
-    },
-    {
-      key: "website",
-      icon: "/assets/images/icons/globe.svg",
-      text: "Website",
-    },
-    {
-      key: "linkedin",
-      icon: "/assets/images/icons/linkedin.png",
-      text: "LinkedIn",
-    },
-    {
-      key: "facebook",
-      icon: "/assets/images/icons/facebook.svg",
-      text: "Facebook",
-    },
-    {
-      key: "youtube",
-      icon: "/assets/images/icons/youtube.svg",
-      text: "YouTube",
-    },
-    {
-      key: "github",
-      icon: "/assets/images/icons/github.svg",
-      text: "GitHub",
-    },
-    {
-      key: "medium",
-      icon: "/assets/images/icons/medium.svg",
-      text: "Medium",
-    },
-  ];
 
   useEffect(() => {
     const fetchSocialData = async () => {
@@ -82,20 +32,19 @@ export default function ProfilePrivateView({
         const data = await fetchProfileSocials(profileName);
 
         if (!data?.error) {
-          setSocialData(data?.socials); // Assuming the API returns `{ profile, socials }`
+          // Ensure `socials` values are strings and filter out entries with empty or whitespace-only values
+          const cleanedSocialData = Object.fromEntries(
+            Object.entries(data?.socials || {}).filter(
+              ([_, value]) => typeof value === "string" && value.trim() !== "" // Ensure the value is a string and not empty or whitespace
+            )
+          );
+
+          setSocialData(cleanedSocialData); // Store the cleaned social data in state
           setProfile(data?.profile);
 
-          // Check if socialData is empty or all values are empty strings
-          const isSocialDataEmpty = (data: any): boolean => {
-            return (
-              !data ||
-              Object.keys(data).length === 0 ||
-              Object.values(data).every((value) => value === "")
-            );
-          };
-
-          if (isSocialDataEmpty(data?.socials)) {
-            setSwitch(true); // Show "Link Platforms"
+          // Check if socialData is empty after cleaning
+          if (Object.keys(cleanedSocialData).length === 0) {
+            setSwitch(true); // Show "Link Platforms" if no valid social data
           }
         } else {
           throw new Error(data?.error);
@@ -117,14 +66,6 @@ export default function ProfilePrivateView({
       delete updatedData[platform];
       return updatedData;
     });
-  };
-
-  const isSocialDataEmpty = (data: any): boolean => {
-    return (
-      !data ||
-      Object.keys(data).length === 0 ||
-      Object.values(data).every((value) => value === "")
-    );
   };
 
   if (loading || !profile) return <Loading />;
@@ -189,38 +130,57 @@ export default function ProfilePrivateView({
           </h3>
           {!Switch && (
             <div className="flex flex-col gap-5 h-[230px] overflow-y-auto">
-              <div className="flex flex-col gap-4">
-                {LinksList.filter(
-                  (link) => socialData[link.key] && socialData[link.key] !== ""
-                ).map((link) => (
-                  <div
-                    key={link.key}
-                    className="flex flex-wrap items-center gap-2"
-                  >
-                    <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
-                      <Image
-                        width={24}
-                        height={24}
-                        className="my-auto"
-                        alt={link.text}
-                        src={link.icon}
-                      />
-                      {link.text}
-                    </div>
-                    <input
-                      type="text"
-                      readOnly
-                      value={socialData[link.key]} // Dynamically fetch value from socialData
-                      className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
-                    />
-                    <AiFillDelete
-                      className="text-red-500 cursor-pointer"
-                      size={20}
-                      onClick={() => handleDelete(link.key)} // Pass the key to handleDelete
-                    />
+              {Object.keys(socialData).length === 0 ? (
+                <div
+                  className="flex flex-col items-center justify-center gap-2 cursor-pointer"
+                  onClick={() => setSwitch(true)} // Switch to "Link Platforms" when clicked
+                >
+                  <Image
+                    src="/assets/images/addSocials.png"
+                    alt="Add Social Links"
+                    width={120}
+                    height={120}
+                    className="object-contain"
+                  />
+                  <p className="text-xl text-gray-800">Add Links Now</p>
+                </div>
+              ) : (
+                <>
+                  <div className="flex flex-col gap-4">
+                    {LinksList.filter(
+                      (link) =>
+                        socialData[link.key] && socialData[link.key] !== ""
+                    ).map((link) => (
+                      <div
+                        key={link.key}
+                        className="flex flex-wrap items-center gap-2"
+                      >
+                        <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
+                          <Image
+                            width={24}
+                            height={24}
+                            className="my-auto"
+                            alt={link.text}
+                            src={link.icon}
+                          />
+                          {link.text}
+                        </div>
+                        <input
+                          type="text"
+                          readOnly
+                          value={socialData[link.key]} // Dynamically fetch value from socialData
+                          className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
+                        />
+                        <AiFillDelete
+                          className="text-red-500 cursor-pointer"
+                          size={20}
+                          onClick={() => handleDelete(link.key)} // Pass the key to handleDelete
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              )}
             </div>
           )}
           <div className="border-b border-b-[#D4DCE2]"></div>
@@ -242,58 +202,32 @@ export default function ProfilePrivateView({
           </h3>
           {Switch && (
             <div className="flex flex-col gap-6">
-              {/* <div className="flex-1 flex gap-1 px-4 py-2 text-gray-900 border border-[#396AF6] rounded-3xl">
-                <div className="aspect-square w-[20px] my-auto">
-                  <Image
-                    src={"/assets/images/icons/search.svg"}
-                    alt="Search Icon"
-                    width={30}
-                    height={30}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center",
-                    }}
-                  />
-                </div>
-                <input
-                  type="text"
-                  name="platform-input"
-                  id="platform-input"
-                  className="flex-1 text-lg outline-none bg-transparent"
-                  placeholder="Search Platform"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-              </div> */}
               <div
                 className="grid grid-cols-3 gap-4"
                 style={{ gridTemplateColumns: "repeat(3,1fr)" }}
               >
                 {React.Children.toArray(
-                  LinksList.filter(
-                    (link) =>
-                      !socialData[link.key] || socialData[link.key] === ""
-                  ).map((link) => (
-                    <div
-                      className="flex flex-col gap-2 items-center"
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => {
-                        setModalFor(link.text);
-                        setModalState(true);
-                      }}
-                    >
-                      <Image
-                        src={link.icon}
-                        alt={`${link.text} Icon`}
-                        width={24}
-                        height={24}
-                      />
-                      <p className="">{link.text}</p>
-                    </div>
-                  ))
+                  LinksList.filter((link) => !socialData[link.key]).map(
+                    (link) => (
+                      <div
+                        className="flex flex-col gap-2 items-center"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => {
+                          setModalFor(link.text);
+                          setModalState(true);
+                        }}
+                      >
+                        <Image
+                          src={link.icon}
+                          alt={`${link.text} Icon`}
+                          width={24}
+                          height={24}
+                        />
+                        <p className="">{link.text}</p>
+                      </div>
+                    )
+                  )
                 )}
               </div>
             </div>
