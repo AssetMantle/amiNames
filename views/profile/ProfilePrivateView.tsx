@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import AddLinkModal from "@/components/modals/AddLinkModal";
 import { fetchProfileSocials, fetchSetProfile } from "@/config";
 import { LinksList } from "@/constant";
-import { showToastMessage } from "@/utils";
+import { showToastMessage, useBalance } from "@/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ImBin } from "react-icons/im";
@@ -22,6 +22,7 @@ export default function ProfilePrivateView({
   const [loading, setLoading] = useState(true);
   const [socialData, setSocialData] = useState<any>({});
   const [originalSocialData, setOriginalSocialData] = useState<any>({});
+  const { getBalance } = useBalance();
 
   const [profile, setProfile] = useState<string>("");
   const [IsViewQR, setIsViewQR] = useState(true);

@@ -109,11 +109,12 @@ export function useTx() {
 }
 
 export function useBalance() {
-  const { address, getOfflineSignerDirect } = useChain(defaultChainName);
+  const { getOfflineSignerDirect } = useChain(defaultChainName);
 
-  async function getBalance(): Promise<string> {
+  // Accept address as argument to make it flexible
+  async function getBalance(address: string): Promise<string> {
     if (!address) {
-      throw new Error("Wallet not connected");
+      throw new Error("Address not provided");
     }
 
     try {
@@ -127,7 +128,7 @@ export function useBalance() {
       // Fetch the balance for the provided address and denom
       const balance = await client.getBalance(address, defaultChainDenom);
 
-      // Return the balance or null if it's not found
+      // Return the balance amount or "0" if not found
       return balance?.amount || "0";
     } catch (e: any) {
       throw new Error(`Failed to get balance: ${e.message || "Unknown error"}`);
