@@ -35,7 +35,7 @@ export default function Header({
             height={50}
           />
         </button>
-        <Link href={`/search?referral=${profileName}`}>
+        <Link href={`/`}>
           <Image
             src={`/assets/images/icons/search-outline.svg`}
             alt="Profile Icon"
