@@ -1,3 +1,4 @@
+import Loading from "@/components/Loading";
 import { fetchProfileSocials } from "@/config";
 import { showToastMessage } from "@/utils";
 import Image from "next/image";
@@ -46,7 +47,7 @@ export default function ProfilePublicView({
     fetchSocialData();
   }, [profileNames]);
 
-  if (loading || !profile) return <p> component is loading </p>;
+  if (loading || !profile) return <Loading />;
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-9">

@@ -42,21 +42,21 @@ export default function Profile() {
             PROFILE_NAME.toLowerCase()
           );
           console.log(
-            "retrievedUsername?.addess: ",
-            retrievedUsername?.addess,
+            "retrievedUsername?.address: ",
+            retrievedUsername?.address,
             " address: ",
             address,
             "profile: ",
             PROFILE_NAME
           );
-          console.log("condition: ", retrievedUsername?.addess != address);
+          console.log("condition: ", retrievedUsername?.address != address);
 
           // Filter for the current address and extract the names
           const names = parsedData
             .filter((item) => item.address === address)
             .map((item) => item.name);
 
-          if (names?.length == 0 && retrievedUsername?.addess !== address) {
+          if (names?.length == 0 && retrievedUsername?.address !== address) {
             setProfileNames([PROFILE_NAME]);
             showToastMessage(
               "error",
@@ -73,7 +73,7 @@ export default function Profile() {
               ...names.filter((name) => name !== PROFILE_NAME),
             ]);
           } else {
-            if (retrievedUsername?.addess === address) {
+            if (retrievedUsername?.address === address) {
               updateMyAmiList(PROFILE_NAME, address);
               setProfileNames([
                 PROFILE_NAME,
@@ -145,7 +145,7 @@ export default function Profile() {
     <>
       <Header profileName={PROFILE_NAME} setIsLogin={setIsLogin} />
       <main
-        className="am-ami-container-sm p-6 h-[calc(100dvh-97.02px)] overflow-y-auto scroll-smooth"
+        className="am-ami-container-sm p-6 h-[calc(100dvh-97.02px)] overflow-y-hidden scroll-smooth"
         style={{ scrollSnapType: "y mandatory" }}
         ref={BODY}
       >
