@@ -6,7 +6,6 @@ import { isValidReferrer, showToastMessage, updateMyAmiList } from "@/utils";
 import ProfilePrivateView from "@/views/profile/ProfilePrivateView";
 import ProfilePublicView from "@/views/profile/ProfilePublicView";
 import { useChain } from "@cosmos-kit/react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
