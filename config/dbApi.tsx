@@ -24,11 +24,31 @@ export const readUserSocials = async (profile: string) => {
 export async function fetchProfileSocials(profileName: string) {
   // Replace the path with your deployment's base URL in production
   const response = await fetch(`/api/getprofile/${profileName}`);
+  const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(`Error: ${response.status}`);
+    // Access the `error` property from the API response
+    throw new Error(data.error || `Error: ${response.status}`);
   }
 
+  return data;
+}
+
+export async function fetchSetProfile(profileName: string, socialsObject: any) {
+  // Replace the path with your deployment's base URL in production
+  const response = await fetch(`/api/setprofile/${profileName}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(socialsObject),
+  });
+
   const data = await response.json();
+  if (!response.ok) {
+    // Access the `error` property from the API response
+    throw new Error(data.error || `Error: ${response.status}`);
+  }
+
   return data;
 }
