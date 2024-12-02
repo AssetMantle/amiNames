@@ -67,14 +67,14 @@ export const showToastMessage = (
   message: string
 ) => {
   toast[type](message, {
-    position: "top-right",
-    autoClose: false,
-    hideProgressBar: true,
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "colored",
+    theme: "light",
     style: {
       backgroundColor: toastBgColor[type],
     },
