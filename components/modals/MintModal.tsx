@@ -23,6 +23,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IconWrapper } from "../IconWrapper";
 import Modal from "./Modal";
+import { ClipboardCopyText } from "@interchain-ui/react";
 
 const MintModal = ({
   isOpen,
@@ -297,6 +298,13 @@ const MintModal = ({
             {userName}
           </p>
         </div>
+        {address ? (
+          <ClipboardCopyText
+            text={address}
+            truncate="middle"
+            className="flex gap-2 items-center border border-gray-600 rounded-lg py-3 px-4 text-gray-600"
+          />
+        ) : null}
         <div className="px-4 py-6 text-[16px] w-[100%] border border-[#88A6FA] rounded-lg flex flex-col gap-5">
           {isPremium && (
             <div className="flex items-center justify-between">
@@ -319,7 +327,7 @@ const MintModal = ({
           type="button"
           className={` ${
             loader ? "cursor-not-allowed disabled opacity-30" : ""
-          } rounded-full w-full bg-[#396AF6] px-6 py-[12px] text-md text-center font-semibold leading-[100%] text-white  transition duration-150 ease-in-out hover:bg-warning-600  focus:bg-warning-600 flex items-center justify-center gap-2 relative rounded-lg ease-in-out duration-300`}
+          } rounded-full w-full bg-[#396AF6] px-6 py-[12px] text-md text-center font-semibold leading-[100%] text-white  transition duration-150 ease-in-out hover:bg-warning-600  focus:bg-warning-600 flex items-center justify-center gap-2 relative`}
           onClick={() => handleMint()}
         >
           {loader ? "Please wait..." : "Claim"}
