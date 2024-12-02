@@ -1,7 +1,7 @@
 "use client";
 import Loading from "@/components/Loading";
 import AddLinkModal from "@/components/modals/AddLinkModal";
-import { fetchProfileSocials } from "@/config";
+import { fetchProfileSocials, fetchSetProfile } from "@/config";
 import { LinksList } from "@/constant";
 import { showToastMessage } from "@/utils";
 import Image from "next/image";
@@ -21,6 +21,8 @@ export default function ProfilePrivateView({
   const [ModalFor, setModalFor] = useState("");
   const [loading, setLoading] = useState(true);
   const [socialData, setSocialData] = useState<any>({});
+  const [originalSocialData, setOriginalSocialData] = useState<any>({});
+
   const [profile, setProfile] = useState<string>("");
   const [IsViewQR, setIsViewQR] = useState(true);
 
@@ -32,17 +34,23 @@ export default function ProfilePrivateView({
         const data = await fetchProfileSocials(profileName);
 
         if (!data?.error) {
-          // Ensure `socials` values are strings and filter out entries with empty or whitespace-only values
+          // Save the original socials data in the state
+          const originalSocialData = data?.socials || {};
+
+          // Clean the socialData (filter out entries with empty or whitespace-only values)
           const cleanedSocialData = Object.fromEntries(
-            Object.entries(data?.socials || {}).filter(
-              ([_, value]) => typeof value === "string" && value.trim() !== "" // Ensure the value is a string and not empty or whitespace
+            Object.entries(originalSocialData).filter(
+              ([_, value]) => typeof value === "string" && value.trim() !== ""
             )
           );
 
-          setSocialData(cleanedSocialData); // Store the cleaned social data in state
+          // Store the cleaned social data and the original social data
+          setSocialData(cleanedSocialData); // Store cleaned data
+          setOriginalSocialData(originalSocialData); // Store the original data
+
           setProfile(data?.profile);
 
-          // Check if socialData is empty after cleaning
+          // Check if cleaned socialData is empty, and set the switch accordingly
           if (Object.keys(cleanedSocialData).length === 0) {
             setSwitch(true); // Show "Link Platforms" if no valid social data
           }
@@ -66,6 +74,36 @@ export default function ProfilePrivateView({
       delete updatedData[platform];
       return updatedData;
     });
+  };
+
+  // Custom handler for the Chevron button
+  const handleChevron = async () => {
+    // Deep comparison of socialData with the original data
+    const isChanged =
+      JSON.stringify(socialData) !== JSON.stringify(originalSocialData);
+
+    if (isChanged) {
+      try {
+        const result = await fetchSetProfile(profile, socialData);
+
+        if (!result?.error) {
+          console.log("SocialData set successfully");
+          showToastMessage("success", "Social Data saved successfully");
+          setOriginalSocialData(socialData);
+        } else {
+          console.error("Failed to set profile:", result?.error);
+          showToastMessage("error", "Error while saving Social Data");
+        }
+      } catch (error) {
+        console.error("Error in setting profile:", error);
+      } finally {
+        setIsViewQR(true);
+      }
+    } else {
+      // Handle case where no changes have been made (optional)
+      console.log("No changes to social data.");
+    }
+    setIsViewQR(true);
   };
 
   if (loading || !profile) return <Loading />;
@@ -234,12 +272,7 @@ export default function ProfilePrivateView({
           )}
         </div>
 
-        <button
-          onClick={() => {
-            setIsViewQR(true);
-          }}
-          className="bg-transparent p-2"
-        >
+        <button onClick={handleChevron} className="bg-transparent p-2">
           <Image
             src={"/assets/images/icons/chevron-down.svg"}
             alt="Ami Names"
