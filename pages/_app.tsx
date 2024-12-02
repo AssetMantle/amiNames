@@ -1,23 +1,24 @@
 import "@interchain-ui/react/styles";
 import "../styles/index.scss";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ChainProvider } from "@cosmos-kit/react";
-import { assets, chains } from "chain-registry";
-import { SignerOptions, wallets } from "cosmos-kit";
-import { aminoTypes, registry } from "../config/defaults";
 import Loading from "@/components/Loading";
+import { ChainProvider } from "@cosmos-kit/react";
 import {
   Box,
   ThemeProvider,
   useColorModeValue,
   useTheme,
 } from "@interchain-ui/react";
+import { assets, chains } from "chain-registry";
+import { SignerOptions, wallets } from "cosmos-kit";
 import Head from "next/head";
+import { ToastContainer } from "react-toastify";
+import { aminoTypes, registry } from "../config/defaults";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -145,6 +146,18 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
             >
               <Component {...pageProps} />
               {isLoading && <Loading />}
+              <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+              />
             </Box>
           </QueryClientProvider>
         </ChainProvider>
