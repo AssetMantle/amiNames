@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import AddLinkModal from "@/components/modals/AddLinkModal";
 import { fetchProfileSocials, fetchSetProfile } from "@/config";
 import { LinksList } from "@/constant";
-import { showToastMessage, useBalance } from "@/utils";
+import { showToastMessage } from "@/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ImBin } from "react-icons/im";
@@ -22,15 +22,15 @@ export default function ProfilePrivateView({
   const [loading, setLoading] = useState(true);
   const [socialData, setSocialData] = useState<any>({});
   const [originalSocialData, setOriginalSocialData] = useState<any>({});
-  const { getBalance } = useBalance();
 
   const [profile, setProfile] = useState<string>("");
   const [IsViewQR, setIsViewQR] = useState(true);
 
   useEffect(() => {
+    // console.log("inside useEffect, profile: ", originalSocialData);
     const fetchSocialData = async () => {
       try {
-        const profileName = profileNames?.[0];
+        const profileName = PROFILE_NAME as string;
         setLoading(true);
         const data = await fetchProfileSocials(profileName);
 
@@ -48,8 +48,7 @@ export default function ProfilePrivateView({
           // Store the cleaned social data and the original social data
           setSocialData(cleanedSocialData); // Store cleaned data
           setOriginalSocialData(originalSocialData); // Store the original data
-
-          setProfile(data?.profile);
+          setProfile(PROFILE_NAME as string);
 
           // Check if cleaned socialData is empty, and set the switch accordingly
           if (Object.keys(cleanedSocialData).length === 0) {
@@ -67,7 +66,7 @@ export default function ProfilePrivateView({
     };
 
     fetchSocialData();
-  }, [profileNames]);
+  }, [profileNames, PROFILE_NAME]);
 
   const handleDelete = (platform: string) => {
     setSocialData((prevData: any) => {
@@ -79,6 +78,7 @@ export default function ProfilePrivateView({
 
   // Custom handler for the Chevron button
   const handleChevron = async () => {
+    console.log("inside handleChevron");
     // Deep comparison of socialData with the original data
     const isChanged =
       JSON.stringify(socialData) !== JSON.stringify(originalSocialData);
@@ -136,13 +136,6 @@ export default function ProfilePrivateView({
           <div className="flex-1 flex gap-1 pl-9 pr-6 py-2 text-gray-900 border border-[#396AF6] bg-gray-50  rounded-e-3xl -ms-7 hero-heading-gradient-text uppercase font-black text-2xl">
             {profile}
           </div>
-          {/* <Image
-            src={"/assets/images/icons/chevron-down.svg"}
-            alt="Ami Names"
-            width={16}
-            height={16}
-            className="ml-4"
-          /> */}
         </div>
 
         <div className="flex flex-col gap-3 w-[min(320px,100%)] h-max">
@@ -295,6 +288,8 @@ export default function ProfilePrivateView({
           setModalFor("");
           setModalState(false);
         }}
+        socialData={socialData}
+        setSocialData={setSocialData}
       />
     </>
   );
