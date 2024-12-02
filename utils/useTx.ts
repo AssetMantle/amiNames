@@ -6,6 +6,7 @@ import {
   StdFee,
 } from "@cosmjs/stargate";
 import { useChain } from "@cosmos-kit/react";
+import BigNumber from "bignumber.js";
 import { defaultChainName } from "./defaults";
 
 export type Msg = {
@@ -128,8 +129,15 @@ export function useBalance() {
       // Fetch the balance for the provided address and denom
       const balance = await client.getBalance(address, defaultChainDenom);
 
-      // Return the balance amount or "0" if not found
-      return balance?.amount || "0";
+      // If balance exists, convert it to a float with 6 decimal places
+      if (balance) {
+        const amount = new BigNumber(balance.amount);
+        const convertedAmount = amount.dividedBy(10 ** 6).toFixed(6); // Divide by 10^6 and fix to 6 decimal places
+        return convertedAmount;
+      }
+
+      // Return "0" if no balance is found
+      return "0";
     } catch (e: any) {
       throw new Error(`Failed to get balance: ${e.message || "Unknown error"}`);
     }
