@@ -8,7 +8,6 @@ import ProfilePublicView from "@/views/profile/ProfilePublicView";
 import { useChain } from "@cosmos-kit/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 export default function Profile() {
   const router = useRouter();
@@ -19,16 +18,6 @@ export default function Profile() {
   const [profileNames, setProfileNames] = useState<string[]>([]);
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  const CallNotYourProfileToast = () => {
-    toast(
-      `The name "${PROFILE_NAME?.toUpperCase()}" is  not registered to you.`,
-      {
-        theme: "light",
-        position: "bottom-right",
-      }
-    );
-  };
 
   useEffect(() => {
     const fetchData = async () => {
