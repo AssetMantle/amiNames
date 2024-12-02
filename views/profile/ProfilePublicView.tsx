@@ -1,7 +1,7 @@
-"use client";
-import { readUserSocials } from "@/config";
+import { fetchProfileSocials } from "@/config";
+import { showToastMessage } from "@/utils";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProfilePublicView({
   profileNames,
@@ -11,11 +11,42 @@ export default function ProfilePublicView({
   const CreateValidURL = (url: string): any => {
     return url.startsWith("www") ? `https://${url}` : url;
   };
-  const [SocialData, setSocialData] = useState<any>({});
 
-  const profileName = profileNames?.[0] || "kombo";
+  const [socialData, setSocialData] = useState<any>({});
+  const [profile, setProfile] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  /* const socialData = {
+    twitter: "https://t.me/kombos",
+    telegram: "https://t.me/kombos",
+    instagram: "https://t.me/kombos",
+    website: "https://t.me/kombos",
+  }; */
 
-  const socialData: any = async () => await readUserSocials(profileName || "");
+  useEffect(() => {
+    const fetchSocialData = async () => {
+      try {
+        const profileName = profileNames?.[0];
+        setLoading(true);
+        const data = await fetchProfileSocials(profileName);
+
+        if (!data?.error) {
+          setSocialData(data?.socials); // Assuming the API returns `{ profile, socials }`
+          setProfile(data?.profile);
+        } else {
+          throw new Error(data?.error);
+        }
+      } catch (err) {
+        console.error(err);
+        showToastMessage("error", "Error reading profile data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSocialData();
+  }, [profileNames]);
+
+  if (loading || !profile) return <p> component is loading </p>;
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-9">
@@ -35,15 +66,15 @@ export default function ProfilePublicView({
           />
         </div>
         <div className="flex-1 flex gap-1 pl-9 pr-6 py-2 text-gray-900 border border-[#396AF6] bg-gray-50  rounded-e-3xl -ms-7 hero-heading-gradient-text uppercase font-black text-2xl">
-          {profileName}
+          {profile}
         </div>
       </div>
       <div className="flex flex-col gap-3 w-[min(320px,100%)]">
-        {SocialData?.twitter && (
+        {socialData?.twitter && (
           <a
             target="_blank"
             className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] bg-black"
-            href={CreateValidURL(SocialData?.twitter)}
+            href={CreateValidURL(socialData?.twitter)}
             rel="noopener noreferrer"
           >
             <Image
@@ -56,11 +87,11 @@ export default function ProfilePublicView({
             Twitter
           </a>
         )}
-        {SocialData?.telegram && (
+        {socialData?.telegram && (
           <a
             target="_blank"
             className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] am-ami-bg-telegram"
-            href={CreateValidURL(SocialData?.telegram)}
+            href={CreateValidURL(socialData?.telegram)}
             rel="noopener noreferrer"
           >
             <Image
@@ -73,11 +104,11 @@ export default function ProfilePublicView({
             Telegram
           </a>
         )}
-        {SocialData?.instagram && (
+        {socialData?.instagram && (
           <a
             target="_blank"
             className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] am-ami-bg-instagram"
-            href={CreateValidURL(SocialData?.instagram)}
+            href={CreateValidURL(socialData?.instagram)}
             rel="noopener noreferrer"
           >
             <Image
@@ -90,11 +121,11 @@ export default function ProfilePublicView({
             Instagram
           </a>
         )}
-        {SocialData?.website && (
+        {socialData?.website && (
           <a
             target="_blank"
             className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] bg-black"
-            href={CreateValidURL(SocialData?.website)}
+            href={CreateValidURL(socialData?.website)}
             rel="noopener noreferrer"
           >
             <Image

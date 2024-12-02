@@ -34,7 +34,7 @@ export default function Home() {
   async function getIsValidRef() {
     if (query) {
       const queryValue = query.get("referral");
-      const isValidRef = await isValidReferrer(queryValue?.toLowerCase() ?? "");
+      const isValidRef = await isValidReferrer(queryValue ?? "");
       setIsValidRef(isValidRef?.isValidUserName);
       setReferrer(queryValue || "");
     }
