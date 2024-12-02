@@ -14,7 +14,7 @@ export default function Header({
 
   const handleProfileIconClick = async () => {
     if (!address) {
-      await connect();  
+      await connect();
       setIsLogin(true);
     } else {
       await connect();
@@ -27,7 +27,9 @@ export default function Header({
       <div className="am-ami-container-sm p-6 py-6 flex items-center justify-between gap-6">
         <button onClick={handleProfileIconClick}>
           <Image
-            src={`/assets/images/icons/profile-outline.svg`}
+            src={`/assets/images/icons/profile-${
+              isLogin ? "fill" : "outline"
+            }.svg`}
             alt="Profile Icon"
             width={50}
             height={50}
