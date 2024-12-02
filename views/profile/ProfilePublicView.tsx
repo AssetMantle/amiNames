@@ -86,7 +86,7 @@ export default function ProfilePublicView({
                 <a
                   key={link.key}
                   target="_blank"
-                  className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)]"
+                  className={`flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] ${link?.classNames}`}
                   href={socialData[link.key]}
                   rel="noopener noreferrer"
                 >
