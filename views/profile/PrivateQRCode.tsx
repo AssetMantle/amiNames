@@ -59,7 +59,7 @@ export default function PrivateQRCode({
         </div>
         <button
           onClick={() => changeView(false)}
-          className="bg-transparent p-2 w-10 aspect-square relative"
+          className="bg-transparent p-2"
         >
           <Image
             src={"/assets/images/icons/chevron-down.svg"}
