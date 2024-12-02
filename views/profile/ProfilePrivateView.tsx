@@ -4,15 +4,15 @@ import AddLinkModal from "@/components/modals/AddLinkModal";
 import { fetchProfileSocials } from "@/config";
 import { showToastMessage } from "@/utils";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PrivateQRCode from "./PrivateQRCode";
 
 export default function ProfilePrivateView({
   profileNames,
-  BODY,
+  PROFILE_NAME,
 }: {
   profileNames: string[]; // Expect an array of strings
-  BODY: React.RefObject<HTMLElement>;
+  PROFILE_NAME: string | string[] | undefined;
 }) {
   const [Switch, setSwitch] = useState(false);
   const [ModalState, setModalState] = useState(false);
@@ -21,6 +21,7 @@ export default function ProfilePrivateView({
   const [loading, setLoading] = useState(true);
   const [socialData, setSocialData] = useState<any>({});
   const [profile, setProfile] = useState<string>("");
+  const [IsViewQR, setIsViewQR] = useState(true);
 
   const profileName = profileNames?.[0];
 
@@ -84,11 +85,15 @@ export default function ProfilePrivateView({
     socialData
   );
 
-  return (
+  return IsViewQR ? (
+    <PrivateQRCode
+      PROFILE_NAMES={profileNames}
+      PROFILE_NAME={PROFILE_NAME}
+      changeView={setIsViewQR}
+    />
+  ) : (
     <>
-      <PrivateQRCode PROFILE_NAME={profileName} BODY={BODY} />
-
-      <div className="flex flex-col items-center justify-center h-[calc(100dvh-97.02px)] gap-9">
+      <div className="flex flex-col items-center justify-center h-full gap-9 p-6 box-border snap-start snap-always">
         <div className="flex items-center justify-center mx-auto relative">
           <div className="flex aspect-square w-[50px] rounded-[50%] scale-[1.1] origin-left">
             <Image
@@ -104,19 +109,19 @@ export default function ProfilePrivateView({
               }}
             />
           </div>
-          <div className="flex-1 flex gap-1 pl-9 pr-6 py-2 text-gray-900 border border-[#396AF6] bg-gray-50  rounded-e-3xl -ms-7 hero-heading-gradient-text uppercase font-black text-2xl">
-            {profileName}
+          <div className="flex-1 flex gap-1 pl-9 pr-6 py-2 border border-[#396AF6] bg-gray-50  rounded-e-3xl -ms-7 hero-heading-gradient-text uppercase font-black text-2xl">
+            {PROFILE_NAME}
           </div>
-          <Image
+          {/* <Image
             src={"/assets/images/icons/chevron-down.svg"}
             alt="Ami Names"
             width={16}
             height={16}
             className="ml-4"
-          />
+          /> */}
         </div>
 
-        <div className="flex flex-col gap-3 w-[min(320px,100%)]">
+        <div className="flex flex-col gap-3 w-[min(320px,100%)] h-max">
           <h2
             className={`leading-[20px] font-bold text-xl cursor-pointer text-center text-headingText`}
           >
@@ -139,7 +144,7 @@ export default function ProfilePrivateView({
             />
           </h3>
           {!Switch && (
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 h-[230px] overflow-y-auto">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
@@ -300,17 +305,16 @@ export default function ProfilePrivateView({
 
         <button
           onClick={() => {
-            BODY.current &&
-              BODY.current.scrollHeight &&
-              BODY.current.scrollTo(0, 0);
+            setIsViewQR(true);
           }}
+          className="bg-transparent p-2"
         >
           <Image
             src={"/assets/images/icons/chevron-down.svg"}
             alt="Ami Names"
             width={32}
             height={32}
-            className="ml-4 "
+            className=""
           />
         </button>
       </div>
