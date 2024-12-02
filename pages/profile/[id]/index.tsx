@@ -41,15 +41,6 @@ export default function Profile() {
           const retrievedUsername = await isValidReferrer(
             PROFILE_NAME.toLowerCase()
           );
-          console.log(
-            "retrievedUsername?.address: ",
-            retrievedUsername?.address,
-            " address: ",
-            address,
-            "profile: ",
-            PROFILE_NAME
-          );
-          console.log("condition: ", retrievedUsername?.address != address);
 
           // Filter for the current address and extract the names
           const names = parsedData
@@ -98,6 +89,16 @@ export default function Profile() {
         }
       } else {
         try {
+          // search if current name belongs to the address
+          const retrievedUsername = await isValidReferrer(
+            PROFILE_NAME.toLowerCase()
+          );
+
+          console.log(
+            "complex condition ",
+            address && retrievedUsername?.address == address
+          );
+
           // Search for PROFILE_NAME and get its associated address
           const associatedEntry = parsedData.find(
             (item) => item.name === PROFILE_NAME
@@ -118,6 +119,19 @@ export default function Profile() {
             ]);
             setIsMyProfile(true);
           } else {
+            if (address && retrievedUsername?.address == address) {
+              updateMyAmiList(PROFILE_NAME, address);
+              // Find all names related to the associated address
+              const names = parsedData
+                .filter((item) => item.address === address)
+                .map((item) => item.name);
+              // Create a new array with PROFILE_NAME first
+              setProfileNames([
+                PROFILE_NAME,
+                ...names.filter((name) => name !== PROFILE_NAME),
+              ]);
+              setIsMyProfile(true);
+            }
             // PROFILE_NAME not found in localStorage
             setProfileNames([PROFILE_NAME]);
             setIsMyProfile(false);

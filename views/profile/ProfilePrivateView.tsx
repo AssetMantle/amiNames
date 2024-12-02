@@ -1,7 +1,10 @@
 "use client";
+import Loading from "@/components/Loading";
 import AddLinkModal from "@/components/modals/AddLinkModal";
+import { fetchProfileSocials } from "@/config";
+import { showToastMessage } from "@/utils";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PrivateQRCode from "./PrivateQRCode";
 
 export default function ProfilePrivateView({
@@ -15,6 +18,9 @@ export default function ProfilePrivateView({
   const [ModalState, setModalState] = useState(false);
   const [ModalFor, setModalFor] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [socialData, setSocialData] = useState<any>({});
+  const [profile, setProfile] = useState<string>("");
 
   const profileName = profileNames?.[0];
 
@@ -44,6 +50,39 @@ export default function ProfilePrivateView({
       text: "Medium",
     },
   ];
+
+  useEffect(() => {
+    const fetchSocialData = async () => {
+      try {
+        const profileName = profileNames?.[0];
+        setLoading(true);
+        const data = await fetchProfileSocials(profileName);
+
+        if (!data?.error) {
+          setSocialData(data?.socials); // Assuming the API returns `{ profile, socials }`
+          setProfile(data?.profile);
+        } else {
+          throw new Error(data?.error);
+        }
+      } catch (err) {
+        console.error(err);
+        showToastMessage("error", "Error reading profile data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSocialData();
+  }, [profileNames]);
+
+  if (loading || !profile) return <Loading />;
+
+  console.log(
+    "length socials: ",
+    Object.keys(socialData).length,
+    " socials: ",
+    socialData
+  );
 
   return (
     <>
@@ -115,6 +154,8 @@ export default function ProfilePrivateView({
                   </div>
                   <input
                     type="text"
+                    readOnly
+                    value={socialData?.twitter}
                     className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
                   />
                   <div className="flex items-center gap-2"></div>
@@ -132,6 +173,8 @@ export default function ProfilePrivateView({
                   </div>
                   <input
                     type="text"
+                    readOnly
+                    value={socialData?.telegram}
                     className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
                   />
                   <div className="flex items-center gap-2"></div>
@@ -149,6 +192,8 @@ export default function ProfilePrivateView({
                   </div>
                   <input
                     type="text"
+                    readOnly
+                    value={socialData?.instagram}
                     className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
                   />
                   <div className="flex items-center gap-2"></div>
@@ -166,6 +211,8 @@ export default function ProfilePrivateView({
                   </div>
                   <input
                     type="text"
+                    readOnly
+                    value={socialData?.website}
                     className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
                   />
                   <div className="flex items-center gap-2"></div>

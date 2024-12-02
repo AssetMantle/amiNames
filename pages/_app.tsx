@@ -146,7 +146,7 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
             >
               <Component {...pageProps} />
               {isLoading && <Loading />}
-              <ToastContainer
+            {/*   <ToastContainer
                 position="bottom-center"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -157,7 +157,7 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
                 draggable
                 pauseOnHover
                 theme="dark"
-              />
+              /> */}
             </Box>
           </QueryClientProvider>
         </ChainProvider>
