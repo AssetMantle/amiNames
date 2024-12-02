@@ -30,7 +30,7 @@ export default function ProfilePrivateView({
     // console.log("inside useEffect, profile: ", originalSocialData);
     const fetchSocialData = async () => {
       try {
-        const profileName = PROFILE_NAME as string;
+        const profileName = profileNames?.[0];
         setLoading(true);
         const data = await fetchProfileSocials(profileName);
 
@@ -48,7 +48,7 @@ export default function ProfilePrivateView({
           // Store the cleaned social data and the original social data
           setSocialData(cleanedSocialData); // Store cleaned data
           setOriginalSocialData(originalSocialData); // Store the original data
-          setProfile(PROFILE_NAME as string);
+          setProfile(profileName);
 
           // Check if cleaned socialData is empty, and set the switch accordingly
           if (Object.keys(cleanedSocialData).length === 0) {
@@ -112,7 +112,7 @@ export default function ProfilePrivateView({
   return IsViewQR ? (
     <PrivateQRCode
       PROFILE_NAMES={profileNames}
-      PROFILE_NAME={PROFILE_NAME}
+      PROFILE_NAME={profile}
       changeView={setIsViewQR}
     />
   ) : (
