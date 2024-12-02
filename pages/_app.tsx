@@ -1,4 +1,5 @@
 import "@interchain-ui/react/styles";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/index.scss";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -139,6 +140,18 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
           signerOptions={signerOptions}
         >
           <QueryClientProvider client={queryClient}>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
             <Box
               className={themeClass}
               minHeight="100dvh"
@@ -146,18 +159,6 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
             >
               <Component {...pageProps} />
               {isLoading && <Loading />}
-            {/*   <ToastContainer
-                position="bottom-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-              /> */}
             </Box>
           </QueryClientProvider>
         </ChainProvider>
