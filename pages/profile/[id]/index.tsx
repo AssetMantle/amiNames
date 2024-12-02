@@ -158,7 +158,7 @@ export default function Profile() {
       <Header
         profileName={PROFILE_NAME}
         setIsLogin={setIsLogin}
-        isLogin={isLogin}
+        isLogin={isMyProfile}
       />
       <main className="am-ami-container-sm h-[calc(100dvh-97.02px)] overflow-y-hidden scroll-smooth snap-mandatory snap-y relative">
         {isMyProfile ? (
