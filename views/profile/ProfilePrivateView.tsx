@@ -6,7 +6,7 @@ import { LinksList } from "@/constant";
 import { showToastMessage } from "@/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { AiFillDelete } from "react-icons/ai";
+import { ImBin } from "react-icons/im";
 import PrivateQRCode from "./PrivateQRCode";
 
 export default function ProfilePrivateView({
@@ -167,7 +167,7 @@ export default function ProfilePrivateView({
             />
           </h3>
           {!Switch && (
-            <div className="flex flex-col gap-5 h-[230px] overflow-y-auto">
+            <div className="flex flex-col gap-5 max-h-[230px] overflow-y-auto">
               {Object.keys(socialData).length === 0 ? (
                 <div
                   className="flex flex-col items-center justify-center gap-2 cursor-pointer"
@@ -209,9 +209,11 @@ export default function ProfilePrivateView({
                           value={socialData[link.key]} // Dynamically fetch value from socialData
                           className="border border-[#6188F8] px-4 py-1 rounded-lg flex-grow"
                         />
-                        <AiFillDelete
+                        <ImBin
                           className="text-red-500 cursor-pointer"
                           size={20}
+                          role="button"
+                          tabIndex={0}
                           onClick={() => handleDelete(link.key)} // Pass the key to handleDelete
                         />
                       </div>
