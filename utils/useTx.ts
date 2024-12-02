@@ -50,8 +50,7 @@ export class TxResult {
 
 export function useTx() {
   const chainName = defaultChainName;
-  const { address, estimateFee, getOfflineSignerDirect, getRpcEndpoint } =
-    useChain(chainName);
+  const { address, estimateFee, getOfflineSignerDirect } = useChain(chainName);
 
   async function tx(msgs: Msg[], memo: string, options: TxOptions = {}) {
     if (!address) {
@@ -107,4 +106,33 @@ export function useTx() {
   }
 
   return { tx };
+}
+
+export function useBalance() {
+  const { address, getOfflineSignerDirect } = useChain(defaultChainName);
+
+  async function getBalance(): Promise<string> {
+    if (!address) {
+      throw new Error("Wallet not connected");
+    }
+
+    try {
+      const signer: any = await getOfflineSignerDirect();
+      // Create the client (like you do in useTx)
+      const client = await getSigningAssetmantleClient({
+        rpcEndpoint: rpc, // Make sure you have the correct RPC endpoint
+        signer,
+      });
+
+      // Fetch the balance for the provided address and denom
+      const balance = await client.getBalance(address, defaultChainDenom);
+
+      // Return the balance or null if it's not found
+      return balance?.amount || "0";
+    } catch (e: any) {
+      throw new Error(`Failed to get balance: ${e.message || "Unknown error"}`);
+    }
+  }
+
+  return { getBalance };
 }
