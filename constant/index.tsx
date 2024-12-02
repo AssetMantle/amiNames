@@ -89,54 +89,108 @@ export const LinksList = [
     key: "twitter",
     icon: "/assets/images/icons/twitter.png",
     text: "Twitter",
+    profileUrl: (username: string) => `https://twitter.com/${username}`,
+    validationRegex: /^[a-zA-Z0-9_]{1,15}$/, // Letters, numbers, underscores, 1-15 chars
     classNames: "bg-black",
   },
   {
     key: "telegram",
     icon: "/assets/images/icons/telegram.png",
     text: "Telegram",
+    profileUrl: (username: string) => `https://t.me/${username}`,
+    validationRegex: /^[a-zA-Z0-9_]{5,32}$/, // Telegram usernames, 5-32 chars
     classNames: "am-ami-bg-telegram",
   },
   {
     key: "instagram",
     icon: "/assets/images/icons/instagram.svg",
     text: "Instagram",
+    profileUrl: (username: string) => `https://instagram.com/${username}`,
+    validationRegex: /^[a-zA-Z0-9._]{1,30}$/, // Letters, numbers, dots, underscores, 1-30 chars
     classNames: "am-ami-bg-instagram",
   },
   {
     key: "website",
     icon: "/assets/images/icons/globe-w.svg",
     text: "Website",
+    profileUrl: (url: string) => url, // Directly use user-provided URL
+    validationRegex: /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}.*$/, // Valid HTTP/HTTPS URLs
     classNames: "bg-black",
   },
   {
     key: "linkedin",
     icon: "/assets/images/icons/linkedin.png",
     text: "LinkedIn",
+    profileUrl: (username: string) => `https://www.linkedin.com/in/${username}`,
+    validationRegex: /^[a-zA-Z0-9-]{1,100}$/, // LinkedIn public profile URL slug
     classNames: "bg-[#0077B5]",
   },
   {
     key: "facebook",
     icon: "/assets/images/icons/facebook.svg",
     text: "Facebook",
+    profileUrl: (username: string) => `https://facebook.com/${username}`,
+    validationRegex: /^[a-zA-Z0-9.]{5,50}$/, // Facebook usernames, 5-50 chars
     classNames: "bg-[#1877F2]",
   },
   {
     key: "youtube",
     icon: "/assets/images/icons/youtube.svg",
     text: "YouTube",
+    profileUrl: (channelId: string) => `https://www.youtube.com/@${channelId}`,
+    validationRegex: /^[a-zA-Z0-9_-]{1,50}$/, // Channel/user IDs
     classNames: "bg-[#FF0000]",
   },
   {
     key: "github",
     icon: "/assets/images/icons/github.svg",
     text: "GitHub",
+    profileUrl: (username: string) => `https://github.com/${username}`,
+    validationRegex: /^[a-zA-Z0-9-]{1,39}$/, // GitHub usernames, 1-39 chars
     classNames: "bg-black",
   },
   {
     key: "medium",
     icon: "/assets/images/icons/medium.svg",
     text: "Medium",
+    profileUrl: (username: string) => `https://${username}.medium.com`,
+    validationRegex: /^[a-zA-Z0-9-]{1,50}$/, // Medium usernames, 1-50 chars
     classNames: "bg-black",
   },
 ];
+
+export const formatWebsiteUrl = (input: string) => {
+  // Trim spaces
+  input = input.trim();
+
+  // Get the length of the input
+  const n = input.length;
+
+  // If the input length is up to 8 characters
+  if (n <= 8) {
+    // Slice both "http://" and "https://" to the length of input
+    const httpSlice = "http://".slice(0, n);
+    const httpsSlice = "https://".slice(0, n);
+
+    // If either slice matches the input, return it as is
+    if (input.startsWith(httpSlice) || input.startsWith(httpsSlice)) {
+      return input;
+    }
+
+    // Otherwise, add "https://" as the default protocol
+    return "https://" + input;
+  }
+
+  // If the input length is more than 8 characters, handle it as a full URL
+  // Compare first 7 chars with "https://"
+  if (input.slice(0, 7) !== "https://") {
+    // Compare first 8 chars with "https://"
+    if (input.slice(0, 8) !== "https://") {
+      // If neither match, prepend "https://"
+      return "https://" + input;
+    }
+  }
+
+  // Otherwise, if it's already starting with "https://", return it as is
+  return input;
+};
