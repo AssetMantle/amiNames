@@ -83,3 +83,51 @@ export const instagramUrlRegEx =
 
 export const instagramHandleRegEx =
   /^(?:@)?[a-zA-Z0-9_](?:[a-zA-Z0-9_.]{0,28}[a-zA-Z0-9_])?$/;
+
+export const LinksList = [
+  {
+    key: "twitter",
+    icon: "/assets/images/icons/twitter.png",
+    text: "Twitter",
+  },
+  {
+    key: "telegram",
+    icon: "/assets/images/icons/telegram.png",
+    text: "Telegram",
+  },
+  {
+    key: "instagram",
+    icon: "/assets/images/icons/instagram.svg",
+    text: "Instagram",
+  },
+  {
+    key: "website",
+    icon: "/assets/images/icons/globe.svg",
+    text: "Website",
+  },
+  {
+    key: "linkedin",
+    icon: "/assets/images/icons/linkedin.png",
+    text: "LinkedIn",
+  },
+  {
+    key: "facebook",
+    icon: "/assets/images/icons/facebook.svg",
+    text: "Facebook",
+  },
+  {
+    key: "youtube",
+    icon: "/assets/images/icons/youtube.svg",
+    text: "YouTube",
+  },
+  {
+    key: "github",
+    icon: "/assets/images/icons/github.svg",
+    text: "GitHub",
+  },
+  {
+    key: "medium",
+    icon: "/assets/images/icons/medium.svg",
+    text: "Medium",
+  },
+];

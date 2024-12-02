@@ -92,11 +92,6 @@ export default function Profile() {
             PROFILE_NAME.toLowerCase()
           );
 
-          console.log(
-            "complex condition ",
-            address && retrievedUsername?.address == address
-          );
-
           // Search for PROFILE_NAME and get its associated address
           const associatedEntry = parsedData.find(
             (item) => item.name === PROFILE_NAME

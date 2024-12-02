@@ -1,5 +1,6 @@
 import Loading from "@/components/Loading";
 import { fetchProfileSocials } from "@/config";
+import { LinksList } from "@/constant";
 import { showToastMessage } from "@/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -9,19 +10,9 @@ export default function ProfilePublicView({
 }: {
   profileNames: string[]; // Expect an array of strings
 }) {
-  const CreateValidURL = (url: string): any => {
-    return url.startsWith("www") ? `https://${url}` : url;
-  };
-
   const [socialData, setSocialData] = useState<any>({});
   const [profile, setProfile] = useState<string>("");
   const [loading, setLoading] = useState(true);
-  /* const socialData = {
-    twitter: "https://t.me/kombos",
-    telegram: "https://t.me/kombos",
-    instagram: "https://t.me/kombos",
-    website: "https://t.me/kombos",
-  }; */
 
   useEffect(() => {
     const fetchSocialData = async () => {
@@ -31,7 +22,14 @@ export default function ProfilePublicView({
         const data = await fetchProfileSocials(profileName);
 
         if (!data?.error) {
-          setSocialData(data?.socials); // Assuming the API returns `{ profile, socials }`
+          // Ensure `socials` values are strings and filter out entries with empty or whitespace-only values
+          const cleanedSocialData = Object.fromEntries(
+            Object.entries(data?.socials || {}).filter(
+              ([_, value]) => typeof value === "string" && value.trim() !== "" // Ensure the value is a string and not empty or whitespace
+            )
+          );
+
+          setSocialData(cleanedSocialData); // Store the cleaned social data in state
           setProfile(data?.profile);
         } else {
           throw new Error(data?.error);
@@ -48,6 +46,9 @@ export default function ProfilePublicView({
   }, [profileNames]);
 
   if (loading || !profile) return <Loading />;
+
+  const hasSocialLinks = Object.keys(socialData).length > 0;
+
   console.log(
     "length socials: ",
     Object.keys(socialData).length,
@@ -77,73 +78,41 @@ export default function ProfilePublicView({
         </div>
       </div>
       <div className="flex flex-col gap-3 w-[min(320px,100%)]">
-        {socialData?.twitter && (
-          <a
-            target="_blank"
-            className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] bg-black"
-            href={CreateValidURL(socialData?.twitter)}
-            rel="noopener noreferrer"
-          >
+        {hasSocialLinks ? (
+          // Display social links dynamically
+          LinksList.map(
+            (link) =>
+              socialData[link.key] && (
+                <a
+                  key={link.key}
+                  target="_blank"
+                  className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)]"
+                  href={socialData[link.key]}
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    className=""
+                    width={30}
+                    height={30}
+                    alt={link.text}
+                    src={link.icon}
+                  />{" "}
+                  {link.text}
+                </a>
+              )
+          )
+        ) : (
+          // Show "Add Links Now" when no social data
+          <div className="flex flex-col items-center justify-center gap-2 cursor-pointer">
             <Image
-              className=""
-              width={30}
-              height={30}
-              alt="twitter"
-              src={`/assets/images/icons/twitter.png`}
-            />{" "}
-            Twitter
-          </a>
-        )}
-        {socialData?.telegram && (
-          <a
-            target="_blank"
-            className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] am-ami-bg-telegram"
-            href={CreateValidURL(socialData?.telegram)}
-            rel="noopener noreferrer"
-          >
-            <Image
-              className=""
-              width={30}
-              height={30}
-              alt="telegram"
-              src={`/assets/images/icons/telegram.png`}
-            />{" "}
-            Telegram
-          </a>
-        )}
-        {socialData?.instagram && (
-          <a
-            target="_blank"
-            className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] am-ami-bg-instagram"
-            href={CreateValidURL(socialData?.instagram)}
-            rel="noopener noreferrer"
-          >
-            <Image
-              className=""
-              width={24}
-              height={24}
-              alt="instagram"
-              src={"/assets/images/icons/instagram-t.svg"}
-            />{" "}
-            Instagram
-          </a>
-        )}
-        {socialData?.website && (
-          <a
-            target="_blank"
-            className="flex items-center justify-center gap-2 border rounded-md px-5 py-2 text-white font-medium w-[min(320px,100%)] bg-black"
-            href={CreateValidURL(socialData?.website)}
-            rel="noopener noreferrer"
-          >
-            <Image
-              className=""
-              width={24}
-              height={24}
-              alt="Website"
-              src={"/assets/images/icons/globe-w.svg"}
-            />{" "}
-            Website
-          </a>
+              src="/assets/images/noLinks.png"
+              alt="Add Social Links"
+              width={120}
+              height={120}
+              className="object-contain"
+            />
+            <p className="text-xl text-gray-800">No Links Attached</p>
+          </div>
         )}
       </div>
     </div>
