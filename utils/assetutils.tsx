@@ -66,19 +66,7 @@ export const showToastMessage = (
   type: "success" | "error",
   message: string
 ) => {
-  toast[type](message, {
-    position: "bottom-right",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    style: {
-      backgroundColor: toastBgColor[type],
-    },
-  });
+  toast[type](message);
 };
 
 export const getBech32AddressFromBytes = (data: ArrayLike<number>) => {
