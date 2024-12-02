@@ -6,8 +6,9 @@ import { isValidReferrer, showToastMessage, updateMyAmiList } from "@/utils";
 import ProfilePrivateView from "@/views/profile/ProfilePrivateView";
 import ProfilePublicView from "@/views/profile/ProfilePublicView";
 import { useChain } from "@cosmos-kit/react";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Profile() {
   const router = useRouter();
@@ -18,8 +19,6 @@ export default function Profile() {
   const [profileNames, setProfileNames] = useState<string[]>([]);
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  const BODY = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -162,13 +161,14 @@ export default function Profile() {
         setIsLogin={setIsLogin}
         isLogin={isLogin}
       />
-      <main
-        className="am-ami-container-sm p-6 h-[calc(100dvh-97.02px)] overflow-y-hidden scroll-smooth"
-        style={{ scrollSnapType: "y mandatory" }}
-        ref={BODY}
-      >
+      <main className="am-ami-container-sm h-[calc(100dvh-97.02px)] overflow-y-hidden scroll-smooth snap-mandatory snap-y relative">
         {isMyProfile ? (
-          <ProfilePrivateView profileNames={profileNames} BODY={BODY} />
+          <>
+            <ProfilePrivateView
+              profileNames={profileNames}
+              PROFILE_NAME={PROFILE_NAME}
+            />
+          </>
         ) : (
           <ProfilePublicView profileNames={profileNames} />
         )}
