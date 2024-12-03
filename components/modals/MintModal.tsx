@@ -24,6 +24,7 @@ import { useRouter } from "next/navigation";
 import { IconWrapper } from "../IconWrapper";
 import Modal from "./Modal";
 import { ClipboardCopyText } from "@interchain-ui/react";
+import { MdContentCopy } from "react-icons/md";
 
 const MintModal = ({
   isOpen,
@@ -203,10 +204,10 @@ const MintModal = ({
           >
             {`${window.location.origin}?referral=${userName}`}
           </a>
-
-          <IconWrapper
-            iconClassName="content_copy"
-            iconSize="text-2xl text-[#396AF6]"
+          <MdContentCopy
+            role="button"
+            tabIndex={0}
+            className="text-2xl text-[#396AF6]"
             onClick={() => {
               handleCopy(`${window.location.origin}?referral=${userName}`);
             }}
