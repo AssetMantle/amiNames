@@ -6,12 +6,7 @@ import {
   defaultFeeGas,
   warpcastUrl,
 } from "@/constant";
-import {
-  getFromLocalStorage,
-  saveToLocalStorage,
-  showToastMessage,
-  updateMyAmiList,
-} from "@/utils";
+import { showToastMessage, updateMyAmiList } from "@/utils";
 import { assetmantle, cosmos } from "@assetmantle/mantlejs";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
@@ -19,12 +14,11 @@ import React, { useEffect, useState } from "react";
 //@ts-ignore
 import { defaultReferrer } from "@/config";
 import { useBalance, useTx } from "@/utils/useTx";
+import { ClipboardCopyText } from "@interchain-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { IconWrapper } from "../IconWrapper";
-import Modal from "./Modal";
-import { ClipboardCopyText } from "@interchain-ui/react";
 import { MdContentCopy } from "react-icons/md";
+import Modal from "./Modal";
 
 const MintModal = ({
   isOpen,
@@ -106,7 +100,6 @@ const MintModal = ({
       // call the sign and broadcast function and pass the message and other arguments
       console.log("msg: ", msg, " memo: ", memo, " fee: ", fee);
       response = await tx([msg], memo, { fee });
-      console.log("response: ", response);
       if (response.isSuccess) {
         setSuccess(true);
         setLoader(false);
@@ -116,13 +109,11 @@ const MintModal = ({
           showToastMessage("error", "AMI name already registered");
           console.error("error in tx: ", response?.error?.message);
           setLoader(false);
-          setOpen(false);
           return;
         } else {
           showToastMessage("error", response?.error?.message ?? "");
           console.error("error in tx2: ", response?.error?.message);
           setLoader(false);
-          setOpen(false);
           return;
         }
       }
