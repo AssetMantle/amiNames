@@ -15,7 +15,7 @@ import {
   ibcProtoRegistry,
 } from "interchain-query";
 
-export const defaultChainName = "assetmantle";
+export const defaultChainName = "osmosis";
 
 export const chainassets = assets.find(
   (chain) => chain.chain_name === defaultChainName

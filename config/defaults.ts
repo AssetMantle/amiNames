@@ -15,7 +15,7 @@ import {
   ibcProtoRegistry,
 } from "interchain-query";
 
-export const defaultChainName = "assetmantle";
+export const defaultChainName = "osmosis";
 export const defaultReferrer = "assetmantle";
 
 export const chainassets = assets.find(

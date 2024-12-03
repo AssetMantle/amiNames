@@ -1,7 +1,10 @@
-export const rpc = "https://rpc.assetmantle.one/";
-export const restApi = "https://rest.assetmantle.one/";
-export const chain = "assetmantle";
-export const defaultChainDenom = "umntl";
+// export const rpc = "https://rpc.assetmantle.one/";
+export const rpc = "https://rpc.osmosis.zone/";
+export const restApi = "https://rest.osmosis.zone/";
+// export const chain = "assetmantle";
+export const chain = "osmosis";
+// export const defaultChainDenom = "umntl";
+export const defaultChainDenom = "uosmo";
 export const defaultFeeAmount = "2000";
 export const defaultFeeGas = "250000";
 export const heroSecHeadingText = "Unleash the future of";
