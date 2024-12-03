@@ -52,7 +52,7 @@ export default function SelectNameModal({
                 </span>
                 {!(currentName === name) && (
                   <Link
-                    href={`/profile/${name}?referral=${currentName}`}
+                    href={`/profile/${name}`}
                     className="opacity-0 absolute w-full h-full inset-0"
                   />
                 )}
