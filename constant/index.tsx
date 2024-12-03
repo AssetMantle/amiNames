@@ -87,7 +87,7 @@ export const instagramHandleRegEx =
 export const LinksList = [
   {
     key: "twitter",
-    icon: "/assets/images/icons/twitter.png",
+    icon: "/assets/images/icons/twitter-t.svg",
     text: "Twitter",
     profileUrl: (username: string) => `https://twitter.com/${username}`,
     validationRegex: /^[a-zA-Z0-9_]{1,15}$/, // Letters, numbers, underscores, 1-15 chars
@@ -95,7 +95,7 @@ export const LinksList = [
   },
   {
     key: "telegram",
-    icon: "/assets/images/icons/telegram.png",
+    icon: "/assets/images/icons/telegram-t.svg",
     text: "Telegram",
     profileUrl: (username: string) => `https://t.me/${username}`,
     validationRegex: /^[a-zA-Z0-9_]{5,32}$/, // Telegram usernames, 5-32 chars
@@ -103,7 +103,7 @@ export const LinksList = [
   },
   {
     key: "instagram",
-    icon: "/assets/images/icons/instagram.svg",
+    icon: "/assets/images/icons/instagram-t.svg",
     text: "Instagram",
     profileUrl: (username: string) => `https://instagram.com/${username}`,
     validationRegex: /^[a-zA-Z0-9._]{1,30}$/, // Letters, numbers, dots, underscores, 1-30 chars
@@ -119,11 +119,11 @@ export const LinksList = [
   },
   {
     key: "linkedin",
-    icon: "/assets/images/icons/linkedin.png",
+    icon: "/assets/images/icons/linkedin.svg",
     text: "LinkedIn",
     profileUrl: (username: string) => `https://www.linkedin.com/in/${username}`,
     validationRegex: /^[a-zA-Z0-9-]{1,100}$/, // LinkedIn public profile URL slug
-    classNames: "bg-[#0077B5]",
+    classNames: "am-ami-bg-linkedin",
   },
   {
     key: "facebook",
@@ -131,7 +131,7 @@ export const LinksList = [
     text: "Facebook",
     profileUrl: (username: string) => `https://facebook.com/${username}`,
     validationRegex: /^[a-zA-Z0-9.]{5,50}$/, // Facebook usernames, 5-50 chars
-    classNames: "bg-[#1877F2]",
+    classNames: "am-ami-bg-facebook",
   },
   {
     key: "youtube",
@@ -139,7 +139,7 @@ export const LinksList = [
     text: "YouTube",
     profileUrl: (channelId: string) => `https://www.youtube.com/@${channelId}`,
     validationRegex: /^[a-zA-Z0-9_-]{1,50}$/, // Channel/user IDs
-    classNames: "bg-[#FF0000]",
+    classNames: "am-ami-bg-youtube",
   },
   {
     key: "github",
