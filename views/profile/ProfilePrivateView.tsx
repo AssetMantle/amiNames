@@ -188,13 +188,17 @@ export default function ProfilePrivateView({
                         className="flex flex-wrap items-center gap-2"
                       >
                         <div className="flex items-center gap-2 w-full md:w-[min(120px,100%)]">
-                          <Image
-                            width={24}
-                            height={24}
-                            className="my-auto"
-                            alt={link.text}
-                            src={link.icon}
-                          />
+                          <div
+                            className={`rounded-[50%] p-1 ${link?.classNames}`}
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              className={`my-auto`}
+                              alt={link.text}
+                              src={link.icon}
+                            />
+                          </div>
                           {link.text}
                         </div>
                         <input
@@ -252,12 +256,16 @@ export default function ProfilePrivateView({
                           setModalState(true);
                         }}
                       >
-                        <Image
-                          src={link.icon}
-                          alt={`${link.text} Icon`}
-                          width={24}
-                          height={24}
-                        />
+                        <div
+                          className={`rounded-[50%] p-1 ${link?.classNames}`}
+                        >
+                          <Image
+                            src={link.icon}
+                            alt={`${link.text} Icon`}
+                            width={24}
+                            height={24}
+                          />
+                        </div>
                         <p className="">{link.text}</p>
                       </div>
                     )
