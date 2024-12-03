@@ -23,6 +23,7 @@ export default function AddLinkModal({
     text: string;
     profileUrl: (input: string) => string;
     validationRegex: RegExp;
+    classNames: string | undefined;
   }[];
   socialData: any;
   setSocialData: Dispatch<SetStateAction<any>>;
@@ -122,13 +123,15 @@ export default function AddLinkModal({
         </p>
 
         <div className="flex items-center gap-2">
-          <Image
-            width={34}
-            height={34}
-            className="my-auto"
-            alt={ModalFor}
-            src={currentLink?.icon ?? "/assets/images/icons/link-45deg.svg"}
-          />
+          <div className={`rounded-[50%] p-1 ${currentLink?.classNames}`}>
+            <Image
+              width={34}
+              height={34}
+              className="my-auto"
+              alt={ModalFor}
+              src={currentLink?.icon ?? "/assets/images/icons/link-45deg.svg"}
+            />
+          </div>
           <input
             ref={inputRef} // Add ref to input
             type="text"
