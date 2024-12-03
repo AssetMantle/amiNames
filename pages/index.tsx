@@ -5,13 +5,13 @@ import {
   getFromLocalStorage,
   isValidReferrer,
   showToastMessage,
-  updateMyAmiList
+  updateMyAmiList,
 } from "@/utils";
 import { useChain } from "@cosmos-kit/react";
-import { debounce } from "lodash";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function Home() {
   const router = useRouter();
@@ -40,17 +40,6 @@ export default function Home() {
     }
   }
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (/^[a-z0-9_]*$/.test(e.target.value)) {
-      if (e?.target?.value?.length > 30) {
-        return;
-      }
-      setLoader(true);
-      debounceFn(e.target.value);
-      setInputValue(e.target.value);
-    }
-  };
-
   const userNameExist = async (value: string) => {
     const retrievedUsername = await isValidReferrer(value.toLowerCase());
     setPremiumAddr({
@@ -75,7 +64,19 @@ export default function Home() {
     setLoader(false);
   };
 
-  const debounceFn = useCallback(debounce(userNameExist, 1000), []);
+  const debouncedSearch = useDebouncedCallback((value) => {
+    userNameExist(value).then(() => setLoader(false));
+  }, 1000);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^[a-z0-9_]*$/.test(value)) {
+      if (value.length > 30) return;
+      setLoader(true);
+      setInputValue(value);
+      debouncedSearch(value); // Pass the new value
+    }
+  };
 
   const handleMintModal = async () => {
     if (!idExist) {
