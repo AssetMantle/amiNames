@@ -2089,7 +2089,6 @@ __metadata:
     "@osmonauts/math": "npm:^1.18.0"
     "@tanstack/react-query": "npm:4.32.0"
     "@tanstack/react-query-devtools": "npm:4.32.0"
-    "@types/lodash": "npm:^4"
     "@types/node": "npm:^20.14.6"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
@@ -2105,7 +2104,6 @@ __metadata:
     interchain-query: "npm:^1.10.7"
     js-sha256: "npm:^0.11.0"
     local: "link:@next/font/local"
-    lodash: "npm:^4.17.21"
     next: "npm:^13"
     osmo-query: "npm:16.5.1"
     postcss: "npm:^8.4.49"
@@ -2117,6 +2115,7 @@ __metadata:
     sass: "npm:^1.81.0"
     tailwindcss: "npm:^3.4.15"
     typescript: "npm:^5.1.6"
+    use-debounce: "npm:^10.0.4"
   languageName: unknown
   linkType: soft
 
@@ -6352,7 +6351,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:*, @types/lodash@npm:^4":
+"@types/lodash@npm:*":
   version: 4.17.13
   resolution: "@types/lodash@npm:4.17.13"
   checksum: 10c0/c3d0b7efe7933ac0369b99f2f7bff9240d960680fdb74b41ed4bd1b3ca60cca1e31fe4046d9abbde778f941a41bc2a75eb629abf8659fa6c27b66efbbb0802a9
@@ -13949,6 +13948,15 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/d232c37160fe3970c99255da19b5fb5299fb5926a5d6141d928a87feb47732c323d29be2f8137d3b1e5499c70d284cd1d9cfad703cc58179db8be24d7dd8f1f2
+  languageName: node
+  linkType: hard
+
+"use-debounce@npm:^10.0.4":
+  version: 10.0.4
+  resolution: "use-debounce@npm:10.0.4"
+  peerDependencies:
+    react: "*"
+  checksum: 10c0/73494fc44b2bd58a7ec799a528fc20077c45fe2e94fedff6dcd88d136f7a39f417d77f584d5613aac615ed32aeb2ea393797ae1f7d5b2645eab57cb497a6d0cb
   languageName: node
   linkType: hard
 
