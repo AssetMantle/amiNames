@@ -70,11 +70,12 @@ export default function Home() {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (/^[a-z0-9_]*$/.test(value)) {
-      if (value.length > 30) return;
-      setLoader(true);
+    console.log("inside handleInputChange: ", value);
+    // Check if the input value matches the allowed pattern and is within length limit
+    if (/^[a-z0-9_]*$/.test(value) && value.length <= 30) {
       setInputValue(value);
-      debouncedSearch(value); // Pass the new value
+      setLoader(true);
+      debouncedSearch(value);
     }
   };
 
@@ -106,6 +107,8 @@ export default function Home() {
       setMintModal(false);
     }
   }, [address]);
+
+  console.log("inputValue: ", inputValue, " idExist: ", idExist);
 
   return (
     <main className="flex h-[100dvh] flex-col items-center justify-center font-inter p-6 am-ami-container-sm">
