@@ -123,10 +123,10 @@ export default function AddLinkModal({
         </p>
 
         <div className="flex items-center gap-2">
-          <div className={`rounded-[50%] p-1 ${currentLink?.classNames}`}>
+          <div className={`rounded-[50%] p-2 ${currentLink?.classNames}`}>
             <Image
-              width={34}
-              height={34}
+              width={26}
+              height={26}
               className="my-auto"
               alt={ModalFor}
               src={currentLink?.icon ?? "/assets/images/icons/link-45deg.svg"}
