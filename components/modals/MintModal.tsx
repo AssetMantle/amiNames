@@ -6,6 +6,7 @@ import {
   defaultFeeGas,
   warpcastUrl,
 } from "@/constant";
+
 import { isValidReferrer, showToastMessage, updateMyAmiList } from "@/utils";
 import { assetmantle, cosmos } from "@assetmantle/mantlejs";
 import { useChain } from "@cosmos-kit/react";
