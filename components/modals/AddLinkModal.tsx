@@ -12,6 +12,7 @@ export default function AddLinkModal({
   LinksList,
   socialData,
   setSocialData,
+  handleStoreLinks,
 }: {
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -27,6 +28,7 @@ export default function AddLinkModal({
   }[];
   socialData: any;
   setSocialData: Dispatch<SetStateAction<any>>;
+  handleStoreLinks: (updatedSocialData: any) => Promise<void>; // Add the type for handleStoreLinks here
 }) {
   const [inputValue, setInputValue] = useState<string>("");
   const inputRef = useRef<HTMLInputElement | null>(null); // Ref for the input element
@@ -73,15 +75,7 @@ export default function AddLinkModal({
     }
   };
 
-  const handleSave = () => {
-    console.log(
-      "Input Value: ",
-      inputValue,
-      " regex: ",
-      currentLink?.validationRegex,
-      " Modalfor: ",
-      ModalFor
-    );
+  const handleSave = async () => {
     if (!currentLink || !inputValue) {
       alert("Invalid Input");
       setInputValue("");
@@ -102,13 +96,19 @@ export default function AddLinkModal({
     const profileUrl =
       ModalFor === "Website" ? inputValue : currentLink.profileUrl(inputValue);
 
+    const newSocialData = {
+      ...socialData,
+      [currentLink.key]: profileUrl,
+    };
+
     setSocialData((prevData: any) => ({
       ...prevData,
       [currentLink.key]: profileUrl,
     }));
 
-    setInputValue("");
+    await handleStoreLinks(newSocialData);
     onClose();
+    setInputValue("");
   };
 
   const handleCopy = () => {
