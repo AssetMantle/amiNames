@@ -34,6 +34,8 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
   const { themeClass } = useTheme();
   const router = useRouter();
 
+  const subWallets = wallets.not("coin98", "compass");
+
   // State to manage loading screen
   const [isLoading, setIsLoading] = useState(false);
 
@@ -153,7 +155,7 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
           chains={chains}
           // @ts-ignore
           assetLists={assets}
-          wallets={wallets}
+          wallets={subWallets}
           walletConnectOptions={{
             signClient: {
               projectId: "a8510432ebb71e6948cfd6cde54b70f7",

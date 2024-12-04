@@ -153,8 +153,8 @@ export const LinksList = [
     key: "medium",
     icon: "/assets/images/icons/medium.svg",
     text: "Medium",
-    profileUrl: (username: string) => `https://${username}.medium.com`,
-    validationRegex: /^[a-zA-Z0-9-]{1,50}$/, // Medium usernames, 1-50 chars
+    profileUrl: (username: string) => `https://medium.com/@${username}`,
+    validationRegex: /^(?![-.])(?!.*[.-]{2})[a-zA-Z0-9.-]{1,30}(?<![-.])$/, // Medium usernames, 1-50 chars
     classNames: "bg-black",
   },
 ];

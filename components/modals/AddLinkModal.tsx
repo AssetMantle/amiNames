@@ -47,14 +47,25 @@ export default function AddLinkModal({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
-    // Temporary regex for all socials to allow empty string
     const temporaryRegex =
       ModalFor === "Telegram"
-        ? /^[a-zA-Z0-9_]{0,32}$/ // Allow empty string and valid characters
+        ? /^[a-zA-Z0-9_]{0,32}$/ // Telegram username
+        : ModalFor === "Twitter"
+        ? /^[a-zA-Z0-9_]{0,15}$/ // Twitter username
         : ModalFor === "Facebook"
-        ? /^[a-zA-Z0-9.]{0,50}$/
+        ? /^[a-zA-Z0-9.]{0,50}$/ // Facebook username
+        : ModalFor === "Instagram"
+        ? /^[a-zA-Z0-9._]{0,30}$/ // Instagram username
+        : ModalFor === "LinkedIn"
+        ? /^[a-zA-Z0-9-]{0,100}$/ // LinkedIn username
         : ModalFor === "Website"
-        ? /^.*$/
+        ? /^.*$/ // Allow any input for Website
+        : ModalFor === "YouTube"
+        ? /^[a-zA-Z0-9_-]{0,50}$/ // YouTube username
+        : ModalFor === "GitHub"
+        ? /^[a-zA-Z0-9-]{0,39}$/ // GitHub username
+        : ModalFor === "Medium"
+        ? /^[a-zA-Z0-9.-]{0,30}$/ // Medium username
         : new RegExp(`^$|${currentLink?.validationRegex.source}`); // Default to allow empty or valid input
 
     if (temporaryRegex.test(value)) {
@@ -63,6 +74,14 @@ export default function AddLinkModal({
   };
 
   const handleSave = () => {
+    console.log(
+      "Input Value: ",
+      inputValue,
+      " regex: ",
+      currentLink?.validationRegex,
+      " Modalfor: ",
+      ModalFor
+    );
     if (!currentLink || !inputValue) {
       alert("Invalid Input");
       setInputValue("");
