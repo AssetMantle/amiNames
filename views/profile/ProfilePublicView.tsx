@@ -49,13 +49,6 @@ export default function ProfilePublicView({
 
   const hasSocialLinks = Object.keys(socialData).length > 0;
 
-  console.log(
-    "length socials: ",
-    Object.keys(socialData).length,
-    " socials: ",
-    socialData
-  );
-
   return (
     <div className="flex flex-col items-center justify-center h-full gap-9 p-6">
       <div className="flex items-center justify-center mx-auto relative">

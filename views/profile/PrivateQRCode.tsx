@@ -53,7 +53,7 @@ export default function PrivateQRCode({
             <QRCodeSVG
               width="100%"
               height="100%"
-              value={`https://ami-na.me/profile/${PROFILE_NAME}?referral=${PROFILE_NAME}`}
+              value={`https://ami-na.me/${PROFILE_NAME}?referral=${PROFILE_NAME}`}
             />
           </Suspense>
         </div>
