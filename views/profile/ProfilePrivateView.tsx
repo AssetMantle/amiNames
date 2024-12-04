@@ -31,7 +31,6 @@ export default function ProfilePrivateView({
     const fetchSocialData = async () => {
       try {
         const profileName = profileNames?.[0];
-        setLoading(true);
         const data = await fetchProfileSocials(profileName);
 
         if (!data?.error) {
@@ -64,7 +63,7 @@ export default function ProfilePrivateView({
         setLoading(false);
       }
     };
-
+    setLoading(true);
     fetchSocialData();
   }, [profileNames, PROFILE_NAME]);
 

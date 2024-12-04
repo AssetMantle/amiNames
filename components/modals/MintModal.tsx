@@ -6,17 +6,18 @@ import {
   defaultFeeGas,
   warpcastUrl,
 } from "@/constant";
-import { showToastMessage, updateMyAmiList } from "@/utils";
+
+import { isValidReferrer, showToastMessage, updateMyAmiList } from "@/utils";
 import { assetmantle, cosmos } from "@assetmantle/mantlejs";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 //@ts-ignore
-import { defaultReferrer } from "@/config";
+import { defaultReferrer, useReferralRouter } from "@/config";
 import { useBalance, useTx } from "@/utils/useTx";
 import { ClipboardCopyText } from "@interchain-ui/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { MdContentCopy } from "react-icons/md";
 import Modal from "./Modal";
 
@@ -26,11 +27,9 @@ const MintModal = ({
   userName,
   isPremium,
   provisionAddress,
-  isValidRef,
-  referrer,
 }: any) => {
   // const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-  const router = useRouter();
+  const router = useReferralRouter();
   const recaptchaRef = React.createRef();
   const chainContext = useChain(chain);
   const [loader, setLoader] = useState(false);
@@ -39,6 +38,7 @@ const MintModal = ({
   const { address } = chainContext;
   const { tx } = useTx();
   const { getBalance } = useBalance();
+  const query = useSearchParams();
 
   useEffect(() => {
     const amount = async () => {
@@ -69,7 +69,14 @@ const MintModal = ({
     };
     let memo;
     let msg;
+    let isValidRef = false;
+    let referrer;
     try {
+      if (query) {
+        referrer = query.get("referral");
+        const isValidRefObject = await isValidReferrer(referrer || "");
+        isValidRef = isValidRefObject?.isValidUserName;
+      }
       const finalReferrer = isValidRef ? referrer : defaultReferrer;
 
       // get the message composer function from mantlejs
@@ -104,6 +111,7 @@ const MintModal = ({
         setSuccess(true);
         setLoader(false);
         updateMyAmiList(userName, address);
+        localStorage.setItem("referral", userName as string);
       } else {
         if (response?.error?.message?.includes?.("entity already exists")) {
           showToastMessage("error", "AMI name already registered");
@@ -147,6 +155,8 @@ const MintModal = ({
     setSuccess(false);
   };
 
+  const newGeneratedUrl = `${window.location.origin}?referral=${userName}`;
+
   const claimedModalJSX = (
     <>
       <Image
@@ -174,13 +184,6 @@ const MintModal = ({
           <p className="font-bold text-[24px] leading-[24px] text-primary">
             Claimed successfully!
           </p>
-          {/* <a
-          className="underline block cursor-pointer"
-          target="_blank"
-          href={`https://explorer.assetmantle.one/transactions/${transactionData.transactionHash}`}
-        >
-          View in explorer
-        </a> */}
         </div>
         <p className="paragraph_regular text-center">
           Share the referral code and invite your friends to AMI Names
@@ -190,17 +193,17 @@ const MintModal = ({
           <a
             className=" text-md leading-4 block cursor-pointer text-[#396AF6] truncate flex-1"
             target="_blank"
-            href={`${window.location.origin}?referral=${userName}`}
+            href={newGeneratedUrl}
             rel="noreferrer"
           >
-            {`${window.location.origin}?referral=${userName}`}
+            {newGeneratedUrl}
           </a>
           <MdContentCopy
             role="button"
             tabIndex={0}
             className="text-2xl text-[#396AF6]"
             onClick={() => {
-              handleCopy(`${window.location.origin}?referral=${userName}`);
+              handleCopy(newGeneratedUrl);
             }}
           />
         </div>
@@ -209,7 +212,7 @@ const MintModal = ({
         <div className="flex items-center justify-center">
           <div className="grid grid-cols-4 gap-7">
             <Link
-              href={`https://twitter.com/intent/tweet?url=${window.location.origin}?referral=${userName}`}
+              href={`https://twitter.com/intent/tweet?url=${newGeneratedUrl}`}
               target="_blank"
             >
               <div className="flex flex-col items-center justify-center gap-2">
@@ -225,7 +228,7 @@ const MintModal = ({
               </div>
             </Link>
             <Link
-              href={`https://telegram.me/share/url?url=${window.location.origin}?referral=${userName}`}
+              href={`https://telegram.me/share/url?url=${newGeneratedUrl}`}
               target="_blank"
             >
               <div className="flex flex-col items-center justify-center gap-2">
@@ -241,7 +244,7 @@ const MintModal = ({
               </div>
             </Link>
             <Link
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.origin}?referral=${userName}`}
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${newGeneratedUrl}`}
               target="_blank"
             >
               <div className="flex flex-col items-center justify-center  gap-2">
@@ -355,7 +358,7 @@ const MintModal = ({
         className="rounded-xl p-4"
         header={""}
         closeModal={() => {
-          success && router.push(`/profile/${userName}`);
+          success && router.pushWithReferral(`/profile/${userName}`);
           handleClose();
         }}
       >
