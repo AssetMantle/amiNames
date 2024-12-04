@@ -20,6 +20,7 @@ import { SignerOptions, wallets } from "cosmos-kit";
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import { aminoTypes, registry } from "../config/defaults";
+import PromptInstall from "@/components/PromptInstall";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +39,8 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
 
   // State to manage loading screen
   const [isLoading, setIsLoading] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
+  const [isInstallable, setIsInstallable] = useState(false);
 
   const signerOptions: SignerOptions = {
     // @ts-ignore
@@ -93,6 +96,38 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeError", handleRouteChangeError);
     };
   }, [router]);
+
+  // Checking if Install Prompt should be opened (only on load)
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setIsInstallable(true);
+    };
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt
+      );
+    };
+  }, []);
+
+  const handleInstall = async () => {
+    if (deferredPrompt) {
+      const promptEvent = deferredPrompt as any;
+      promptEvent.prompt();
+      const choiceResult = await promptEvent.userChoice;
+      if (choiceResult.outcome === "accepted") {
+        console.log("PWA installation accepted");
+      } else {
+        console.log("PWA installation dismissed");
+      }
+
+      setDeferredPrompt(null);
+      setIsInstallable(false);
+    }
+  };
 
   return (
     <>
@@ -189,6 +224,11 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
               backgroundColor={useColorModeValue("#ffffff", "#ffffff")}
             >
               <Component {...pageProps} />
+              <PromptInstall
+                fun={handleInstall}
+                open={isInstallable}
+                close={() => setIsInstallable(false)}
+              />
               {isLoading && <Loading />}
             </Box>
           </QueryClientProvider>
