@@ -48,9 +48,38 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
-    const handleRouteChangeStart = () => setIsLoading(true); // Show loading screen
-    const handleRouteChangeComplete = () => setIsLoading(false); // Hide loading screen
-    const handleRouteChangeError = () => setIsLoading(false); // Hide on error
+    const { referral } = router.query;
+    if (referral) {
+      // Save referral code to localStorage
+      localStorage.setItem("referral", referral as string);
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      setIsLoading(true); // Show loading screen
+    };
+
+    const handleRouteChangeComplete = (url: string) => {
+      setIsLoading(false); // Hide loading screen
+
+      // Append referral code to URL if missing
+      const referral = localStorage.getItem("referral");
+      if (referral) {
+        const [path, queryString] = url.split("?");
+        const searchParams = new URLSearchParams(queryString || "");
+        if (!searchParams.has("referral")) {
+          searchParams.set("referral", referral);
+          router.replace(`${path}?${searchParams.toString()}`, undefined, {
+            shallow: true,
+          });
+        }
+      }
+    };
+
+    const handleRouteChangeError = () => {
+      setIsLoading(false); // Hide loading screen on error
+    };
 
     router.events.on("routeChangeStart", handleRouteChangeStart);
     router.events.on("routeChangeComplete", handleRouteChangeComplete);

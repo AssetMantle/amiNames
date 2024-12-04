@@ -1,8 +1,8 @@
-import { Asset, AssetList } from "@chain-registry/types";
 import {
   assetmantleAminoConverters,
   assetmantleProtoRegistry,
 } from "@assetmantle/mantlejs";
+import { Asset, AssetList } from "@chain-registry/types";
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { AminoTypes } from "@cosmjs/stargate";
 import { assets } from "chain-registry";
@@ -14,6 +14,7 @@ import {
   ibcAminoConverters,
   ibcProtoRegistry,
 } from "interchain-query";
+import { useRouter } from "next/router";
 
 export const defaultChainName = "assetmantle";
 export const defaultReferrer = "assetmantle";
@@ -42,3 +43,22 @@ const aminoConverters = {
 
 export const registry = new Registry(protoRegistry);
 export const aminoTypes = new AminoTypes(aminoConverters);
+
+export function useReferralRouter() {
+  const router = useRouter();
+  const referral =
+    typeof window !== "undefined" ? localStorage.getItem("referral") : null;
+
+  const pushWithReferral = (url: string, as = undefined, options = {}) => {
+    if (!referral) return router.push(url, as, options);
+
+    const [path, queryString] = url.split("?");
+    const searchParams = new URLSearchParams(queryString || "");
+    searchParams.set("referral", referral);
+
+    const newUrl = `${path}?${searchParams.toString()}`;
+    return router.push(newUrl, as, options);
+  };
+
+  return { ...router, pushWithReferral };
+}

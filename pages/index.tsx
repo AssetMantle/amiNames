@@ -1,5 +1,6 @@
 "use client";
 import MintModal from "@/components/modals/MintModal";
+import { useReferralRouter } from "@/config";
 import { chain } from "@/constant";
 import {
   getFromLocalStorage,
@@ -9,13 +10,11 @@ import {
 } from "@/utils";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useMemo, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 export default function Home() {
-  const router = useRouter();
-  const query = useSearchParams();
+  const router = useReferralRouter();
   const chainContext = useChain(chain);
   const { address, connect } = chainContext;
   const [inputValue, setInputValue] = useState("");
@@ -24,21 +23,10 @@ export default function Home() {
   const [idExist, setIsExist] = useState(false);
   const [loader, setLoader] = useState(false);
   const [mintModal, setMintModal] = useState(false);
-  const [isValidRef, setIsValidRef] = useState(false);
-  const [referrer, setReferrer] = useState("");
   const [premiumAddr, setPremiumAddr] = useState({
     isPremium: false,
     provisionAddress: "",
   });
-
-  async function getIsValidRef() {
-    if (query) {
-      const queryValue = query.get("referral");
-      const isValidRef = await isValidReferrer(queryValue ?? "");
-      setIsValidRef(isValidRef?.isValidUserName);
-      setReferrer(queryValue || "");
-    }
-  }
 
   const userNameExist = async (value: string) => {
     const retrievedUsername = await isValidReferrer(value.toLowerCase());
@@ -91,12 +79,11 @@ export default function Home() {
         }
       } else {
         setUserName(inputValue.toLowerCase());
-        await getIsValidRef();
         setIsOpen(true);
         setInputValue("");
       }
     } else {
-      router.push(`/profile/${inputValue}`);
+      router.pushWithReferral(`/profile/${inputValue}`);
     }
   };
 
@@ -195,8 +182,6 @@ export default function Home() {
         userName={userName}
         isPremium={premiumAddr.isPremium}
         provisionAddress={premiumAddr.provisionAddress}
-        isValidRef={isValidRef}
-        referrer={referrer}
       />
     </main>
   );
