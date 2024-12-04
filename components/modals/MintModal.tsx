@@ -358,7 +358,7 @@ const MintModal = ({
         className="rounded-xl p-4"
         header={""}
         closeModal={() => {
-          success && router.pushWithReferral(`/profile/${userName}`);
+          success && router.pushWithReferral(`/${userName}`);
           handleClose();
         }}
       >

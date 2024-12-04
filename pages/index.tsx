@@ -83,7 +83,7 @@ export default function Home() {
         setInputValue("");
       }
     } else {
-      router.pushWithReferral(`/profile/${inputValue}`);
+      router.pushWithReferral(`/${inputValue}`);
     }
   };
 
