@@ -49,15 +49,15 @@ export function useReferralRouter() {
   const referral =
     typeof window !== "undefined" ? localStorage.getItem("referral") : null;
 
-  const pushWithReferral = (url: string, as = undefined, options = {}) => {
-    if (!referral) return router.push(url, as, options);
+  const pushWithReferral = (url: string, as?: string, options = {}) => {
+    if (!referral) return router.push(url, as || url, options);
 
     const [path, queryString] = url.split("?");
     const searchParams = new URLSearchParams(queryString || "");
     searchParams.set("referral", referral);
 
     const newUrl = `${path}?${searchParams.toString()}`;
-    return router.push(newUrl, as, options);
+    return router.push(newUrl, as || newUrl, options);
   };
 
   return { ...router, pushWithReferral };
