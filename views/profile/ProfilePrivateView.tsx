@@ -67,42 +67,44 @@ export default function ProfilePrivateView({
     fetchSocialData();
   }, [profileNames, PROFILE_NAME]);
 
-  const handleDelete = (platform: string) => {
-    setSocialData((prevData: any) => {
-      const updatedData = { ...prevData };
-      delete updatedData[platform];
-      return updatedData;
-    });
+  const handleDelete = async (platform: string) => {
+    const newSocialData = { ...socialData };
+    delete newSocialData[platform];
+    setSocialData(newSocialData);
+    console.log("newSocialData: ", newSocialData);
+    await handleStoreLinks(newSocialData);
   };
 
-  // Custom handler for the Chevron button
-  const handleChevron = async () => {
-    console.log("inside handleChevron");
+  const handleStoreLinks = async (updatedSocialData: any) => {
     // Deep comparison of socialData with the original data
     const isChanged =
-      JSON.stringify(socialData) !== JSON.stringify(originalSocialData);
+      JSON.stringify(updatedSocialData) !== JSON.stringify(originalSocialData);
 
     if (isChanged) {
       try {
-        const result = await fetchSetProfile(profile, socialData);
+        const result = await fetchSetProfile(profile, updatedSocialData);
 
         if (!result?.error) {
           console.log("SocialData set successfully");
           showToastMessage("success", "Social Data saved successfully");
-          setOriginalSocialData(socialData);
+          setOriginalSocialData(updatedSocialData);
         } else {
           console.error("Failed to set profile:", result?.error);
           showToastMessage("error", "Error while saving Social Data");
         }
       } catch (error) {
         console.error("Error in setting profile:", error);
-      } finally {
-        setIsViewQR(true);
       }
     } else {
       // Handle case where no changes have been made (optional)
       console.log("No changes to social data.");
     }
+  };
+
+  // Custom handler for the Chevron button
+  const handleChevron = async () => {
+    console.log("inside handleChevron");
+    await handleStoreLinks(socialData);
     setIsViewQR(true);
   };
 
@@ -297,6 +299,7 @@ export default function ProfilePrivateView({
         }}
         socialData={socialData}
         setSocialData={setSocialData}
+        handleStoreLinks={handleStoreLinks}
       />
     </>
   );
