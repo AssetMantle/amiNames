@@ -21,6 +21,7 @@ import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import { aminoTypes, registry } from "../config/defaults";
 import PromptInstall from "@/components/PromptInstall";
+import Header from "@/layout/Header";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -223,6 +224,7 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
               minHeight="100dvh"
               backgroundColor={useColorModeValue("#ffffff", "#ffffff")}
             >
+              <Header />
               <Component {...pageProps} />
               <PromptInstall
                 fun={handleInstall}
