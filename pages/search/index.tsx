@@ -95,7 +95,7 @@ export default function Home() {
   }, [address]);
 
   return (
-    <main className="flex h-[100dvh] flex-col items-center justify-center font-inter p-6 am-ami-container-sm">
+    <main className="flex h-[calc(100dvh-97.02px)] flex-col items-center justify-center font-inter p-6 am-ami-container-sm">
       <div className="flex items-center justify-center w-[min(320px,100%)] mx-auto relative">
         <div className="flex aspect-square w-[50px] rounded-[50%] scale-[1.1] origin-left">
           <Image

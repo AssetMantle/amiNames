@@ -1,7 +1,6 @@
 "use client";
 import Loading from "@/components/Loading";
 import { defaultChainName } from "@/config";
-import Header from "@/layout/Header";
 import { isValidReferrer, showToastMessage, updateMyAmiList } from "@/utils";
 import ProfilePrivateView from "@/views/profile/ProfilePrivateView";
 import ProfilePublicView from "@/views/profile/ProfilePublicView";
@@ -18,6 +17,11 @@ export default function Profile() {
   const [profileNames, setProfileNames] = useState<string[]>([]);
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loginStat = localStorage.getItem("loggedIn");
+    loginStat === "yes" ? setIsLogin(true) : setIsLogin(false);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -150,11 +154,6 @@ export default function Profile() {
 
   return (
     <>
-      <Header
-        profileName={PROFILE_NAME}
-        setIsLogin={setIsLogin}
-        isLogin={isMyProfile}
-      />
       <main className="am-ami-container-sm h-[calc(100dvh-97.02px)] overflow-y-hidden scroll-smooth snap-mandatory snap-y relative">
         {isMyProfile ? (
           <>
