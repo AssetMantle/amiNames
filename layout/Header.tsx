@@ -1,16 +1,22 @@
 "use client";
-import { HeaderProps } from "@/config";
 import { chain } from "@/constant";
 import { useChain } from "@cosmos-kit/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function Header({
-  profileName,
-  setIsLogin,
-  isLogin,
-}: HeaderProps) {
+export default function Header() {
   const { connect, address } = useChain(chain);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const loginStat = localStorage.getItem("loggedIn");
+    loginStat === "yes" ? setIsLogin(true) : setIsLogin(false);
+  }, []);
+
+  useEffect(() => {
+    localStorage.loggedIn = isLogin ? "yes" : "no";
+  }, [isLogin]);
 
   const handleProfileIconClick = async () => {
     if (!address) {
